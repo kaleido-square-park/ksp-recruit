@@ -1,997 +1,583 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>クルー募集 | カレイドスクエアパーク（KSP）｜トラインスミス株式会社</title>
-<meta name="description" content="新潟県胎内市・村上市で放課後等デイサービス、就労移行支援などを運営するカレイドスクエアパーク（KSP）のクルー（スタッフ）募集ページ。「人の違いは美しい」を理念に、一緒に働く仲間を募集しています。" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --blue-900: #0d2a4a;
-    --blue-700: #1b4f8a;
-    --blue-500: #2f7fd1;
-    --blue-300: #7db4e6;
-    --blue-50:  #eef6fd;
-    --accent:   #ff7a4a;   /* 暖色アクセント */
-    --accent-soft: #ffb38a;
-    --warm-bg:  #fff6f0;
-    --ink:      #233241;
-    --ink-soft: #5b6b78;
-    --white:    #ffffff;
-    --radius:   22px;
-    --shadow:   0 18px 50px rgba(20, 60, 110, 0.12);
-    --shadow-sm:0 8px 24px rgba(20, 60, 110, 0.10);
-    --max:      1120px;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: "Noto Sans JP", system-ui, sans-serif;
-    color: var(--ink);
-    background: var(--white);
-    line-height: 1.85;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  h1, h2, h3, .display {
-    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
-    line-height: 1.4;
-    letter-spacing: 0.02em;
-  }
-
-  a { color: inherit; text-decoration: none; }
-
-  .wrap { width: min(92%, var(--max)); margin-inline: auto; }
-
-  .section { padding: clamp(72px, 11vw, 140px) 0; }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--blue-500);
-    text-transform: uppercase;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 26px; height: 2px;
-    background: var(--accent);
-    display: inline-block;
-  }
-
-  .section-title {
-    font-size: clamp(1.7rem, 4vw, 2.6rem);
-    font-weight: 900;
-    color: var(--blue-900);
-    margin: 16px 0 14px;
-  }
-  .section-lead {
-    color: var(--ink-soft);
-    max-width: 640px;
-    font-size: 1.02rem;
-  }
-  .center { text-align: center; }
-  .center .section-lead { margin-inline: auto; }
-  .center .eyebrow::before { width: 18px; }
-
-  /* ===== Header ===== */
-  header.nav {
-    position: fixed;
-    inset: 0 0 auto 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px clamp(18px, 5vw, 48px);
-    background: rgba(255,255,255,0.0);
-    transition: background .35s, box-shadow .35s, padding .35s;
-  }
-  header.nav.scrolled {
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 6px 24px rgba(20,60,110,0.08);
-    padding-block: 10px;
-  }
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-family: "Zen Maru Gothic", sans-serif;
-    font-weight: 900;
-    color: var(--blue-900);
-  }
-  .brand .logo {
-    width: 38px; height: 38px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
-    display: grid;
-    place-items: center;
-    color: #fff;
-    font-size: 1.1rem;
-    box-shadow: var(--shadow-sm);
-    position: relative;
-    overflow: hidden;
-  }
-  .brand .logo::after {
-    content: "";
-    position: absolute;
-    width: 16px; height: 16px;
-    right: -4px; bottom: -4px;
-    background: var(--accent);
-    border-radius: 5px;
-    transform: rotate(15deg);
-  }
-  .brand small { display: block; font-size: 0.62rem; font-weight: 500; color: var(--ink-soft); letter-spacing: .12em; }
-  header.nav.scrolled .brand, header.nav.scrolled .nav-links a { color: var(--blue-900); }
-  .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--blue-900);
-    transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--accent); }
-  .nav-cta {
-    background: var(--accent);
-    color: #fff !important;
-    padding: 10px 22px;
-    border-radius: 999px;
-    font-weight: 700 !important;
-    box-shadow: 0 8px 20px rgba(255,122,74,0.35);
-    transition: transform .2s, box-shadow .2s;
-  }
-  .nav-cta:hover { transform: translateY(-2px); color:#fff !important; }
-  .nav-toggle { display: none; background: none; border: 0; cursor: pointer; }
-
-  /* ===== Hero ===== */
-  .hero {
-    position: relative;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    background:
-      radial-gradient(circle at 80% 20%, rgba(255,122,74,0.16), transparent 45%),
-      radial-gradient(circle at 10% 80%, rgba(125,180,230,0.25), transparent 45%),
-      linear-gradient(160deg, var(--blue-50), #ffffff 60%, var(--warm-bg));
-    overflow: hidden;
-    padding-top: 90px;
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 50px;
-    align-items: center;
-    width: min(92%, var(--max));
-    margin-inline: auto;
-  }
-  .hero .tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #fff;
-    border: 1px solid rgba(47,127,209,0.2);
-    color: var(--blue-700);
-    padding: 8px 18px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    box-shadow: var(--shadow-sm);
-  }
-  .hero .tag .dot { width:8px;height:8px;border-radius:50%;background:var(--accent); box-shadow:0 0 0 4px rgba(255,122,74,0.2);}
-  .hero h1 {
-    font-size: clamp(2.3rem, 6vw, 4.1rem);
-    font-weight: 900;
-    color: var(--blue-900);
-    margin: 22px 0 20px;
-  }
-  .hero h1 .hl {
-    position: relative;
-    color: var(--blue-500);
-  }
-  .hero h1 .hl::after {
-    content:"";
-    position:absolute; left:-2px; right:-2px; bottom: 6px; height: 14px;
-    background: rgba(255,122,74,0.28);
-    z-index:-1; border-radius: 4px;
-  }
-  .hero p.sub {
-    font-size: clamp(1rem, 2vw, 1.15rem);
-    color: var(--ink-soft);
-    max-width: 520px;
-    margin-bottom: 34px;
-  }
-  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 16px 34px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    border: 0;
-    transition: transform .2s, box-shadow .2s, background .2s;
-    font-family: inherit;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), #ff5e2b);
-    color: #fff;
-    box-shadow: 0 14px 30px rgba(255,94,43,0.35);
-  }
-  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 38px rgba(255,94,43,0.42); }
-  .btn-ghost {
-    background: #fff;
-    color: var(--blue-700);
-    box-shadow: var(--shadow-sm);
-  }
-  .btn-ghost:hover { transform: translateY(-3px); }
-  .hero-stats { display:flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
-  .hero-stats .stat strong { font-family:"Zen Maru Gothic"; font-size: 1.9rem; color: var(--blue-700); display:block; line-height:1.1; }
-  .hero-stats .stat span { font-size: 0.8rem; color: var(--ink-soft); }
-
-  /* Hero visual */
-  .hero-visual {
-    position: relative;
-    aspect-ratio: 1 / 1.05;
-    border-radius: 40px;
-    background: linear-gradient(150deg, var(--blue-500), var(--blue-700) 70%, var(--blue-900));
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    display:grid; place-items:center;
-  }
-  .hero-visual::before {
-    content:"";
-    position:absolute; inset:0;
-    background:
-      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 40%),
-      radial-gradient(circle at 80% 90%, rgba(255,122,74,0.45), transparent 45%);
-  }
-  .hero-visual .kaleido {
-    position:absolute; inset:0;
-  }
-  .hero-visual .shape { position:absolute; border-radius: 14px; opacity:.92; }
-  .hv-copy {
-    position: relative;
-    text-align:center;
-    color:#fff;
-    padding: 24px;
-  }
-  .hv-copy .big {
-    font-family:"Zen Maru Gothic";
-    font-weight:900;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    line-height:1.5;
-  }
-  .hv-copy .small { font-size:.85rem; letter-spacing:.2em; opacity:.85; margin-top:14px; }
-  .float-card {
-    position:absolute;
-    background:#fff;
-    border-radius:16px;
-    padding:12px 16px;
-    box-shadow: var(--shadow);
-    display:flex; align-items:center; gap:10px;
-    font-weight:700; font-size:.82rem; color:var(--blue-900);
-    animation: floaty 4s ease-in-out infinite;
-  }
-  .float-card .ic { width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:1rem; }
-  .fc1 { top: 8%; left: -6%; }
-  .fc2 { bottom: 12%; right: -8%; animation-delay: 1.4s; }
-  .fc3 { bottom: 38%; left: -9%; animation-delay: .7s; }
-  @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-
-  /* ===== About ===== */
-  .philosophy {
-    background: var(--blue-900);
-    color: #fff;
-    border-radius: var(--radius);
-    padding: clamp(40px, 6vw, 70px);
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 64px;
-  }
-  .philosophy::before {
-    content:"";
-    position:absolute; right:-60px; top:-60px;
-    width: 260px; height:260px; border-radius:50%;
-    background: radial-gradient(circle, rgba(255,122,74,0.4), transparent 70%);
-  }
-  .philosophy .eyebrow { color: var(--accent-soft); }
-  .philosophy .eyebrow::before { background: var(--accent); }
-  .philosophy h2 {
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    font-weight: 900;
-    margin: 14px 0 18px;
-  }
-  .philosophy h2 .em { color: var(--accent-soft); }
-  .philosophy p { color: rgba(255,255,255,0.82); max-width: 620px; }
-
-  .biz-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-  }
-  .biz-card {
-    background: #fff;
-    border: 1px solid rgba(20,60,110,0.08);
-    border-radius: var(--radius);
-    padding: 30px 26px;
-    box-shadow: var(--shadow-sm);
-    transition: transform .25s, box-shadow .25s;
-  }
-  .biz-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-  .biz-card .ic {
-    width: 54px; height: 54px;
-    border-radius: 16px;
-    display: grid; place-items: center;
-    font-size: 1.5rem;
-    margin-bottom: 16px;
-    background: var(--blue-50);
-  }
-  .biz-card h3 { font-size: 1.12rem; color: var(--blue-900); margin-bottom: 8px; }
-  .biz-card p { font-size: 0.9rem; color: var(--ink-soft); }
-
-  .terms {
-    display:flex; gap:16px; flex-wrap:wrap; margin-top: 40px;
-    justify-content:center;
-  }
-  .term-chip {
-    background: var(--warm-bg);
-    border: 1px dashed var(--accent-soft);
-    border-radius: 16px;
-    padding: 16px 24px;
-    text-align:center;
-  }
-  .term-chip b { color: var(--accent); font-family:"Zen Maru Gothic"; font-size:1.15rem; }
-  .term-chip span { display:block; font-size:.78rem; color: var(--ink-soft); }
-
-  /* ===== Appeal ===== */
-  .appeal { background: linear-gradient(180deg, #fff, var(--blue-50)); }
-  .appeal-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 26px;
-    margin-top: 50px;
-  }
-  .appeal-card {
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 38px 32px;
-    box-shadow: var(--shadow-sm);
-    position: relative;
-    overflow: hidden;
-    transition: transform .25s, box-shadow .25s;
-  }
-  .appeal-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
-  .appeal-card .num {
-    font-family:"Zen Maru Gothic";
-    font-size: 3rem; font-weight: 900;
-    color: rgba(47,127,209,0.12);
-    line-height: 1;
-    position:absolute; top: 18px; right: 24px;
-  }
-  .appeal-card .ic {
-    width: 60px; height: 60px;
-    border-radius: 18px;
-    display: grid; place-items: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
-    color:#fff;
-    box-shadow: var(--shadow-sm);
-  }
-  .appeal-card:nth-child(2) .ic { background: linear-gradient(135deg, var(--accent), #ff5e2b); box-shadow:0 8px 20px rgba(255,94,43,.3); }
-  .appeal-card h3 { font-size: 1.25rem; color: var(--blue-900); margin-bottom: 12px; }
-  .appeal-card p { font-size: 0.92rem; color: var(--ink-soft); }
-
-  /* ===== Jobs ===== */
-  .jobs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    margin-top: 50px;
-  }
-  .job-card {
-    border: 1px solid rgba(20,60,110,0.1);
-    border-radius: var(--radius);
-    padding: 32px;
-    background: #fff;
-    transition: transform .25s, box-shadow .25s, border-color .25s;
-    display: flex;
-    flex-direction: column;
-  }
-  .job-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: transparent; }
-  .job-card .badge {
-    align-self: flex-start;
-    font-size: 0.72rem; font-weight: 700;
-    padding: 5px 14px; border-radius: 999px;
-    background: var(--blue-50); color: var(--blue-700);
-    margin-bottom: 16px;
-    letter-spacing: .08em;
-  }
-  .job-card.hot .badge { background: var(--warm-bg); color: var(--accent); }
-  .job-card h3 { font-size: 1.35rem; color: var(--blue-900); margin-bottom: 10px; }
-  .job-card p { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 20px; flex-grow:1; }
-  .job-meta { display: flex; flex-direction: column; gap: 8px; border-top: 1px dashed rgba(20,60,110,0.15); padding-top: 18px; }
-  .job-meta .row { display:flex; gap: 10px; font-size: 0.85rem; }
-  .job-meta .row span:first-child { color: var(--blue-500); font-weight: 700; min-width: 72px; }
-  .job-meta .row span:last-child { color: var(--ink); }
-  .job-card .apply-link {
-    margin-top: 22px;
-    display:inline-flex; align-items:center; gap:8px;
-    color: var(--accent); font-weight:700; font-size:.9rem;
-  }
-  .job-card .apply-link::after { content:"→"; transition: transform .2s; }
-  .job-card:hover .apply-link::after { transform: translateX(5px); }
-
-  /* ===== Voices ===== */
-  .voices { background: var(--blue-900); color: #fff; }
-  .voices .section-title { color: #fff; }
-  .voices .eyebrow { color: var(--accent-soft); }
-  .voices .section-lead { color: rgba(255,255,255,0.75); }
-  .voices-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
-    margin-top: 50px;
-  }
-  .voice-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: var(--radius);
-    padding: 32px;
-    backdrop-filter: blur(6px);
-    transition: transform .25s, background .25s;
-  }
-  .voice-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); }
-  .voice-card .quote { font-size: 2.4rem; font-family:"Zen Maru Gothic"; color: var(--accent-soft); line-height: 1; margin-bottom: 8px; }
-  .voice-card p.body { color: rgba(255,255,255,0.9); font-size: 0.95rem; margin-bottom: 24px; }
-  .voice-person { display: flex; align-items: center; gap: 14px; }
-  .voice-person .avatar {
-    width: 50px; height: 50px; border-radius: 50%;
-    display: grid; place-items: center;
-    font-family:"Zen Maru Gothic"; font-weight: 900; color: #fff;
-    font-size: 1.1rem;
-  }
-  .voice-person .meta b { display:block; font-size: 0.95rem; }
-  .voice-person .meta span { font-size: 0.78rem; color: rgba(255,255,255,0.65); }
-
-  /* ===== Flow ===== */
-  .flow-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    margin-top: 54px;
-    counter-reset: step;
-  }
-  .flow-step {
-    position: relative;
-    background: #fff;
-    border-radius: var(--radius);
-    padding: 36px 28px 30px;
-    box-shadow: var(--shadow-sm);
-    border-top: 4px solid var(--blue-500);
-    transition: transform .25s, box-shadow .25s;
-  }
-  .flow-step:nth-child(odd) { border-top-color: var(--accent); }
-  .flow-step:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-  .flow-step .step-no {
-    counter-increment: step;
-    position: absolute; top: -22px; left: 28px;
-    width: 46px; height: 46px;
-    border-radius: 14px;
-    display: grid; place-items: center;
-    font-family:"Zen Maru Gothic"; font-weight: 900; font-size: 1.2rem;
-    color: #fff;
-    background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
-    box-shadow: var(--shadow-sm);
-  }
-  .flow-step:nth-child(odd) .step-no { background: linear-gradient(135deg, var(--accent), #ff5e2b); }
-  .flow-step .step-no::before { content: "0" counter(step); }
-  .flow-step h3 { font-size: 1.15rem; color: var(--blue-900); margin: 14px 0 8px; }
-  .flow-step p { font-size: 0.88rem; color: var(--ink-soft); }
-
-  /* ===== Contact / CTA ===== */
-  .cta {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(150deg, var(--blue-700), var(--blue-900));
-    color: #fff;
-    border-radius: clamp(24px, 4vw, 44px);
-    padding: clamp(50px, 8vw, 90px) clamp(28px, 5vw, 70px);
-    text-align: center;
-    box-shadow: var(--shadow);
-  }
-  .cta::before {
-    content:"";
-    position:absolute; left:-80px; bottom:-80px;
-    width:320px;height:320px;border-radius:50%;
-    background: radial-gradient(circle, rgba(255,122,74,0.45), transparent 70%);
-  }
-  .cta::after {
-    content:"";
-    position:absolute; right:-60px; top:-60px;
-    width:240px;height:240px;border-radius:50%;
-    background: radial-gradient(circle, rgba(125,180,230,0.4), transparent 70%);
-  }
-  .cta .inner { position: relative; }
-  .cta h2 { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 900; margin-bottom: 16px; }
-  .cta p { color: rgba(255,255,255,0.85); max-width: 540px; margin: 0 auto 36px; }
-  .cta .hero-actions { justify-content: center; }
-  .cta .btn-ghost { background: rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.3); }
-  .cta-info { display:flex; gap:32px; justify-content:center; flex-wrap:wrap; margin-top: 40px; font-size:.9rem; }
-  .cta-info div b { display:block; color: var(--accent-soft); font-size:.78rem; letter-spacing:.12em; margin-bottom:4px; }
-
-  /* ===== Footer ===== */
-  footer {
-    padding: 56px 0 40px;
-    background: var(--blue-900);
-    color: rgba(255,255,255,0.7);
-  }
-  footer .foot-grid {
-    display:flex; justify-content: space-between; gap: 30px; flex-wrap: wrap;
-    padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.12);
-  }
-  footer .brand { color:#fff; }
-  footer .brand small { color: rgba(255,255,255,0.6); }
-  footer p { font-size: 0.85rem; max-width: 360px; }
-  footer .foot-links { display:flex; gap: 40px; flex-wrap: wrap; }
-  footer .foot-col b { display:block; color:#fff; margin-bottom: 12px; font-size:.9rem; }
-  footer .foot-col a { display:block; font-size:.85rem; margin-bottom: 8px; transition: color .2s; }
-  footer .foot-col a:hover { color: var(--accent-soft); }
-  footer .copy { text-align:center; font-size:.78rem; margin-top: 26px; color: rgba(255,255,255,0.5); }
-
-  /* ===== Scroll reveal ===== */
-  .reveal { opacity: 0; transform: translateY(34px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
-  .reveal.in { opacity: 1; transform: none; }
-  .reveal.d1 { transition-delay: .1s; }
-  .reveal.d2 { transition-delay: .2s; }
-  .reveal.d3 { transition-delay: .3s; }
-  .reveal.d4 { transition-delay: .4s; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity:1; transform:none; transition:none; }
-    .float-card { animation: none; }
-    html { scroll-behavior: auto; }
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width: 880px) {
-    .nav-links {
-      position: fixed; inset: 0 0 0 auto; width: min(78%, 320px);
-      background: #fff; flex-direction: column; align-items: flex-start;
-      padding: 90px 32px; gap: 22px; box-shadow: -10px 0 40px rgba(0,0,0,0.12);
-      transform: translateX(100%); transition: transform .35s; z-index: 99;
-    }
-    .nav-links.open { transform: none; }
-    .nav-toggle { display: block; z-index: 100; }
-    .nav-toggle span { display:block; width:26px; height:2px; background: var(--blue-900); margin:6px 0; transition: .3s; }
-    .nav-toggle.open span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
-    .nav-toggle.open span:nth-child(2){ opacity:0; }
-    .nav-toggle.open span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
-
-    .hero-grid { grid-template-columns: 1fr; text-align: center; }
-    .hero p.sub { margin-inline: auto; }
-    .hero-actions, .hero-stats { justify-content: center; }
-    .hero-visual { max-width: 380px; margin: 10px auto 0; }
-    .fc1 { left: 2%; } .fc3 { left: 0; } .fc2 { right: 2%; }
-    .center .section-lead, .section-lead { margin-inline:auto; }
-    .eyebrow::before { display:none; }
-    .hero { text-align:center; }
-  }
-  @media (max-width: 480px){
-    .hero-stats { gap: 20px; }
-    .float-card { font-size:.74rem; padding:9px 12px; }
-  }
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>採用情報｜カレイドスクエアパーク（新潟県村上市・胎内市）｜トラインスミス株式会社</title>
+<meta name="description" content="違いが、力になる場所。子どもから大人までの自立を、ワンストップで支える。新潟県村上市・胎内市のカレイドスクエアパークで、保育士・児童指導員・児童発達支援管理責任者・管理者・就労移行支援員を募集しています。">
+<link rel="canonical" href="https://takeaki-hada.github.io/ksp-recruit/">
+<meta name="theme-color" content="#00214E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="カレイドスクエアパーク 採用情報">
+<meta property="og:title" content="違いが、力になる場所。｜カレイドスクエアパーク 採用情報">
+<meta property="og:description" content="子どもから大人までの自立を、ワンストップで支える。新潟県村上市・胎内市で、一緒に働く仲間を募集しています。">
+<meta property="og:url" content="https://takeaki-hada.github.io/ksp-recruit/">
+<meta property="og:image" content="https://takeaki-hada.github.io/ksp-recruit/assets/img/ogp.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>document.documentElement.classList.add('js');</script>
+<script src="assets/js/main.js" defer></script>
 </head>
-<body>
+<body class="page-top">
 
-<!-- ===== Header ===== -->
-<header class="nav" id="nav">
-  <a href="#hero" class="brand">
-    <span class="logo">K</span>
-    <span>カレイドスクエアパーク
-      <small>TRINGSMITH Inc.</small>
-    </span>
-  </a>
-  <nav class="nav-links" id="navLinks">
-    <a href="#about">私たちについて</a>
-    <a href="#appeal">働く魅力</a>
-    <a href="#jobs">募集職種</a>
-    <a href="#voices">クルーの声</a>
-    <a href="#flow">応募の流れ</a>
-    <a href="#contact" class="nav-cta">応募する</a>
-  </nav>
-  <button class="nav-toggle" id="navToggle" aria-label="メニュー">
-    <span></span><span></span><span></span>
-  </button>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<!-- 三角タイルの模様（章の境目・ヒーローで使い回す） -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+<symbol id="tiles-v" viewBox="0 0 6 12"><path class="t-d" d="M0 0h1v1zM3 1v1h-1zM3 1v1h1zM1 2v1h-1zM1 2v1h1zM3 2h1v1zM1 3v1h1zM0 4h1L0 5zM2 4h1v1zM0 5h1L0 6zM1 5v1h-1zM3 5h1L3 6zM1 6v1h-1zM4 6h1v1zM5 6v1h1zM1 7v1h1zM2 7h1L2 8zM3 7v1h1zM1 8v1h-1zM1 8h1v1zM1 8v1h1zM5 8h1L5 9zM0 9h1L0 10zM1 9v1h-1zM5 9h1L5 10zM1 10v1h-1zM3 10h1L3 11zM6 10v1h-1z"/><path class="t-g" d="M2 0h1L2 1zM2 2h1L2 3zM2 4v1h1zM3 4h1v1zM1 5h1v1zM1 5v1h1zM2 5v1h1zM2 6h1v1zM5 6h1v1zM0 8h1L0 9zM3 8v1h-1zM3 8h1L3 9zM4 8v1h-1zM6 8v1h-1zM1 9h1v1zM4 9v1h1zM1 10h1v1zM2 10h1L2 11zM4 10v1h-1zM1 11h1L1 12zM2 11h1L2 12zM5 11v1h-1z"/><path class="t-l" d="M1 1v1h1zM1 3h1v1zM2 3h1v1zM0 6h1L0 7zM5 7h1L5 8zM2 8h1L2 9zM2 9h1v1zM4 9v1h-1zM4 9h1v1zM0 11h1v1zM0 11v1h1zM2 11v1h-1zM4 11v1h-1z"/><path class="t-n" d="M2 3v1h1zM3 4v1h1zM2 6v1h-1zM3 7v1h-1zM1 9v1h1z"/><path class="t-o" d="M0 0v1h1zM1 0h1v1zM1 0v1h1zM3 0v1h-1zM0 1h1L0 2zM1 1v1h-1zM1 1h1v1zM2 1h1L2 2zM3 1h1v1zM3 2v1h-1zM3 3h1L3 4zM4 3v1h-1zM1 4h1v1zM1 4v1h1zM2 5h1v1zM4 5v1h-1zM4 5h1L4 6zM5 5v1h-1zM1 6h1L1 7zM2 6v1h1zM4 6v1h1zM0 7h1L0 8zM1 7v1h-1zM3 7h1v1zM6 7v1h-1zM2 9v1h1zM3 9h1L3 10zM6 9v1h-1zM1 10v1h1zM3 10v1h-1zM5 10h1L5 11zM3 11v1h-1zM3 11h1L3 12zM4 11h1L4 12z"/></symbol>
+<symbol id="tiles-h" viewBox="0 0 12 4"><path class="t-d" d="M10 0v1h1zM4 1h1v1zM4 1v1h1zM5 1h1L5 2zM6 1h1v1zM8 1v1h1zM10 1h1v1zM11 1h1v1zM2 2h1v1zM3 2h1v1zM6 2h1v1zM7 2h1v1zM8 2h1L8 3zM10 2v1h1zM1 3v1h-1zM4 3h1v1zM6 3v1h-1zM6 3h1L6 4zM7 3v1h1zM10 3h1L10 4zM11 3v1h-1z"/><path class="t-g" d="M7 0v1h1zM9 1v1h1zM4 2v1h1zM5 2h1v1zM0 3h1L0 4zM1 3h1L1 4zM2 3v1h-1zM5 3h1L5 4zM7 3h1v1zM9 3h1v1z"/><path class="t-l" d="M7 0h1v1zM6 1v1h1zM8 1h1v1zM4 2h1v1zM12 2v1h-1zM7 3v1h-1z"/><path class="t-o" d="M9 0h1L9 1zM10 0v1h-1zM10 0h1v1zM11 0h1v1zM11 0v1h1zM9 1h1v1zM11 1v1h1zM2 2v1h1zM3 2v1h1zM5 2v1h1zM6 2v1h1zM7 2v1h1zM9 2v1h-1zM9 2h1v1zM9 2v1h1zM10 2h1v1zM8 3h1v1zM8 3v1h1zM9 3v1h1zM11 3h1v1zM11 3v1h1z"/></symbol>
+</svg>
+
+<!-- ===== ヘッダー ===== -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-logo" href="./">
+      <img src="assets/img/logo/ksp-logo-yoko.png" width="1024" height="381" alt="カレイドスクエアパーク 採用情報トップ">
+    </a>
+    <a class="header-jobs" href="#jobs">募集職種</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__label">メニュー</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="サイト内">
+      <ul>
+        <li><a href="message.html">想い</a></li>
+        <li><a href="#work">仕事</a></li>
+        <li><a href="#jobs">募集職種</a></li>
+        <li><a href="#environment">働く環境</a></li>
+        <li><a class="site-nav__cta" href="#entry">見学・応募</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<!-- ===== Hero ===== -->
-<section class="hero" id="hero">
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <span class="tag reveal"><span class="dot"></span>新潟県胎内市・村上市でクルー募集中</span>
-      <h1 class="reveal d1">人の違いは、<br><span class="hl">美しい。</span></h1>
-      <p class="sub reveal d2">
-        放課後等デイサービスから就労支援まで。一人ひとりの「らしさ」に寄り添う仕事を、私たちは「クルー」という仲間と一緒につくっています。あなたの個性が、誰かの未来になる。
-      </p>
-      <div class="hero-actions reveal d3">
-        <a href="#contact" class="btn btn-primary">クルーに応募する</a>
-        <a href="#about" class="btn btn-ghost">私たちを知る</a>
-      </div>
-      <div class="hero-stats reveal d4">
-        <div class="stat"><strong>2</strong><span>胎内市・村上市の拠点</span></div>
-        <div class="stat"><strong>5</strong><span>福祉サービス事業</span></div>
-        <div class="stat"><strong>1人</strong><span>として向き合う支援</span></div>
-      </div>
-    </div>
+<main id="main">
 
-    <div class="hero-visual reveal d2" aria-hidden="true">
-      <div class="kaleido" id="kaleido"></div>
-      <div class="hv-copy">
-        <div class="big">クルー、<br>募集します。</div>
-        <div class="small">JOIN OUR CREW</div>
-      </div>
-      <div class="float-card fc1"><span class="ic" style="background:var(--blue-50)">🧩</span>放課後等デイ</div>
-      <div class="float-card fc2"><span class="ic" style="background:var(--warm-bg)">🌱</span>成長できる環境</div>
-      <div class="float-card fc3"><span class="ic" style="background:var(--blue-50)">🤝</span>地域とつながる</div>
-    </div>
+<!-- ===== ① ヒーロー ===== -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__photo">
+    <div class="ph ph--fill" role="img" aria-label="写真の仮の枠">写真：クルーの集合写真（横長）</div>
   </div>
-</section>
-
-<!-- ===== About ===== -->
-<section class="section" id="about">
-  <div class="wrap">
-    <div class="philosophy reveal">
-      <span class="eyebrow">Our Philosophy</span>
-      <h2>「人の違いは、<span class="em">美しい</span>」</h2>
-      <p>
-        得意なことも、苦手なことも、感じ方も、歩むペースも、人それぞれ。私たちカレイドスクエアパーク（KSP）は、その「違い」こそが彩りだと信じています。万華鏡（Kaleidoscope）のように、一人ひとりの個性が重なり合って、唯一の美しい風景が生まれる。メンバー（利用者）にもクルー（スタッフ）にも、そんな場所でありたいと願っています。
-      </p>
-    </div>
-
-    <div class="center" style="margin-bottom:46px;">
-      <span class="eyebrow reveal">What We Do</span>
-      <h2 class="section-title reveal d1">5つの事業で、地域の「働く・育つ」を支える</h2>
-      <p class="section-lead reveal d2">トラインスミス株式会社が運営するKSPは、子どもから大人まで、ライフステージに寄り添う福祉サービスを展開しています。</p>
-    </div>
-
-    <div class="biz-grid">
-      <div class="biz-card reveal d1">
-        <div class="ic">🧩</div>
-        <h3>放課後等デイサービス</h3>
-        <p>学校や家庭とは違う「もうひとつの居場所」で、子どもたちの成長を遊びと学びから支えます。</p>
-      </div>
-      <div class="biz-card reveal d2">
-        <div class="ic">💼</div>
-        <h3>就労移行支援</h3>
-        <p>一般就労を目指す方へ、訓練からマッチング、就職活動までを伴走しサポートします。</p>
-      </div>
-      <div class="biz-card reveal d3">
-        <div class="ic">🌱</div>
-        <h3>自立訓練（生活訓練）</h3>
-        <p>日常生活に必要な力を、その人のペースで。「自分らしい暮らし」への一歩を支えます。</p>
-      </div>
-      <div class="biz-card reveal d1">
-        <div class="ic">🤝</div>
-        <h3>就労定着支援</h3>
-        <p>就職した後も、安心して働き続けられるように。職場と本人の橋渡しを続けます。</p>
-      </div>
-      <div class="biz-card reveal d2">
-        <div class="ic">🧭</div>
-        <h3>就労選択支援</h3>
-        <p>「どんな働き方が合うのか」を一緒に考え、本人に合った進路選びをサポートします。</p>
-      </div>
-      <div class="biz-card reveal d3" style="background:var(--warm-bg);border-color:var(--accent-soft);">
-        <div class="ic" style="background:#fff">📍</div>
-        <h3>胎内市・村上市</h3>
-        <p>新潟県北部の2拠点で、地域に根ざした支援を届けています。</p>
-      </div>
-    </div>
-
-    <div class="terms">
-      <div class="term-chip reveal d1"><b>クルー</b><span>＝ 私たちスタッフのこと</span></div>
-      <div class="term-chip reveal d2"><b>メンバー</b><span>＝ 利用者さんのこと</span></div>
-      <div class="term-chip reveal d3"><b>KSP</b><span>＝ カレイドスクエアパーク</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Appeal ===== -->
-<section class="section appeal" id="appeal">
-  <div class="wrap">
-    <div class="center" style="margin-bottom:6px;">
-      <span class="eyebrow reveal">Why Join Us</span>
-      <h2 class="section-title reveal d1">クルーとして働く、3つの魅力</h2>
-      <p class="section-lead reveal d2">資格や経験よりも、「人が好き」という気持ちを大切に。あなたらしさが活きる環境がここにあります。</p>
-    </div>
-
-    <div class="appeal-grid">
-      <div class="appeal-card reveal d1">
-        <span class="num">01</span>
-        <div class="ic">🫶</div>
-        <h3>フラットで温かいチーム</h3>
-        <p>役職や年齢に関係なく、意見を言い合えるフラットな関係。困ったときはすぐに相談できる、クルー同士の支え合いが日常です。「一人で抱えない」がKSPの当たり前。</p>
-      </div>
-      <div class="appeal-card reveal d2">
-        <span class="num">02</span>
-        <div class="ic">📈</div>
-        <h3>成長できる環境</h3>
-        <p>未経験から始めるクルーも多数。研修やOJT、資格取得のサポートで、福祉のプロとして着実にステップアップ。多様な事業があるからこそ、幅広い経験が積めます。</p>
-      </div>
-      <div class="appeal-card reveal d3">
-        <span class="num">03</span>
-        <div class="ic">🌍</div>
-        <h3>地域に貢献できる実感</h3>
-        <p>胎内市・村上市という地域で、子どもや大人の「できた！」に立ち会える毎日。あなたの仕事が、まちの誰かの人生を確かに支えている——そんなやりがいがあります。</p>
+  <div class="hero__panel">
+    <svg class="hero__tiles" aria-hidden="true" focusable="false"><use href="#tiles-v"/></svg>
+    <svg class="hero__tiles-sp" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
+    <div class="hero__body">
+      <h1 class="hero__title" id="hero-title">違いが、<br>力になる場所。</h1>
+      <p class="hero__lead">子どもから大人までの自立を、ワンストップで支える。<br class="br-pc">新潟県村上市・胎内市で、一緒に働く仲間を募集しています。</p>
+      <div class="btn-row">
+        <a class="btn btn--accent" href="#jobs">募集中の職種を見る</a>
+        <a class="btn btn--ghost-light" href="message.html">想いを読む</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== Jobs ===== -->
-<section class="section" id="jobs">
+<div class="edge edge--navy-paper" aria-hidden="true">
+  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100,0 100,10 0,10"/></svg>
+</div>
+
+<!-- ===== ② 私たちについて ===== -->
+<section class="sec sec--paper about" aria-labelledby="about-title">
   <div class="wrap">
-    <div class="center" style="margin-bottom:6px;">
-      <span class="eyebrow reveal">Open Positions</span>
-      <h2 class="section-title reveal d1">募集職種</h2>
-      <p class="section-lead reveal d2">気になる職種があれば、まずは気軽にエントリーを。「どれが合うか分からない」という方のご相談も歓迎します。</p>
-    </div>
-
-    <div class="jobs-grid">
-      <div class="job-card hot reveal d1">
-        <span class="badge">★ 積極採用中</span>
-        <h3>児童指導員 / 保育士</h3>
-        <p>放課後等デイサービスで、子どもたち（メンバー）の活動支援や見守り、保護者対応を担当。遊びや学びを通して、子どもの成長を一緒に喜べる仕事です。</p>
-        <div class="job-meta">
-          <div class="row"><span>雇用形態</span><span>正社員 / パート</span></div>
-          <div class="row"><span>勤務地</span><span>胎内市・村上市</span></div>
-          <div class="row"><span>歓迎資格</span><span>保育士・教員・児童指導員任用資格 等</span></div>
-        </div>
-        <a href="#contact" class="apply-link">この職種に応募する</a>
-      </div>
-
-      <div class="job-card reveal d2">
-        <span class="badge">就労支援</span>
-        <h3>生活支援員 / 就労支援員</h3>
-        <p>就労移行・自立訓練などで、メンバーの就職や自立に向けた訓練・サポートを担当。一人ひとりの目標に伴走し、「働く」を支える役割です。</p>
-        <div class="job-meta">
-          <div class="row"><span>雇用形態</span><span>正社員 / パート</span></div>
-          <div class="row"><span>勤務地</span><span>胎内市・村上市</span></div>
-          <div class="row"><span>歓迎資格</span><span>社会福祉士・介護福祉士・実務経験 等</span></div>
-        </div>
-        <a href="#contact" class="apply-link">この職種に応募する</a>
-      </div>
-
-      <div class="job-card reveal d3">
-        <span class="badge">マネジメント</span>
-        <h3>サービス管理責任者 / 児発管</h3>
-        <p>事業所の支援計画づくりやチームのマネジメントを担う中核ポジション。クルーをまとめ、KSPの支援の質をリードしていただきます。</p>
-        <div class="job-meta">
-          <div class="row"><span>雇用形態</span><span>正社員</span></div>
-          <div class="row"><span>勤務地</span><span>胎内市・村上市</span></div>
-          <div class="row"><span>歓迎資格</span><span>サビ管 / 児発管 要件を満たす方</span></div>
-        </div>
-        <a href="#contact" class="apply-link">この職種に応募する</a>
-      </div>
-
-      <div class="job-card reveal d1">
-        <span class="badge">未経験歓迎</span>
-        <h3>支援サポートスタッフ</h3>
-        <p>「福祉は初めて」という方も大歓迎。先輩クルーと一緒に、送迎や活動準備、メンバーの見守りなどからスタート。あなたのペースで成長できます。</p>
-        <div class="job-meta">
-          <div class="row"><span>雇用形態</span><span>パート / アルバイト</span></div>
-          <div class="row"><span>勤務地</span><span>胎内市・村上市</span></div>
-          <div class="row"><span>歓迎資格</span><span>不問（普通自動車免許があれば尚可）</span></div>
-        </div>
-        <a href="#contact" class="apply-link">この職種に応募する</a>
-      </div>
+    <h2 class="about__title" id="about-title">私たちについて</h2>
+    <div class="prose about__body">
+      <p class="about__lead">私たちは一人ひとりの違いを価値に変え、地域や社会に新しい可能性を生み出すソーシャルベンチャーです。</p>
+      <p>カレイドスクエアパークは「絶えず変化し続ける広場」という意味です。広場には、たくさんの人が集まり、思い思いに過ごす。そこにいる人たちに変化を届けつづけ、わたしたち自身も変わりつづけて、どんどん進化していきたい。</p>
     </div>
   </div>
 </section>
 
-<!-- ===== Voices ===== -->
-<section class="section voices" id="voices">
+<div class="edge edge--paper-navy" aria-hidden="true">
+  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="0,10 100,0 100,10"/></svg>
+  <svg class="edge__tiles edge__tiles--right" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
+</div>
+
+<!-- ===== ③ 看板の演出：「福祉の仕事」のイメージを、3つこわす ===== -->
+<!-- フェーズ4で canvas（aria-hidden）の演出を重ねる。テキストはこのまま読めるように残す -->
+<section class="sec sec--navy wall" id="wall" aria-labelledby="wall-title">
   <div class="wrap">
-    <div class="center" style="margin-bottom:6px;">
-      <span class="eyebrow reveal">Crew Voices</span>
-      <h2 class="section-title reveal d1">クルーの声</h2>
-      <p class="section-lead reveal d2">実際に働くクルーたちに、KSPの日常とやりがいを聞きました。<br>（※掲載内容はイメージです）</p>
+    <h2 class="wall__title" id="wall-title">「福祉の仕事」のイメージを、3つこわします。</h2>
+    <ol class="wall__list">
+      <li class="wall__item">
+        <p class="wall__myth"><span class="wall__tag">よくあるイメージ①</span>福祉の仕事って、「お世話」や「奉仕」？</p>
+        <div class="wall__truth">
+          <p class="wall__tag wall__tag--truth">本当の姿</p>
+          <p>ちがう。私たちの仕事は「自立支援」。手を差し伸べて助けるだけでは、その人は一生、誰かに頼り続けることになる。本当に育てたいのは、その人自身が「自分の足で社会を生きていく力」です。</p>
+        </div>
+      </li>
+      <li class="wall__item">
+        <p class="wall__myth"><span class="wall__tag">よくあるイメージ②</span>福祉の仕事って、地味でアナログ？</p>
+        <div class="wall__truth">
+          <p class="wall__tag wall__tag--truth">本当の姿</p>
+          <p>ちがう。クルーには1人1台パソコンを貸与。記録や情報共有はシステム化し、書類はAIが下書きする。人は、人にしかできないことに時間を使う。</p>
+        </div>
+      </li>
+      <li class="wall__item">
+        <p class="wall__myth"><span class="wall__tag">よくあるイメージ③</span>障がいがあると、働けない？</p>
+        <div class="wall__truth">
+          <p class="wall__tag wall__tag--truth">本当の姿</p>
+          <p>ちがう。道具や環境しだいで、「できない」は変わる。カレイドの就労支援から就職したメンバーは29人。そのうち22人が、今も働いています。（2022年度〜2026年9月時点）</p>
+        </div>
+      </li>
+    </ol>
+    <p class="wall__finale">人の違いは、美しい。</p>
+  </div>
+</section>
+
+<div class="edge edge--navy-paper" aria-hidden="true">
+  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="0,0 0,10 100,10"/></svg>
+</div>
+
+<!-- ===== ④ 私たちが戦う相手 ===== -->
+<!-- 文言は二野先生の確認後、公開前に直すことがある -->
+<section class="sec sec--paper enemy" aria-labelledby="enemy-title">
+  <div class="wrap">
+    <h2 class="enemy__title" id="enemy-title">私たちが戦う相手</h2>
+    <p class="enemy__statement">カレイドスクエアパークが戦う相手は、役割を用意しないまま、人を「支えられる側」に振り分ける社会。</p>
+    <div class="prose">
+      <p>今、当たり前だと思っていることを、ふと「それが当たり前でいいのだろうか」と思い直し、他にいい未来になる手段があるなら、それを実行していきたい。そういう想いで日々働いているのが、私たちです。</p>
     </div>
-
-    <div class="voices-grid">
-      <div class="voice-card reveal d1">
-        <div class="quote">“</div>
-        <p class="body">未経験で入社しましたが、先輩が本当に丁寧に教えてくれました。子どもの「できた！」の瞬間に立ち会えると、この仕事を選んでよかったと心から思えます。</p>
-        <div class="voice-person">
-          <span class="avatar" style="background:linear-gradient(135deg,var(--blue-500),var(--blue-700))">S</span>
-          <div class="meta"><b>佐藤 さん</b><span>児童指導員 / 入社2年目</span></div>
-        </div>
-      </div>
-
-      <div class="voice-card reveal d2">
-        <div class="quote">“</div>
-        <p class="body">メンバーが就職を決めて「ありがとう」と言ってくれた日のことは忘れられません。誰かの人生の節目に関われる、責任とよろこびの大きい仕事です。</p>
-        <div class="voice-person">
-          <span class="avatar" style="background:linear-gradient(135deg,var(--accent),#ff5e2b)">T</span>
-          <div class="meta"><b>髙橋 さん</b><span>就労支援員 / 入社4年目</span></div>
-        </div>
-      </div>
-
-      <div class="voice-card reveal d3">
-        <div class="quote">“</div>
-        <p class="body">クルー同士の距離が近くて、何でも相談できる雰囲気が魅力。子育てと両立しながら働けるよう、シフトも柔軟に調整してもらえて助かっています。</p>
-        <div class="voice-person">
-          <span class="avatar" style="background:linear-gradient(135deg,#3aa17e,#1f7a5c)">W</span>
-          <div class="meta"><b>渡辺 さん</b><span>支援サポートスタッフ / 入社1年目</span></div>
-        </div>
-      </div>
+    <div class="btn-row">
+      <a class="btn btn--navy" href="message.html">代表からの手紙を読む</a>
     </div>
   </div>
 </section>
 
-<!-- ===== Flow ===== -->
-<section class="section" id="flow">
+<!-- ===== ⑤ WHAT WE DO／0歳から働くまで ===== -->
+<section class="sec sec--mist work" id="work" aria-labelledby="work-title">
   <div class="wrap">
-    <div class="center" style="margin-bottom:6px;">
-      <span class="eyebrow reveal">Application Flow</span>
-      <h2 class="section-title reveal d1">応募の流れ</h2>
-      <p class="section-lead reveal d2">「まずは話を聞いてみたい」も大歓迎。応募から入社まで、丁寧にサポートします。</p>
-    </div>
+    <p class="eyebrow" lang="en" aria-hidden="true">WHAT WE DO</p>
+    <h2 class="sec-title" id="work-title">子どもから大人までの自立をワンストップで支援する事業所です</h2>
 
-    <div class="flow-steps">
-      <div class="flow-step reveal d1">
-        <div class="step-no"></div>
-        <h3>エントリー</h3>
-        <p>下のフォームまたはお電話からご応募ください。「相談だけ」でもOKです。</p>
+    <ol class="chevrons" aria-label="0歳から働くまでの6つの支援">
+      <li class="chevron"><span class="chevron__name">保育所等訪問支援</span><span class="chevron__desc">0〜18歳。出先に出向いて支援</span></li>
+      <li class="chevron"><span class="chevron__name">放課後等デイサービス</span><span class="chevron__desc">小1〜高3。学校後の通所支援</span></li>
+      <li class="chevron"><span class="chevron__name">就労選択支援</span><span class="chevron__desc">高校生〜。働ける力を見定める</span></li>
+      <li class="chevron"><span class="chevron__name">自立訓練</span><span class="chevron__desc">生活・対人・集中力を整える</span></li>
+      <li class="chevron"><span class="chevron__name">就労移行支援</span><span class="chevron__desc">一般就労に向けた訓練</span></li>
+      <li class="chevron"><span class="chevron__name">就労定着支援</span><span class="chevron__desc">長く働き続けられるよう支える</span></li>
+    </ol>
+
+    <p class="work__note">さらに、胎内市から放課後児童クラブ（学童）への専門家派遣も受託しています。</p>
+    <p class="work__close">この地域で、ここまでやっている場所は、そう多くありません。</p>
+
+    <h3 class="work__values-title">大切にしていること</h3>
+    <ul class="values">
+      <li><span class="values__name">一人ひとりに寄り添う</span><span class="values__desc">一人ひとりの想いやペースを大切に支えます</span></li>
+      <li><span class="values__name">地域とのつながりをつくる</span><span class="values__desc">地域や企業、行政とつながり、支え合える関係を築きます</span></li>
+      <li><span class="values__name">社会性・主体性の向上</span><span class="values__desc">多様な経験を通じて、社会で生きていく力を育みます</span></li>
+      <li><span class="values__name">脱現状維持</span><span class="values__desc">変化を恐れず、未来に向かって挑戦し続けます</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== ⑥ JOBS／募集中の職種 ===== -->
+<!-- 求人の正本はAirワーク。給与・勤務地・必須条件は Airワークと一致させる（2026年10月6日確認） -->
+<section class="sec sec--paper jobs" id="jobs" aria-labelledby="jobs-title">
+  <div class="otter-slot" aria-hidden="true">ラッコ：仮の枠</div>
+  <div class="wrap">
+    <p class="eyebrow" lang="en" aria-hidden="true">JOBS</p>
+    <h2 class="sec-title" id="jobs-title">募集中の職種</h2>
+
+    <nav class="job-chips" aria-label="職種の目次">
+      <ul>
+        <li><a class="chip chip--green" href="#job-hoikushi">保育士</a></li>
+        <li><a class="chip chip--green" href="#job-jidoshidoin">児童指導員</a></li>
+        <li><a class="chip chip--orange" href="#job-jihatsukan">児童発達支援管理責任者</a></li>
+        <li><a class="chip chip--deep" href="#job-kanrisha">放課後等デイサービスの管理者</a></li>
+        <li><a class="chip chip--navy" href="#job-shuro">就労移行支援員</a></li>
+      </ul>
+    </nav>
+
+    <p class="jobs__note">掲載している条件は2026年10月時点のものです。最新の条件は各求人ページでご確認ください。</p>
+
+    <h3 class="job-group">子どもの支援</h3>
+
+    <!-- ===== 求人：保育士 ===== -->
+    <article class="job job--green" id="job-hoikushi" aria-labelledby="job-hoikushi-title">
+      <header class="job__band">
+        <p class="job__service">放課後等デイサービス｜正社員</p>
+        <h4 class="job__title" id="job-hoikushi-title">保育士</h4>
+      </header>
+      <div class="job__grid">
+        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：保育士の仕事の様子（横長）</div></div>
+        <div class="job__body">
+          <p class="job__catch">子どもたちの「できた！」を一緒に喜び、その子らしさを育む仕事です。</p>
+          <ul class="job__badges" aria-label="特徴">
+            <li>放デイ経験不問</li><li>ブランク歓迎</li><li>主婦（夫）活躍中</li>
+          </ul>
+          <h5 class="job__points-title">この仕事の魅力</h5>
+          <ul class="job__points">
+            <li>土日休み・残業は月2時間以下。子育てや家庭と両立しやすい</li>
+            <li>保育士資格の手当（国家資格手当 3万8,000円）と、実務経験5年ごとの経験手当（5,000円）を新設</li>
+            <li>有給とは別に取れる「サポート休暇（有給）」年5日。子の看護等休暇は高校修了まで・一律10日</li>
+          </ul>
+        </div>
       </div>
-      <div class="flow-step reveal d2">
-        <div class="step-no"></div>
-        <h3>ご連絡・日程調整</h3>
-        <p>担当クルーよりご連絡し、見学や面談の日程を一緒に決めていきます。</p>
+      <dl class="job__info">
+        <div class="job__info-item"><dt>給与</dt><dd>月給 24万1,520円〜25万6,000円<small>基本給＋一律手当の総額</small></dd></div>
+        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月2時間以下</dd></div>
+        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク村上（村上市松山260-7／村上駅から車で5分）<br>カレイドスクエアパーク胎内（胎内市下館1147／平木田駅から車で5分）</dd></div>
+        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格</dt><dd>普通自動車免許（AT限定可）・保育士資格</dd></div>
+      </dl>
+      <p class="job__also">PT・OT・ST・公認心理師・臨床心理士の資格をお持ちの方も応募できます</p>
+      <div class="job__cta">
+        <div class="btn-row">
+          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/11693881/" target="_blank" rel="noopener">村上の求人を見る</a>
+          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/12866211/" target="_blank" rel="noopener">胎内の求人を見る</a>
+        </div>
+        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
       </div>
-      <div class="flow-step reveal d3">
-        <div class="step-no"></div>
-        <h3>見学・面談</h3>
-        <p>実際の事業所を見学。雰囲気を感じてもらいながら、お互いをよく知る時間です。</p>
+    </article>
+
+    <!-- ===== 求人：児童指導員 ===== -->
+    <article class="job job--green job--flip" id="job-jidoshidoin" aria-labelledby="job-jidoshidoin-title">
+      <header class="job__band">
+        <p class="job__service">放課後等デイサービス｜正社員</p>
+        <h4 class="job__title" id="job-jidoshidoin-title">児童指導員</h4>
+      </header>
+      <div class="job__grid">
+        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：児童指導員の仕事の様子（横長）</div></div>
+        <div class="job__body">
+          <p class="job__catch">子どもたちの「できた！」を一緒に喜び、その子らしさを育む仕事です。</p>
+          <ul class="job__badges" aria-label="特徴">
+            <li>ブランク歓迎</li><li>経験者歓迎</li><li>主婦（夫）活躍中</li>
+          </ul>
+          <h5 class="job__points-title">この仕事の魅力</h5>
+          <ul class="job__points">
+            <li>土日休み・残業は月2時間以下</li>
+            <li>発達特性のある子どもたちへの対応を、クルー一丸となって学び、考え、実行できる環境</li>
+            <li>要件を満たせば、児童発達支援管理責任者などへのキャリアチェンジも可能（資格取得の費用は会社負担）</li>
+          </ul>
+        </div>
       </div>
-      <div class="flow-step reveal d4">
-        <div class="step-no"></div>
-        <h3>内定・入社</h3>
-        <p>条件をすり合わせて入社決定。研修からスタートするので、未経験でも安心です。</p>
+      <dl class="job__info">
+        <div class="job__info-item"><dt>給与</dt><dd>月給 23万6,520円〜25万1,000円<small>基本給＋一律手当の総額</small></dd></div>
+        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月2時間以下</dd></div>
+        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク村上（村上市松山260-7／村上駅から車で5分）</dd></div>
+        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格</dt><dd>普通自動車免許（AT限定可）・児童指導員任用資格（くわしい要件は求人ページへ）</dd></div>
+      </dl>
+      <p class="job__also">PT・OT・ST・公認心理師・臨床心理士の資格をお持ちの方も応募できます</p>
+      <div class="job__cta">
+        <div class="btn-row">
+          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/11886854/" target="_blank" rel="noopener">詳細を見る</a>
+        </div>
+        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
       </div>
+    </article>
+
+    <!-- ===== 求人：児童発達支援管理責任者 ===== -->
+    <article class="job job--orange" id="job-jihatsukan" aria-labelledby="job-jihatsukan-title">
+      <header class="job__band">
+        <p class="job__service">放課後等デイサービス｜正社員</p>
+        <h4 class="job__title" id="job-jihatsukan-title">児童発達支援管理責任者</h4>
+      </header>
+      <div class="job__grid">
+        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：児童発達支援管理責任者の仕事の様子（横長）</div></div>
+        <div class="job__body">
+          <p class="job__catch">チームの中心で、子どもたちの自立支援をデザインする仕事です。基礎研修修了者もOK。</p>
+          <ul class="job__badges" aria-label="特徴">
+            <li>基礎研修修了者もOK</li><li>マネジメント経験歓迎</li><li>中抜けOK</li>
+          </ul>
+          <h5 class="job__points-title">この仕事の魅力</h5>
+          <ul class="job__points">
+            <li>基礎研修修了の方は、現職の児発管のサポートを受けながらOJTで業務に入れます</li>
+            <li>中抜けOK・1時間単位の有給・看護等休暇。児発管の資格を持つクルー4人中3人が子育てと両立しています</li>
+            <li>資格取得の費用は会社負担。管理者・エリアマネージャーへのキャリアパスもあります</li>
+          </ul>
+        </div>
+      </div>
+      <dl class="job__info">
+        <div class="job__info-item"><dt>給与</dt><dd>月給 26万5,000円〜<small>基本給＋一律手当の総額</small></dd></div>
+        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月平均20時間以内</dd></div>
+        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク胎内（胎内市下館1147／平木田駅から車で5分）</dd></div>
+        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格</dt><dd>普通自動車免許（AT限定可）・児童発達支援管理責任者（基礎研修修了でもOK）</dd></div>
+      </dl>
+      <div class="job__cta">
+        <div class="btn-row">
+          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/7631910/" target="_blank" rel="noopener">詳細を見る</a>
+        </div>
+        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
+      </div>
+    </article>
+
+    <!-- ===== 求人：放課後等デイサービスの管理者 ===== -->
+    <article class="job job--deep job--flip" id="job-kanrisha" aria-labelledby="job-kanrisha-title">
+      <header class="job__band">
+        <p class="job__service">放課後等デイサービス｜正社員</p>
+        <h4 class="job__title" id="job-kanrisha-title">放課後等デイサービスの管理者</h4>
+      </header>
+      <div class="job__grid">
+        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：管理者の仕事の様子（横長）</div></div>
+        <div class="job__body">
+          <p class="job__catch">マネジメント経験を活かせる！子どもたちの自立を支えるやりがいある仕事です。</p>
+          <ul class="job__badges" aria-label="特徴">
+            <li>マネジメント経験歓迎</li><li>賞与年2回</li><li>週休2日制・土日休み</li>
+          </ul>
+          <h5 class="job__points-title">この仕事の魅力</h5>
+          <ul class="job__points">
+            <li>施設の運営管理、サービスの統括、売上管理、クルーの労務・モチベーション管理まで、マネジメント経験を活かせます</li>
+            <li>PC・スマホの活用で業務効率化を実現</li>
+            <li>お子さまの急な体調不良など、家庭の事情によるお休みにも柔軟に対応</li>
+          </ul>
+        </div>
+      </div>
+      <dl class="job__info">
+        <div class="job__info-item"><dt>給与</dt><dd>月給 28万円〜33万3,000円<small>基本給＋一律手当の総額</small></dd></div>
+        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月平均20時間以内</dd></div>
+        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク胎内（胎内市下館1147／平木田駅から車で5分）</dd></div>
+        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格・経験</dt><dd>普通自動車免許（AT限定可）・児童福祉事業での現場経験2年以上</dd></div>
+      </dl>
+      <div class="job__cta">
+        <div class="btn-row">
+          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/12048560/" target="_blank" rel="noopener">詳細を見る</a>
+        </div>
+        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
+      </div>
+    </article>
+
+    <h3 class="job-group">大人の支援</h3>
+
+    <!-- ===== 求人：就労移行支援員 ===== -->
+    <article class="job job--navy" id="job-shuro" aria-labelledby="job-shuro-title">
+      <header class="job__band">
+        <p class="job__service">就労移行支援｜正社員</p>
+        <h4 class="job__title" id="job-shuro-title">就労移行支援員</h4>
+      </header>
+      <div class="job__grid">
+        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：就労移行支援員の仕事の様子（横長）</div></div>
+        <div class="job__body">
+          <p class="job__catch">「働きたい」という想いに寄り添い、その人らしい一歩を支える仕事です。未経験・無資格OK。</p>
+          <ul class="job__badges" aria-label="特徴">
+            <li>未経験歓迎</li><li>資格不問</li><li>30〜40代活躍中</li>
+          </ul>
+          <h5 class="job__points-title">この仕事の魅力</h5>
+          <ul class="job__points">
+            <li>メンバーの「働きたい」を実現できるやりがい。就職が決まる瞬間に立ち会えます</li>
+            <li>元営業・IT・接客など、福祉以外の業界から来たクルーも活躍しています</li>
+            <li>残業は月8時間以下。定時で帰るクルーも多い</li>
+          </ul>
+        </div>
+      </div>
+      <dl class="job__info">
+        <div class="job__info-item"><dt>給与</dt><dd>月給 22万3,500円〜<small>基本給＋一律手当の総額</small></dd></div>
+        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月8時間以下</dd></div>
+        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク胎内（胎内市下館1147／平木田駅から車で5分）</dd></div>
+        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格・スキル</dt><dd>普通自動車免許（AT限定可）・基本的なPC操作（メール・Word・Excel）</dd></div>
+      </dl>
+      <div class="job__cta">
+        <div class="btn-row">
+          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/11744493/" target="_blank" rel="noopener">詳細を見る</a>
+        </div>
+        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
+      </div>
+    </article>
+
+    <div class="jobs__visit">
+      <p>応募の前に、職場の見学もできます</p>
+      <a class="btn btn--outline" href="#entry">見学について問い合わせる</a>
     </div>
   </div>
 </section>
 
-<!-- ===== Contact / CTA ===== -->
-<section class="section" id="contact">
+<div class="edge edge--paper-navy" aria-hidden="true">
+  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="0,0 100,10 0,10"/></svg>
+  <svg class="edge__tiles edge__tiles--left" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
+</div>
+
+<!-- ===== ⑦ ENVIRONMENT／働く環境 ===== -->
+<section class="sec sec--navy env" id="environment" aria-labelledby="env-title">
   <div class="wrap">
-    <div class="cta reveal">
-      <div class="inner">
-        <span class="eyebrow" style="color:var(--accent-soft);justify-content:center;">Join Our Crew</span>
-        <h2>あなたの「らしさ」を、<br>KSPのクルーに。</h2>
-        <p>福祉の経験があってもなくても大丈夫。「人が好き」「誰かの役に立ちたい」——その気持ちが、いちばんの資格です。まずは気軽にご連絡ください。</p>
-        <div class="hero-actions">
-          <a href="mailto:recruit@tringsmith.co.jp?subject=KSPクルー応募" class="btn btn-primary">メールで応募する</a>
-          <a href="tel:0000000000" class="btn btn-ghost">電話で問い合わせる</a>
-        </div>
-        <div class="cta-info">
-          <div><b>運営会社</b>トラインスミス株式会社</div>
-          <div><b>サービス</b>カレイドスクエアパーク（KSP）</div>
-          <div><b>拠点</b>新潟県 胎内市・村上市</div>
-        </div>
-      </div>
+    <p class="eyebrow" lang="en" aria-hidden="true">ENVIRONMENT</p>
+    <h2 class="sec-title" id="env-title">働く環境</h2>
+    <p class="env__lead">勤務場所や時間など個々の事情に寄り添い、柔軟な働き方を一緒に模索します。</p>
+
+    <div class="env__grid">
+      <section class="env__group" aria-labelledby="env-rest">
+        <h3 class="env__head" id="env-rest">休む</h3>
+        <ul>
+          <li>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）</li>
+          <li>有給は1時間単位で取得OK</li>
+          <li>有給とは別に取れる「サポート休暇（有給）」年5日（本人の体調不良・通院、子の看護、介護などに使える。2026年4月〜）</li>
+          <li>子の看護等休暇は、高校修了までの子が対象・子の人数に関係なく10日・学校行事や面談でも取れるよう独自に拡大（2025年4月〜）</li>
+          <li>産休・育休の取得実績あり</li>
+        </ul>
+      </section>
+      <section class="env__group" aria-labelledby="env-reward">
+        <h3 class="env__head" id="env-reward">報われる</h3>
+        <ul>
+          <li>賞与年2回・昇給年2回（前年度実績あり）</li>
+          <li>交通費（月5万円まで、車通勤OK・駐車場あり）</li>
+          <li>扶養手当・住宅手当（社内規定による）</li>
+        </ul>
+      </section>
+      <section class="env__group" aria-labelledby="env-grow">
+        <h3 class="env__head" id="env-grow">育つ</h3>
+        <ul>
+          <li>入社時研修・OJT研修</li>
+          <li>外部研修費用の補助</li>
+          <li>代表による半年フォローアップ</li>
+          <li>定期的なケース検討会</li>
+          <li>毎月の1on1面談</li>
+          <li>キャリアアップのための資格取得を支援</li>
+        </ul>
+      </section>
+      <section class="env__group" aria-labelledby="env-tools">
+        <h3 class="env__head" id="env-tools">道具</h3>
+        <ul>
+          <li>記録や情報共有をシステム化。</li>
+          <li>AIを活用した支援計画の作成支援で、より質の高い支援に集中できる。</li>
+          <li>クルーに1人1台パソコンを貸与</li>
+        </ul>
+      </section>
     </div>
   </div>
 </section>
 
-<!-- ===== Footer ===== -->
-<footer>
+<div class="edge edge--navy-paper" aria-hidden="true">
+  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100,0 100,10 0,10"/></svg>
+</div>
+
+<!-- ===== ⑧ NUMBERS／数字で見るKSP ===== -->
+<section class="sec sec--paper numbers" aria-labelledby="numbers-title">
   <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="brand">
-          <span class="logo">K</span>
-          <span>カレイドスクエアパーク
-            <small>運営：トラインスミス株式会社</small>
-          </span>
-        </div>
-        <p style="margin-top:16px;">「人の違いは美しい」を理念に、新潟県胎内市・村上市で放課後等デイサービス・就労支援を展開しています。</p>
+    <p class="eyebrow" lang="en" aria-hidden="true">NUMBERS</p>
+    <h2 class="sec-title" id="numbers-title">数字で見るKSP</h2>
+
+    <h3 class="numbers__when">2026年7月時点</h3>
+    <dl class="stats">
+      <div class="stat"><dt>設立</dt><dd><span class="stat__num">2018</span>年</dd></div>
+      <div class="stat"><dt>クルー数</dt><dd><span class="stat__num">26</span>名</dd></div>
+      <div class="stat"><dt>平均年齢</dt><dd><span class="stat__num">38</span>歳</dd></div>
+      <div class="stat"><dt>有給取得率</dt><dd>約<span class="stat__num">80</span>%</dd></div>
+      <div class="stat"><dt>育休復帰率</dt><dd><span class="stat__num">100</span>%</dd></div>
+      <div class="stat"><dt>男女比</dt><dd><span class="stat__num">3:7</span></dd></div>
+    </dl>
+
+    <h3 class="numbers__when">2026年9月時点（就労支援の実績）</h3>
+    <dl class="stats stats--three">
+      <div class="stat"><dt>就職したメンバー（2022年度〜）</dt><dd><span class="stat__num">29</span>人</dd></div>
+      <div class="stat"><dt>そのうち今も働いている</dt><dd><span class="stat__num">22</span>人</dd></div>
+      <div class="stat"><dt>2025年度の就職（過去最多）</dt><dd><span class="stat__num">10</span>人</dd></div>
+    </dl>
+    <p class="numbers__note">就職先は、工場・お店・病院・介護施設・市役所など</p>
+  </div>
+</section>
+
+<!-- ===== ⑨ VOICE／クルーの声 =====
+  実在のクルーに取材した言葉と写真がそろうまで表示しない。
+  1人分：写真（縦4:5）、職種、入社年、見出しの一言、本文150字程度。
+<section class="sec sec--paper voice" id="voice" aria-labelledby="voice-title">
+  <div class="wrap">
+    <p class="eyebrow" lang="en" aria-hidden="true">VOICE</p>
+    <h2 class="sec-title" id="voice-title">クルーの声</h2>
+    <article class="voice__item">
+      <img src="assets/img/photos/voice-XX.webp" width="800" height="1000" alt="" loading="lazy">
+      <p class="voice__role">職種（入社○年）</p>
+      <h3 class="voice__head">見出しの一言</h3>
+      <p>本文150字程度</p>
+    </article>
+  </div>
+</section>
+-->
+
+<!-- ===== ⑩ FLOW／採用の流れ ===== -->
+<section class="sec sec--mist flow" aria-labelledby="flow-title">
+  <div class="wrap">
+    <p class="eyebrow" lang="en" aria-hidden="true">FLOW</p>
+    <h2 class="sec-title" id="flow-title">採用の流れ</h2>
+    <ol class="flow__list">
+      <li><span class="flow__step" lang="en" aria-hidden="true">01</span><p>応募（各求人ページから。電話での応募もOK）</p></li>
+      <li><span class="flow__step" lang="en" aria-hidden="true">02</span><p>履歴書（写真貼付）のご提出（郵送・メールどちらでも）</p></li>
+      <li><span class="flow__step" lang="en" aria-hidden="true">03</span><p>書類選考（履歴書の到着後7日以内にご連絡）</p></li>
+      <li><span class="flow__step" lang="en" aria-hidden="true">04</span><p>面接（1日で完結・2回／管理者との面接、代表との面接）</p></li>
+      <li><span class="flow__step" lang="en" aria-hidden="true">05</span><p>結果のご連絡（面接後10日以内）→ 入社</p></li>
+    </ol>
+    <p class="flow__note">応募の前に、職場の見学もできます。お気軽にお問い合わせください。</p>
+  </div>
+</section>
+
+<div class="edge edge--mist-navy" aria-hidden="true">
+  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="0,10 100,0 100,10"/></svg>
+  <svg class="edge__tiles edge__tiles--right" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
+</div>
+
+<!-- ===== ⑪ ENTRY／見学・応募 ===== -->
+<section class="sec sec--navy entry" id="entry" aria-labelledby="entry-title">
+  <div class="otter-slot otter-slot--dark" aria-hidden="true">ラッコ：仮の枠</div>
+  <div class="wrap">
+    <p class="eyebrow" lang="en" aria-hidden="true">ENTRY</p>
+    <h2 class="sec-title entry__title" id="entry-title">一緒に、未来をつくりましょう。</h2>
+    <p class="entry__lead">ワクワクしながら、未来を創る一歩をここから踏み出してみませんか？</p>
+
+    <div class="entry__grid">
+      <div class="entry__block">
+        <h3 class="entry__head">応募する</h3>
+        <a class="btn btn--ghost-light" href="#jobs">募集中の職種を見る</a>
       </div>
-      <div class="foot-links">
-        <div class="foot-col">
-          <b>採用情報</b>
-          <a href="#about">私たちについて</a>
-          <a href="#appeal">働く魅力</a>
-          <a href="#jobs">募集職種</a>
-          <a href="#flow">応募の流れ</a>
-        </div>
-        <div class="foot-col">
-          <b>事業内容</b>
-          <a href="#about">放課後等デイサービス</a>
-          <a href="#about">就労移行支援</a>
-          <a href="#about">自立訓練（生活訓練）</a>
-          <a href="#about">就労定着・選択支援</a>
-        </div>
-        <div class="foot-col">
-          <b>お問い合わせ</b>
-          <a href="#contact">クルー応募フォーム</a>
-          <a href="mailto:recruit@tringsmith.co.jp">recruit@tringsmith.co.jp</a>
-        </div>
+      <div class="entry__block">
+        <h3 class="entry__head">電話</h3>
+        <p><a class="entry__tel" href="tel:0254289362"><span lang="en">0254-28-9362</span></a></p>
+        <p class="entry__small">受付 月〜金 9:00〜18:00</p>
+      </div>
+      <div class="entry__block">
+        <h3 class="entry__head">メール</h3>
+        <p><a class="entry__mail" href="mailto:recruit@tringsmith.co.jp">recruit@tringsmith.co.jp</a></p>
+        <a class="btn btn--ghost-light" href="mailto:recruit@tringsmith.co.jp?subject=%E8%A6%8B%E5%AD%A6%E5%B8%8C%E6%9C%9B">見学希望のメールを送る</a>
       </div>
     </div>
-    <p class="copy">© <span id="year"></span> TRINGSMITH Inc. / Kaleido Square Park. All rights reserved.</p>
+
+    <div class="entry__insta">
+      <h3 class="entry__head" lang="en">Instagram</h3>
+      <ul>
+        <li><a href="https://www.instagram.com/ksp_tainai/" target="_blank" rel="noopener">@KSP_TAINAI<span>（放デイ胎内）</span></a></li>
+        <li><a href="https://www.instagram.com/ksp_murakami/" target="_blank" rel="noopener">@KSP_MURAKAMI<span>（放デイ村上）</span></a></li>
+        <li><a href="https://www.instagram.com/ksp_ksw/" target="_blank" rel="noopener">@KSP_KSW<span>（就労）</span></a></li>
+      </ul>
+    </div>
   </div>
+</section>
+
+</main>
+
+<!-- ===== ⑫ フッター ===== -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <span class="logo-plate"><img src="assets/img/logo/ksp-logo-yoko.png" width="1024" height="381" alt="カレイドスクエアパーク" loading="lazy"></span>
+      <p class="site-footer__copy">誰もが自分らしく生きられる社会の実現を、あなたと。</p>
+    </div>
+    <div class="site-footer__company">
+      <p class="site-footer__name">トラインスミス株式会社</p>
+      <p>〒959-2805 新潟県胎内市下館1147</p>
+      <p>代表取締役 羽田 健亮</p>
+      <p><a href="https://ksp.work/" target="_blank" rel="noopener">コーポレートサイト</a></p>
+    </div>
+    <nav class="site-footer__nav" aria-label="フッター">
+      <ul>
+        <li><a href="message.html">想い</a></li>
+        <li><a href="#work">仕事</a></li>
+        <li><a href="#jobs">募集職種</a></li>
+        <li><a href="#environment">働く環境</a></li>
+        <li><a href="#entry">見学・応募</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="site-footer__c" lang="en">© TRINGSMITH CO., LTD.</p>
 </footer>
 
-<script>
-  // 年表示
-  document.getElementById('year').textContent = new Date().getFullYear();
+<!-- ===== スマホの固定バー（ヒーローを過ぎてから表示） ===== -->
+<div class="fixed-bar" id="fixed-bar">
+  <a class="fixed-bar__btn fixed-bar__btn--jobs" href="#jobs">募集職種を見る</a>
+  <a class="fixed-bar__btn fixed-bar__btn--tel" href="tel:0254289362">電話で見学を相談</a>
+</div>
 
-  // ヘッダーのスクロール変化
-  const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // モバイルメニュー
-  const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('open');
-    links.classList.toggle('open');
-  });
-  links.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => {
-      toggle.classList.remove('open');
-      links.classList.remove('open');
-    })
-  );
-
-  // スクロールリビールアニメーション
-  const reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(el => io.observe(el));
-  } else {
-    reveals.forEach(el => el.classList.add('in'));
-  }
-
-  // ヒーローの万華鏡風シェイプを生成
-  const kaleido = document.getElementById('kaleido');
-  if (kaleido) {
-    const colors = ['rgba(255,255,255,0.18)', 'rgba(255,122,74,0.55)', 'rgba(125,180,230,0.55)', 'rgba(255,255,255,0.10)'];
-    for (let i = 0; i < 14; i++) {
-      const s = document.createElement('span');
-      s.className = 'shape';
-      const size = 30 + Math.random() * 90;
-      s.style.width = size + 'px';
-      s.style.height = size + 'px';
-      s.style.left = Math.random() * 100 + '%';
-      s.style.top = Math.random() * 100 + '%';
-      s.style.background = colors[i % colors.length];
-      s.style.transform = `rotate(${Math.random() * 90}deg)`;
-      s.style.borderRadius = (Math.random() > 0.5 ? '50%' : '14px');
-      kaleido.appendChild(s);
-    }
-  }
-</script>
 </body>
 </html>
