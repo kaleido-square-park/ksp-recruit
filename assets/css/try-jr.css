@@ -9,10 +9,17 @@
 .theme-jr {
   /* 地の色：白と、ごく薄いグレー（青み）。章ごとに淡い緑も使う */
   --jr-gray: #EEF1F5;
-  --jr-hero: #EDF0F5;
-  --jr-green: #2E7A00;      /* はっきりした緑（白文字AA 5.4） */
-  --jr-green-dark: #226600;
-  --jr-green-pale: #EEF6E6;
+  --jr-hero: #F1F8ED;   /* ヒーローの面も淡い緑 */
+  /* 基調：トラインスミス株式会社のロゴの緑（ロゴ画像から拾った値・JPEGからの近似値）。
+     白い文字とは約3:1しかないので、地・波・点などの面と装飾に使う */
+  --jr-brand: #63A43C;
+  /* 同じ色味で濃くした緑：白い文字を載せるところ（ボタンなど）と、緑の文字に使う
+     （白と6.0、淡いグレーの地とも4.5以上） */
+  --jr-green: #436E28;
+  --jr-green-dark: #3A6022;   /* ボタンのhover */
+  --jr-green-pale: #F1F8ED;   /* 淡い緑の地（本文と14.6） */
+  /* 職種の色：保育士・児童指導員の緑は、基調の黄みの緑とまぎれないよう青みに寄せる（色相98°→169°、白と5.66） */
+  --job-green: #007560;
   --jr-orange-pale: #FFF4E0;
   --jr-dot: var(--orange);  /* 小見出しの点・タイムラインの線 */
 
@@ -96,7 +103,6 @@
 html.js .theme-jr .hero-jr__slide { opacity: 0; transition: opacity 1.2s ease; }
 html.js .theme-jr .hero-jr__slide.is-current { opacity: 1; }
 html:not(.js) .theme-jr .hero-jr__slide:not(:first-child) { display: none; }
-.theme-jr .hero-jr__tiles { position: absolute; left: -6px; bottom: -14px; width: 120px; height: auto; aspect-ratio: 3 / 1; }
 
 /* スライドの進み具合（縦の点）と停止ボタン */
 .theme-jr .hero-jr__ctrl { display: none; }
@@ -106,7 +112,7 @@ html.js .theme-jr .hero-jr__ctrl {
 }
 .theme-jr .hero-jr__dots { display: flex; gap: 8px; }
 .theme-jr .hero-jr__dot { width: 10px; height: 10px; border-radius: 50%; background: #C9D0DB; transition: scale .25s linear, background-color .25s linear; }
-.theme-jr .hero-jr__dot.is-current { background: var(--jr-green); scale: 1.3; }
+.theme-jr .hero-jr__dot.is-current { background: var(--jr-brand); scale: 1.3; }
 .theme-jr .motion-toggle {
   display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px 0 10px;
   border: 0; border-radius: var(--r-pill); background: var(--jr-green); color: #fff;
@@ -141,8 +147,7 @@ html.js .theme-jr .hero-jr__ctrl {
   }
   .theme-jr .hero-jr__media { order: 2; }
   .theme-jr .hero-jr__slides { border-radius: var(--r-card); aspect-ratio: 5 / 4; }
-  .theme-jr .hero-jr__tiles { left: -28px; bottom: -22px; width: 180px; }
-}
+  }
 
 /* ---------- 章の境目：やわらかい波（または上の角を丸めた面） ---------- */
 .theme-jr .wave { position: relative; height: clamp(36px, 5vw, 72px); background: var(--from); margin-block: -1px; z-index: 1; }
@@ -155,7 +160,8 @@ html.js .theme-jr .hero-jr__ctrl {
 .theme-jr .sec--white { background: #fff; color: var(--ink); }
 .theme-jr .sec--gray { background: var(--jr-gray); color: var(--ink); }
 .theme-jr .sec--pale { background: var(--jr-green-pale); color: var(--ink); }
-.theme-jr .sec--green { background: var(--jr-green); color: #fff; --focus: #FFE08A; }
+/* ロゴの緑の章：文字は黒に近い色（ロゴの緑と5.19） */
+.theme-jr .sec--green { background: var(--jr-brand); color: var(--ink); --focus: var(--navy); }
 
 /* 大きい英字＋小さい日本語（前に橙の点） */
 .theme-jr .eyebrow {
@@ -164,7 +170,7 @@ html.js .theme-jr .hero-jr__ctrl {
   line-height: 1.05; letter-spacing: 0.04em; color: var(--jr-green);
 }
 .theme-jr .eyebrow::before { content: none; }
-.theme-jr .sec--green .eyebrow { color: #fff; }
+
 .theme-jr .sec-title--sub {
   display: flex; align-items: center; gap: 10px;
   font-size: 1.0625rem; font-weight: 700; letter-spacing: 0.06em; line-height: 1.6;
@@ -211,14 +217,14 @@ html.js .theme-jr .hero-jr__ctrl {
 
 /* ---------- ③ 壁の章：はっきりした緑。レンガは丸い面 ---------- */
 .theme-jr .wall { overflow: hidden; }
-.theme-jr .wall__title { color: #fff; }
+.theme-jr .wall__title { color: var(--ink); }
 .theme-jr .wall__myth {
-  background: rgba(0, 40, 0, .25); border-radius: var(--r-box); box-shadow: none; padding: 24px 28px;
+  background: rgba(255, 255, 255, .9); color: var(--ink); border-radius: var(--r-box); box-shadow: none; padding: 24px 28px;
   background-image: none;
 }
-.theme-jr .wall__tag { color: #D9F0C8; }
+.theme-jr .wall__tag { color: var(--ink-soft); }
 .theme-jr .wall__truth { border-left: 0; padding: 20px 4px 0; }
-.theme-jr .wall__tag--truth { display: inline-block; background: #fff; color: var(--jr-green); border-radius: var(--r-pill); padding: 2px 12px; margin-bottom: 8px; }
+.theme-jr .wall__tag--truth { display: inline-block; background: var(--ink); color: #fff; border-radius: var(--r-pill); padding: 2px 12px; margin-bottom: 8px; }
 @media (min-width: 900px) { .theme-jr .wall__truth { padding: 4px 0 0; } }
 
 /* ---------- ④ 戦う相手 ---------- */
@@ -244,7 +250,7 @@ html.js .theme-jr .hero-jr__ctrl {
   .theme-jr .chevron, .theme-jr .chevron:first-child { clip-path: none; padding: 22px 18px; }
   .theme-jr .chevron:not(:last-child)::after {
     content: ""; position: absolute; right: -11px; top: 38px; width: 8px; height: 8px;
-    border: solid var(--jr-green); border-width: 2px 2px 0 0; transform: rotate(45deg);
+    border: solid var(--jr-brand); border-width: 2px 2px 0 0; transform: rotate(45deg);
   }
 }
 .theme-jr .work__close { color: var(--jr-green); }
@@ -283,7 +289,7 @@ html.js .theme-jr .hero-jr__ctrl {
 .theme-jr .env__lead { color: var(--ink); margin-top: 0; }
 .theme-jr .env__group { background: #fff; color: var(--ink); border-radius: var(--r-box); }
 .theme-jr .env__head { border-bottom-color: #E1E7DA; color: var(--ink); }
-.theme-jr .env__head::before { width: 10px; height: 10px; border-radius: 50%; background: var(--jr-green); }
+.theme-jr .env__head::before { width: 10px; height: 10px; border-radius: 50%; background: var(--jr-brand); }
 .theme-jr .env__group li::before { background: var(--jr-dot); }
 
 /* ---------- ⑧ 数字：丸いカード ---------- */
@@ -340,13 +346,13 @@ html.js .theme-jr .hero-jr__ctrl {
 .theme-jr .fl--square i { border-radius: 30%; rotate: 14deg; }
 .theme-jr .fl--half i { border-radius: 50%; }
 .theme-jr .fl--tri i { clip-path: polygon(50% 6%, 96% 92%, 4% 92%); border-radius: 0; rotate: -12deg; }
-.theme-jr .c-red i    { background: linear-gradient(135deg, var(--k-red) 50%, var(--k-orange) 50%); }
-.theme-jr .c-yellow i { background: linear-gradient(90deg, var(--k-yellow) 50%, var(--k-red) 50%); }
-.theme-jr .c-green i  { background: linear-gradient(135deg, var(--k-green) 50%, var(--k-blue) 50%); }
+.theme-jr .c-red i    { background: var(--k-red); }
+.theme-jr .c-yellow i { background: var(--k-yellow); }
+.theme-jr .c-green i  { background: var(--k-green); }
 .theme-jr .c-blue i   { background: var(--k-blue); }
-.theme-jr .c-purple i { background: linear-gradient(45deg, var(--k-purple) 50%, var(--k-blue) 50%); }
+.theme-jr .c-purple i { background: var(--k-purple); }
 .theme-jr .c-orange i { background: var(--k-orange); }
-.theme-jr .sec--green .fl i { opacity: .55; }
+.theme-jr .sec--green .fl i { opacity: .7; }
 .theme-jr .wall > .wrap, .theme-jr .env > .wrap, .theme-jr .entry > .wrap, .theme-jr .work > .wrap { position: relative; z-index: 1; }
 
 /* 動き：動きを減らす設定でないときだけ（html.motion-ok は JS が付ける） */
@@ -378,3 +384,6 @@ html.motion-ok .theme-jr [data-reveal]:not(.is-in) { opacity: 0; translate: 0 28
 @media (max-width: 899px) {
   .theme-jr .hero-jr .fl--square, .theme-jr .hero-jr .fl.c-orange { display: none; }
 }
+
+/* 職種の色：保育士・児童指導員の帯も青みの緑に（基調の緑とまぎれないように） */
+.theme-jr .job--green .job__band { background: var(--job-green); }
