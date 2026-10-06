@@ -22,10 +22,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
-<script>document.documentElement.classList.add('js');</script>
+<!-- お試し版（JR風）：TOPだけに重ねるスタイル -->
+<link rel="stylesheet" href="assets/css/try-jr.css">
+<script>document.documentElement.classList.add('js');
+// お試し版：動きを減らす設定でなければ、最初の描画の前に motion-ok を付ける（ちらつき防止）
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion-ok');</script>
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/try-jr.js" defer></script>
 </head>
-<body class="page-top">
+<body class="page-top theme-jr">
 
 <a class="skip-link" href="#main">本文へスキップ</a>
 
@@ -61,16 +66,32 @@
 <main id="main">
 
 <!-- ===== ① ヒーロー ===== -->
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero__photo">
-    <div class="ph ph--fill" role="img" aria-label="写真の仮の枠">写真：クルーの集合写真（横長）</div>
+<!-- お試し版：丸い大きな面。PCでは面だけが先に流れ、写真と見出しは少し留まる。写真は5秒ごとにゆっくり切り替わる（停止ボタンあり） -->
+<section class="hero-jr" aria-labelledby="hero-title">
+  <div class="hero-jr__panel" aria-hidden="true"></div>
+  <div class="floaties" aria-hidden="true">
+    <span class="fl fl--half c-yellow" data-depth=".10" style="--x:46%;--y:14%;--size:34px;--dur:6s"><i></i></span>
+    <span class="fl fl--square c-red" data-depth=".18" style="--x:6%;--y:70%;--size:28px;--dur:8s"><i></i></span>
+    <span class="fl fl--circle c-green" data-depth=".12" style="--x:52%;--y:78%;--size:46px;--dur:7s"><i></i></span>
+    <span class="fl fl--tri c-purple" data-depth=".2" style="--x:92%;--y:20%;--size:30px;--dur:9s"><i></i></span>
+    <span class="fl fl--circle c-orange" data-depth=".25" style="--x:88%;--y:86%;--size:22px;--dur:6.5s"><i></i></span>
   </div>
-  <div class="hero__panel">
-    <svg class="hero__tiles" aria-hidden="true" focusable="false"><use href="#tiles-v"/></svg>
-    <svg class="hero__tiles-sp" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
-    <div class="hero__body">
-      <h1 class="hero__title" id="hero-title">違いが、<br>力になる場所。</h1>
-      <p class="hero__lead">子どもから大人までの自立を、ワンストップで支える。<br class="br-pc">新潟県村上市・胎内市で、一緒に働く仲間を募集しています。</p>
+  <div class="hero-jr__stage">
+    <div class="hero-jr__media">
+      <div class="hero-jr__slides" role="group" aria-roledescription="スライドショー" aria-label="クルーの写真">
+        <div class="hero-jr__slide is-current"><div class="ph" role="img" aria-label="写真の仮の枠">写真：クルーの集合写真（横長）</div></div>
+        <div class="hero-jr__slide"><div class="ph" role="img" aria-label="写真の仮の枠">写真：子どもの支援の様子（横長）</div></div>
+        <div class="hero-jr__slide"><div class="ph" role="img" aria-label="写真の仮の枠">写真：大人の支援の様子（横長）</div></div>
+      </div>
+      <div class="hero-jr__ctrl">
+        <span class="hero-jr__dots" aria-hidden="true"><i class="hero-jr__dot is-current"></i><i class="hero-jr__dot"></i><i class="hero-jr__dot"></i></span>
+        <button class="motion-toggle" type="button" aria-pressed="false" aria-label="写真の切り替えと動きを停止"><span class="motion-toggle__icon" aria-hidden="true"></span><span class="motion-toggle__label">停止</span></button>
+      </div>
+      <svg class="hero-jr__tiles" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
+    </div>
+    <div class="hero-jr__body">
+      <h1 class="hero-jr__title" id="hero-title">違いが、<br>力になる場所。</h1>
+      <p class="hero-jr__lead">子どもから大人までの自立を、ワンストップで支える。<br class="br-pc">新潟県村上市・胎内市で、一緒に働く仲間を募集しています。</p>
       <div class="btn-row">
         <a class="btn btn--accent" href="#jobs">募集中の職種を見る</a>
         <a class="btn btn--ghost-light" href="message.html">想いを読む</a>
@@ -79,12 +100,9 @@
   </div>
 </section>
 
-<div class="edge edge--navy-paper" aria-hidden="true">
-  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100,0 100,10 0,10"/></svg>
-</div>
 
 <!-- ===== ② 私たちについて ===== -->
-<section class="sec sec--paper about" aria-labelledby="about-title">
+<section class="sec sec--white about" aria-labelledby="about-title">
   <div class="wrap">
     <h2 class="about__title" id="about-title">私たちについて</h2>
     <div class="prose about__body">
@@ -94,14 +112,16 @@
   </div>
 </section>
 
-<div class="edge edge--paper-navy" aria-hidden="true">
-  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="0,10 100,0 100,10"/></svg>
-  <svg class="edge__tiles edge__tiles--right" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
-</div>
+<div class="wave" aria-hidden="true" style="--from:#fff;--to:var(--jr-green)"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
 <!-- ===== ③ 看板の演出：「福祉の仕事」のイメージを、3つこわす ===== -->
 <!-- フェーズ4で canvas（aria-hidden）の演出を重ねる。テキストはこのまま読めるように残す -->
-<section class="sec sec--navy wall" id="wall" aria-labelledby="wall-title">
+<section class="sec sec--green wall" id="wall" aria-labelledby="wall-title">
+  <div class="floaties" aria-hidden="true">
+    <span class="fl fl--circle c-green" data-depth=".15" style="--x:86%;--y:8%;--size:80px;--dur:7s"><i></i></span>
+    <span class="fl fl--half c-yellow" data-depth=".25" style="--x:4%;--y:46%;--size:40px;--dur:7s"><i></i></span>
+    <span class="fl fl--square c-blue" data-depth=".2" style="--x:90%;--y:74%;--size:36px;--dur:7s"><i></i></span>
+  </div>
   <div class="wrap">
     <h2 class="wall__title" id="wall-title">「福祉の仕事」のイメージを、3つこわします。</h2>
     <ol class="wall__list">
@@ -131,13 +151,11 @@
   </div>
 </section>
 
-<div class="edge edge--navy-paper" aria-hidden="true">
-  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="0,0 0,10 100,10"/></svg>
-</div>
+<div class="wave" aria-hidden="true" style="--from:var(--jr-green);--to:#fff"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
 <!-- ===== ④ 私たちが戦う相手 ===== -->
 <!-- 文言は二野先生の確認後、公開前に直すことがある -->
-<section class="sec sec--paper enemy" aria-labelledby="enemy-title">
+<section class="sec sec--white enemy" aria-labelledby="enemy-title">
   <div class="wrap">
     <h2 class="enemy__title" id="enemy-title">私たちが戦う相手</h2>
     <p class="enemy__statement">カレイドスクエアパークが戦う相手は、役割を用意しないまま、人を「支えられる側」に振り分ける社会。</p>
@@ -151,18 +169,22 @@
 </section>
 
 <!-- ===== ⑤ WHAT WE DO／0歳から働くまで ===== -->
-<section class="sec sec--mist work" id="work" aria-labelledby="work-title">
+<section class="sec sec--white work" id="work" aria-labelledby="work-title">
+  <div class="floaties" aria-hidden="true">
+    <span class="fl fl--half c-red" data-depth=".18" style="--x:90%;--y:6%;--size:42px;--dur:7s"><i></i></span>
+    <span class="fl fl--tri c-green" data-depth=".22" style="--x:3%;--y:58%;--size:30px;--dur:7s"><i></i></span>
+  </div>
   <div class="wrap">
     <p class="eyebrow" lang="en" aria-hidden="true">WHAT WE DO</p>
     <h2 class="sec-title" id="work-title">子どもから大人までの自立をワンストップで支援する事業所です</h2>
 
     <ol class="chevrons" aria-label="0歳から働くまでの6つの支援">
-      <li class="chevron"><span class="chevron__name">保育所等訪問支援</span><span class="chevron__desc">0〜18歳。出先に出向いて支援</span></li>
-      <li class="chevron"><span class="chevron__name">放課後等デイサービス</span><span class="chevron__desc">小1〜高3。学校後の通所支援</span></li>
-      <li class="chevron"><span class="chevron__name">就労選択支援</span><span class="chevron__desc">高校生〜。働ける力を見定める</span></li>
-      <li class="chevron"><span class="chevron__name">自立訓練</span><span class="chevron__desc">生活・対人・集中力を整える</span></li>
-      <li class="chevron"><span class="chevron__name">就労移行支援</span><span class="chevron__desc">一般就労に向けた訓練</span></li>
-      <li class="chevron"><span class="chevron__name">就労定着支援</span><span class="chevron__desc">長く働き続けられるよう支える</span></li>
+      <li data-reveal class="chevron"><span class="chevron__name">保育所等訪問支援</span><span class="chevron__desc">0〜18歳。出先に出向いて支援</span></li>
+      <li data-reveal class="chevron"><span class="chevron__name">放課後等デイサービス</span><span class="chevron__desc">小1〜高3。学校後の通所支援</span></li>
+      <li data-reveal class="chevron"><span class="chevron__name">就労選択支援</span><span class="chevron__desc">高校生〜。働ける力を見定める</span></li>
+      <li data-reveal class="chevron"><span class="chevron__name">自立訓練</span><span class="chevron__desc">生活・対人・集中力を整える</span></li>
+      <li data-reveal class="chevron"><span class="chevron__name">就労移行支援</span><span class="chevron__desc">一般就労に向けた訓練</span></li>
+      <li data-reveal class="chevron"><span class="chevron__name">就労定着支援</span><span class="chevron__desc">長く働き続けられるよう支える</span></li>
     </ol>
 
     <p class="work__note">さらに、胎内市から放課後児童クラブ（学童）への専門家派遣も受託しています。</p>
@@ -170,21 +192,21 @@
 
     <h3 class="work__values-title">大切にしていること</h3>
     <ul class="values">
-      <li><span class="values__name">一人ひとりに寄り添う</span><span class="values__desc">一人ひとりの想いやペースを大切に支えます</span></li>
-      <li><span class="values__name">地域とのつながりをつくる</span><span class="values__desc">地域や企業、行政とつながり、支え合える関係を築きます</span></li>
-      <li><span class="values__name">社会性・主体性の向上</span><span class="values__desc">多様な経験を通じて、社会で生きていく力を育みます</span></li>
-      <li><span class="values__name">脱現状維持</span><span class="values__desc">変化を恐れず、未来に向かって挑戦し続けます</span></li>
+      <li data-reveal><span class="values__name">一人ひとりに寄り添う</span><span class="values__desc">一人ひとりの想いやペースを大切に支えます</span></li>
+      <li data-reveal><span class="values__name">地域とのつながりをつくる</span><span class="values__desc">地域や企業、行政とつながり、支え合える関係を築きます</span></li>
+      <li data-reveal><span class="values__name">社会性・主体性の向上</span><span class="values__desc">多様な経験を通じて、社会で生きていく力を育みます</span></li>
+      <li data-reveal><span class="values__name">脱現状維持</span><span class="values__desc">変化を恐れず、未来に向かって挑戦し続けます</span></li>
     </ul>
   </div>
 </section>
 
 <!-- ===== ⑥ JOBS／募集中の職種 ===== -->
 <!-- 求人の正本はAirワーク。給与・勤務地・必須条件は Airワークと一致させる（2026年10月6日確認） -->
-<section class="sec sec--paper jobs" id="jobs" aria-labelledby="jobs-title">
+<section class="sec sec--gray sec--round-top jobs" id="jobs" aria-labelledby="jobs-title">
   <div class="otter-slot" aria-hidden="true">ラッコ：仮の枠</div>
   <div class="wrap">
     <p class="eyebrow" lang="en" aria-hidden="true">JOBS</p>
-    <h2 class="sec-title" id="jobs-title">募集中の職種</h2>
+    <h2 class="sec-title sec-title--sub" id="jobs-title">募集中の職種</h2>
 
     <nav class="job-chips" aria-label="職種の目次">
       <ul>
@@ -201,7 +223,7 @@
     <h3 class="job-group">子どもの支援</h3>
 
     <!-- ===== 求人：保育士 ===== -->
-    <article class="job job--green" id="job-hoikushi" aria-labelledby="job-hoikushi-title">
+    <article data-reveal class="job job--green" id="job-hoikushi" aria-labelledby="job-hoikushi-title">
       <header class="job__band">
         <p class="job__service">放課後等デイサービス｜正社員</p>
         <h4 class="job__title" id="job-hoikushi-title">保育士</h4>
@@ -238,7 +260,7 @@
     </article>
 
     <!-- ===== 求人：児童指導員 ===== -->
-    <article class="job job--green job--flip" id="job-jidoshidoin" aria-labelledby="job-jidoshidoin-title">
+    <article data-reveal class="job job--green job--flip" id="job-jidoshidoin" aria-labelledby="job-jidoshidoin-title">
       <header class="job__band">
         <p class="job__service">放課後等デイサービス｜正社員</p>
         <h4 class="job__title" id="job-jidoshidoin-title">児童指導員</h4>
@@ -274,7 +296,7 @@
     </article>
 
     <!-- ===== 求人：児童発達支援管理責任者 ===== -->
-    <article class="job job--orange" id="job-jihatsukan" aria-labelledby="job-jihatsukan-title">
+    <article data-reveal class="job job--orange" id="job-jihatsukan" aria-labelledby="job-jihatsukan-title">
       <header class="job__band">
         <p class="job__service">放課後等デイサービス｜正社員</p>
         <h4 class="job__title" id="job-jihatsukan-title">児童発達支援管理責任者</h4>
@@ -309,7 +331,7 @@
     </article>
 
     <!-- ===== 求人：放課後等デイサービスの管理者 ===== -->
-    <article class="job job--deep job--flip" id="job-kanrisha" aria-labelledby="job-kanrisha-title">
+    <article data-reveal class="job job--deep job--flip" id="job-kanrisha" aria-labelledby="job-kanrisha-title">
       <header class="job__band">
         <p class="job__service">放課後等デイサービス｜正社員</p>
         <h4 class="job__title" id="job-kanrisha-title">放課後等デイサービスの管理者</h4>
@@ -346,7 +368,7 @@
     <h3 class="job-group">大人の支援</h3>
 
     <!-- ===== 求人：就労移行支援員 ===== -->
-    <article class="job job--navy" id="job-shuro" aria-labelledby="job-shuro-title">
+    <article data-reveal class="job job--navy" id="job-shuro" aria-labelledby="job-shuro-title">
       <header class="job__band">
         <p class="job__service">就労移行支援｜正社員</p>
         <h4 class="job__title" id="job-shuro-title">就労移行支援員</h4>
@@ -387,20 +409,22 @@
   </div>
 </section>
 
-<div class="edge edge--paper-navy" aria-hidden="true">
-  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="0,0 100,10 0,10"/></svg>
-  <svg class="edge__tiles edge__tiles--left" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
-</div>
+<div class="wave" aria-hidden="true" style="--from:var(--jr-gray);--to:var(--jr-green-pale)"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
 <!-- ===== ⑦ ENVIRONMENT／働く環境 ===== -->
-<section class="sec sec--navy env" id="environment" aria-labelledby="env-title">
+<section class="sec sec--pale env" id="environment" aria-labelledby="env-title">
+  <div class="floaties" aria-hidden="true">
+    <span class="fl fl--square c-orange" data-depth=".2" style="--x:88%;--y:5%;--size:44px;--dur:7s"><i></i></span>
+    <span class="fl fl--circle c-purple" data-depth=".25" style="--x:2%;--y:30%;--size:30px;--dur:7s"><i></i></span>
+    <span class="fl fl--half c-green" data-depth=".15" style="--x:93%;--y:80%;--size:56px;--dur:7s"><i></i></span>
+  </div>
   <div class="wrap">
     <p class="eyebrow" lang="en" aria-hidden="true">ENVIRONMENT</p>
-    <h2 class="sec-title" id="env-title">働く環境</h2>
+    <h2 class="sec-title sec-title--sub" id="env-title">働く環境</h2>
     <p class="env__lead">勤務場所や時間など個々の事情に寄り添い、柔軟な働き方を一緒に模索します。</p>
 
     <div class="env__grid">
-      <section class="env__group" aria-labelledby="env-rest">
+      <section data-reveal class="env__group" aria-labelledby="env-rest">
         <h3 class="env__head" id="env-rest">休む</h3>
         <ul>
           <li>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）</li>
@@ -410,7 +434,7 @@
           <li>産休・育休の取得実績あり</li>
         </ul>
       </section>
-      <section class="env__group" aria-labelledby="env-reward">
+      <section data-reveal class="env__group" aria-labelledby="env-reward">
         <h3 class="env__head" id="env-reward">報われる</h3>
         <ul>
           <li>賞与年2回・昇給年2回（前年度実績あり）</li>
@@ -418,7 +442,7 @@
           <li>扶養手当・住宅手当（社内規定による）</li>
         </ul>
       </section>
-      <section class="env__group" aria-labelledby="env-grow">
+      <section data-reveal class="env__group" aria-labelledby="env-grow">
         <h3 class="env__head" id="env-grow">育つ</h3>
         <ul>
           <li>入社時研修・OJT研修</li>
@@ -429,7 +453,7 @@
           <li>キャリアアップのための資格取得を支援</li>
         </ul>
       </section>
-      <section class="env__group" aria-labelledby="env-tools">
+      <section data-reveal class="env__group" aria-labelledby="env-tools">
         <h3 class="env__head" id="env-tools">道具</h3>
         <ul>
           <li>記録や情報共有をシステム化。</li>
@@ -441,31 +465,29 @@
   </div>
 </section>
 
-<div class="edge edge--navy-paper" aria-hidden="true">
-  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="100,0 100,10 0,10"/></svg>
-</div>
+<div class="wave" aria-hidden="true" style="--from:var(--jr-green-pale);--to:#fff"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
 <!-- ===== ⑧ NUMBERS／数字で見るKSP ===== -->
-<section class="sec sec--paper numbers" aria-labelledby="numbers-title">
+<section class="sec sec--white numbers" aria-labelledby="numbers-title">
   <div class="wrap">
     <p class="eyebrow" lang="en" aria-hidden="true">NUMBERS</p>
-    <h2 class="sec-title" id="numbers-title">数字で見るKSP</h2>
+    <h2 class="sec-title sec-title--sub" id="numbers-title">数字で見るKSP</h2>
 
     <h3 class="numbers__when">2026年7月時点</h3>
     <dl class="stats">
-      <div class="stat"><dt>設立</dt><dd><span class="stat__num">2018</span>年</dd></div>
-      <div class="stat"><dt>クルー数</dt><dd><span class="stat__num">26</span>名</dd></div>
-      <div class="stat"><dt>平均年齢</dt><dd><span class="stat__num">38</span>歳</dd></div>
-      <div class="stat"><dt>有給取得率</dt><dd>約<span class="stat__num">80</span>%</dd></div>
-      <div class="stat"><dt>育休復帰率</dt><dd><span class="stat__num">100</span>%</dd></div>
-      <div class="stat"><dt>男女比</dt><dd><span class="stat__num">3:7</span></dd></div>
+      <div data-reveal class="stat"><dt>設立</dt><dd><span class="stat__num">2018</span>年</dd></div>
+      <div data-reveal class="stat"><dt>クルー数</dt><dd><span class="stat__num">26</span>名</dd></div>
+      <div data-reveal class="stat"><dt>平均年齢</dt><dd><span class="stat__num">38</span>歳</dd></div>
+      <div data-reveal class="stat"><dt>有給取得率</dt><dd>約<span class="stat__num">80</span>%</dd></div>
+      <div data-reveal class="stat"><dt>育休復帰率</dt><dd><span class="stat__num">100</span>%</dd></div>
+      <div data-reveal class="stat"><dt>男女比</dt><dd><span class="stat__num">3:7</span></dd></div>
     </dl>
 
     <h3 class="numbers__when">2026年9月時点（就労支援の実績）</h3>
     <dl class="stats stats--three">
-      <div class="stat"><dt>就職したメンバー（2022年度〜）</dt><dd><span class="stat__num">29</span>人</dd></div>
-      <div class="stat"><dt>そのうち今も働いている</dt><dd><span class="stat__num">22</span>人</dd></div>
-      <div class="stat"><dt>2025年度の就職（過去最多）</dt><dd><span class="stat__num">10</span>人</dd></div>
+      <div data-reveal class="stat"><dt>就職したメンバー（2022年度〜）</dt><dd><span class="stat__num">29</span>人</dd></div>
+      <div data-reveal class="stat"><dt>そのうち今も働いている</dt><dd><span class="stat__num">22</span>人</dd></div>
+      <div data-reveal class="stat"><dt>2025年度の就職（過去最多）</dt><dd><span class="stat__num">10</span>人</dd></div>
     </dl>
     <p class="numbers__note">就職先は、工場・お店・病院・介護施設・市役所など</p>
   </div>
@@ -489,10 +511,11 @@
 -->
 
 <!-- ===== ⑩ FLOW／採用の流れ ===== -->
-<section class="sec sec--mist flow" aria-labelledby="flow-title">
+<section class="sec sec--gray sec--round-top flow" aria-labelledby="flow-title">
   <div class="wrap">
     <p class="eyebrow" lang="en" aria-hidden="true">FLOW</p>
-    <h2 class="sec-title" id="flow-title">採用の流れ</h2>
+    <h2 class="sec-title sec-title--sub" id="flow-title">採用の流れ</h2>
+    <div data-reveal class="flow__card">
     <ol class="flow__list">
       <li><span class="flow__step" lang="en" aria-hidden="true">01</span><p>応募（各求人ページから。電話での応募もOK）</p></li>
       <li><span class="flow__step" lang="en" aria-hidden="true">02</span><p>履歴書（写真貼付）のご提出（郵送・メールどちらでも）</p></li>
@@ -501,33 +524,37 @@
       <li><span class="flow__step" lang="en" aria-hidden="true">05</span><p>結果のご連絡（面接後10日以内）→ 入社</p></li>
     </ol>
     <p class="flow__note">応募の前に、職場の見学もできます。お気軽にお問い合わせください。</p>
+    </div>
   </div>
 </section>
 
-<div class="edge edge--mist-navy" aria-hidden="true">
-  <svg class="edge__shape" viewBox="0 0 100 10" preserveAspectRatio="none"><polygon points="0,10 100,0 100,10"/></svg>
-  <svg class="edge__tiles edge__tiles--right" aria-hidden="true" focusable="false"><use href="#tiles-h"/></svg>
-</div>
+<div class="wave" aria-hidden="true" style="--from:var(--jr-gray);--to:var(--jr-green)"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
 <!-- ===== ⑪ ENTRY／見学・応募 ===== -->
-<section class="sec sec--navy entry" id="entry" aria-labelledby="entry-title">
+<section class="sec sec--green entry" id="entry" aria-labelledby="entry-title">
+  <div class="floaties" aria-hidden="true">
+    <span class="fl fl--circle c-yellow" data-depth=".2" style="--x:4%;--y:10%;--size:52px;--dur:7s"><i></i></span>
+    <span class="fl fl--square c-red" data-depth=".25" style="--x:92%;--y:40%;--size:34px;--dur:7s"><i></i></span>
+    <span class="fl fl--half c-blue" data-depth=".15" style="--x:6%;--y:86%;--size:40px;--dur:7s"><i></i></span>
+  </div>
   <div class="otter-slot otter-slot--dark" aria-hidden="true">ラッコ：仮の枠</div>
   <div class="wrap">
+  <div class="entry__card">
     <p class="eyebrow" lang="en" aria-hidden="true">ENTRY</p>
     <h2 class="sec-title entry__title" id="entry-title">一緒に、未来をつくりましょう。</h2>
     <p class="entry__lead">ワクワクしながら、未来を創る一歩をここから踏み出してみませんか？</p>
 
     <div class="entry__grid">
-      <div class="entry__block">
+      <div data-reveal class="entry__block">
         <h3 class="entry__head">応募する</h3>
         <a class="btn btn--ghost-light" href="#jobs">募集中の職種を見る</a>
       </div>
-      <div class="entry__block">
+      <div data-reveal class="entry__block">
         <h3 class="entry__head">電話</h3>
         <p><a class="entry__tel" href="tel:0254289362"><span lang="en">0254-28-9362</span></a></p>
         <p class="entry__small">受付 月〜金 9:00〜18:00</p>
       </div>
-      <div class="entry__block">
+      <div data-reveal class="entry__block">
         <h3 class="entry__head">メール</h3>
         <p><a class="entry__mail" href="mailto:recruit@tringsmith.co.jp">recruit@tringsmith.co.jp</a></p>
         <a class="btn btn--ghost-light" href="mailto:recruit@tringsmith.co.jp?subject=%E8%A6%8B%E5%AD%A6%E5%B8%8C%E6%9C%9B">見学希望のメールを送る</a>
@@ -542,6 +569,7 @@
         <li><a href="https://www.instagram.com/ksp_ksw/" target="_blank" rel="noopener">@KSP_KSW<span>（就労）</span></a></li>
       </ul>
     </div>
+  </div>
   </div>
 </section>
 

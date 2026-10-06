@@ -1,0 +1,380 @@
+/* =========================================================
+   お試し版（try-jr-style）：JR東日本 障がい者採用サイトの「雰囲気」に寄せたTOP
+   - 取り入れたのは色の明るさと使い方・丸み・影・余白・動きのタイミングだけ。
+     JRのサイトの画像・動画・図形・ロゴ・文章・コードは使っていない。
+   - 色はカレイドスクエアパークの紺・橙・緑とロゴの多色を、明るい地＋はっきりした緑の章の使い方に寄せた。
+   - body.theme-jr のときだけ効く（style.css の上に重ねる）
+   ========================================================= */
+
+.theme-jr {
+  /* 地の色：白と、ごく薄いグレー（青み）。章ごとに淡い緑も使う */
+  --jr-gray: #EEF1F5;
+  --jr-hero: #EDF0F5;
+  --jr-green: #2E7A00;      /* はっきりした緑（白文字AA 5.4） */
+  --jr-green-dark: #226600;
+  --jr-green-pale: #EEF6E6;
+  --jr-orange-pale: #FFF4E0;
+  --jr-dot: var(--orange);  /* 小見出しの点・タイムラインの線 */
+
+  /* ロゴの多色をやわらげた色（浮かぶ図形だけに使う） */
+  --k-red: #F4A7A0; --k-orange: #FBC67C; --k-yellow: #F6DE7C;
+  --k-green: #A9D98D; --k-blue: #92C6EA; --k-purple: #C5A9DC;
+
+  /* 丸み：大きい面40px／カード20〜32px／ボタン12px／タグは丸い端 */
+  --r-hero: 40px;
+  --r-card: 32px;
+  --r-box: 20px;
+  --r-btn: 12px;
+
+  /* 影：ほぼ平ら。浮かせたいものだけ、ふんわり広がる紺みの影 */
+  --jr-soft: 0 0 24px rgba(0, 33, 78, .08);
+  --jr-soft-hover: 0 0 32px rgba(0, 33, 78, .14);
+
+  /* 動き：小さなUIは0.2〜0.3秒 ease-out。写真の切り替えはゆっくり */
+  --t-ui: .25s cubic-bezier(.2, .7, .3, 1);
+  --t-reveal: .6s cubic-bezier(.2, .7, .3, 1);
+
+  font-weight: 400;
+}
+.theme-jr .prose { max-width: 36em; }
+.theme-jr .wrap { width: min(100% - 2 * var(--gutter), 1080px); }
+
+/* ---------- ヘッダー：左上のロゴのタブ＋上に浮かぶ丸いナビ ---------- */
+.theme-jr { --header-h: 72px; }
+.theme-jr .site-header {
+  position: fixed; inset: 0 0 auto; background: transparent; border: 0; pointer-events: none;
+}
+.theme-jr .site-header__inner { width: 100%; height: var(--header-h); padding: 0 12px 0 0; gap: 8px; }
+.theme-jr .site-header a, .theme-jr .site-header button, .theme-jr .site-nav { pointer-events: auto; }
+.theme-jr .site-logo {
+  align-self: flex-start; background: #fff; padding: 14px 22px 14px 18px;
+  border-radius: 0 0 24px 0; box-shadow: var(--jr-soft);
+}
+.theme-jr .site-logo img { height: 38px; }
+.theme-jr .header-jobs { background: var(--jr-green); box-shadow: none; }
+.theme-jr .nav-toggle { background: rgba(255,255,255,.92); border-radius: var(--r-pill); padding: 0 16px 0 12px; box-shadow: var(--jr-soft); }
+@media (min-width: 900px) {
+  .theme-jr .site-nav {
+    position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
+    background: rgba(238, 241, 245, .92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--r-pill); padding: 5px 5px 5px 26px; transition: box-shadow var(--t-ui);
+  }
+  .theme-jr.is-scrolled .site-nav { box-shadow: var(--jr-soft); }
+  .theme-jr .site-nav ul { gap: 26px; }
+  .theme-jr .site-nav a { font-size: 0.875rem; min-height: 40px; }
+  .theme-jr .site-nav__cta { background: var(--jr-green); box-shadow: none; padding: 0 20px; gap: 8px; }
+  .theme-jr .site-nav__cta::after { content: "+"; font-family: var(--font-en); font-weight: 500; font-size: 1.1em; }
+}
+@media (max-width: 899px) {
+  .theme-jr .site-header__inner { flex-wrap: nowrap; }
+  .theme-jr .site-logo { padding: 10px 16px 10px 14px; border-radius: 0 0 20px 0; }
+  .theme-jr .site-logo img { height: 30px; }
+  .theme-jr .header-jobs { margin-top: 0; }
+  html.js .theme-jr .site-nav { top: calc(100% + 4px); left: 12px; right: 12px; border-radius: var(--r-box); }
+  html:not(.js) .theme-jr .site-header { position: static; pointer-events: auto; }
+  html:not(.js) .theme-jr .site-header__inner { flex-wrap: wrap; padding: 0 12px 8px 0; }
+  html:not(.js) .theme-jr .site-nav { padding-left: 16px; }
+}
+
+/* ---------- ① ヒーロー：丸い大きな面。PCでは面だけが先に流れ、写真と見出しは少し留まる ---------- */
+.theme-jr .hero-jr { position: relative; background: #fff; }
+.theme-jr .hero-jr__panel {
+  position: absolute; inset: 0 12px auto; height: calc(100% - 12px);
+  background: var(--jr-hero); border-radius: 0 0 var(--r-hero) var(--r-hero);
+}
+.theme-jr .hero-jr__stage {
+  position: relative; display: grid; gap: 24px;
+  padding: calc(var(--header-h) + 16px) calc(var(--gutter) + 12px) 48px;
+}
+.theme-jr .hero-jr__media { position: relative; }
+.theme-jr .hero-jr__slides {
+  position: relative; aspect-ratio: 4 / 3; border-radius: var(--r-box); overflow: hidden; background: #E3E7EE;
+}
+.theme-jr .hero-jr__slide { position: absolute; inset: 0; }
+.theme-jr .hero-jr__slide .ph { height: 100%; aspect-ratio: auto; border-radius: 0; border: 0; }
+/* JSがあるときだけ重ねて、1枚ずつ見せる（ないときは1枚目だけ見える） */
+html.js .theme-jr .hero-jr__slide { opacity: 0; transition: opacity 1.2s ease; }
+html.js .theme-jr .hero-jr__slide.is-current { opacity: 1; }
+html:not(.js) .theme-jr .hero-jr__slide:not(:first-child) { display: none; }
+.theme-jr .hero-jr__tiles { position: absolute; left: -6px; bottom: -14px; width: 120px; height: auto; aspect-ratio: 3 / 1; }
+
+/* スライドの進み具合（縦の点）と停止ボタン */
+.theme-jr .hero-jr__ctrl { display: none; }
+html.js .theme-jr .hero-jr__ctrl {
+  position: absolute; right: 14px; bottom: 14px; display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.92); border-radius: var(--r-pill); padding: 6px 6px 6px 14px; box-shadow: var(--jr-soft);
+}
+.theme-jr .hero-jr__dots { display: flex; gap: 8px; }
+.theme-jr .hero-jr__dot { width: 10px; height: 10px; border-radius: 50%; background: #C9D0DB; transition: scale .25s linear, background-color .25s linear; }
+.theme-jr .hero-jr__dot.is-current { background: var(--jr-green); scale: 1.3; }
+.theme-jr .motion-toggle {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px 0 10px;
+  border: 0; border-radius: var(--r-pill); background: var(--jr-green); color: #fff;
+  font: inherit; font-size: 0.8125rem; font-weight: 700; cursor: pointer; transition: background-color var(--t-ui);
+}
+.theme-jr .motion-toggle:hover { background: var(--jr-green-dark); }
+.theme-jr .motion-toggle__icon { width: 12px; height: 12px; position: relative; }
+.theme-jr .motion-toggle__icon::before, .theme-jr .motion-toggle__icon::after {
+  content: ""; position: absolute; top: 0; width: 4px; height: 12px; background: currentColor; border-radius: 1px;
+}
+.theme-jr .motion-toggle__icon::before { left: 1px; }
+.theme-jr .motion-toggle__icon::after { right: 1px; }
+.theme-jr .motion-toggle[aria-pressed="true"] .motion-toggle__icon::before {
+  left: 2px; width: 0; height: 0; background: none; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent currentColor; border-radius: 0;
+}
+.theme-jr .motion-toggle[aria-pressed="true"] .motion-toggle__icon::after { display: none; }
+
+.theme-jr .hero-jr__title {
+  font-weight: 900; font-size: clamp(2rem, 1.2rem + 3.6vw, 3.5rem); line-height: 1.5; letter-spacing: 0.02em; color: var(--ink);
+}
+.theme-jr .hero-jr__lead { margin-top: 16px; font-size: clamp(1rem, .95rem + .3vw, 1.125rem); font-weight: 500; line-height: 2; max-width: 32em; }
+.theme-jr .hero-jr .btn-row { margin-top: 28px; }
+
+@media (min-width: 900px) {
+  /* 面の高さ＝1画面。ステージは sticky で、面が流れきるまで少し留まる */
+  .theme-jr .hero-jr { height: calc(100svh + 30svh); }
+  .theme-jr .hero-jr__panel { height: calc(100svh - 12px); }
+  .theme-jr .hero-jr__stage {
+    position: sticky; top: 0; height: 100svh; min-height: 640px;
+    grid-template-columns: 1fr 1.15fr; align-items: center; gap: clamp(32px, 4vw, 64px);
+    padding: calc(var(--header-h) + 8px) clamp(48px, 7vw, 120px) 56px;
+  }
+  .theme-jr .hero-jr__media { order: 2; }
+  .theme-jr .hero-jr__slides { border-radius: var(--r-card); aspect-ratio: 5 / 4; }
+  .theme-jr .hero-jr__tiles { left: -28px; bottom: -22px; width: 180px; }
+}
+
+/* ---------- 章の境目：やわらかい波（または上の角を丸めた面） ---------- */
+.theme-jr .wave { position: relative; height: clamp(36px, 5vw, 72px); background: var(--from); margin-block: -1px; z-index: 1; }
+.theme-jr .wave svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.theme-jr .wave path { fill: var(--to); }
+.theme-jr .sec--round-top { border-radius: var(--r-hero) var(--r-hero) 0 0; margin-top: calc(-1 * var(--r-hero)); z-index: 1; }
+
+/* ---------- 章の色（明るい地＋はっきりした緑） ---------- */
+.theme-jr .sec { padding-block: clamp(80px, 12vw, 160px); }
+.theme-jr .sec--white { background: #fff; color: var(--ink); }
+.theme-jr .sec--gray { background: var(--jr-gray); color: var(--ink); }
+.theme-jr .sec--pale { background: var(--jr-green-pale); color: var(--ink); }
+.theme-jr .sec--green { background: var(--jr-green); color: #fff; --focus: #FFE08A; }
+
+/* 大きい英字＋小さい日本語（前に橙の点） */
+.theme-jr .eyebrow {
+  display: block; margin-bottom: 8px;
+  font-family: var(--font-en); font-weight: 700; font-size: clamp(2.75rem, 1.6rem + 5vw, 5rem);
+  line-height: 1.05; letter-spacing: 0.04em; color: var(--jr-green);
+}
+.theme-jr .eyebrow::before { content: none; }
+.theme-jr .sec--green .eyebrow { color: #fff; }
+.theme-jr .sec-title--sub {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 1.0625rem; font-weight: 700; letter-spacing: 0.06em; line-height: 1.6;
+}
+.theme-jr .sec-title--sub::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--jr-dot); flex: none; }
+.theme-jr .sec-head { display: grid; gap: 16px; margin-bottom: clamp(40px, 6vw, 72px); }
+.theme-jr .sec-head .sec-title { margin-bottom: 0; }
+@media (min-width: 900px) {
+  .theme-jr .sec-head--split { grid-template-columns: 1fr 1fr; align-items: end; column-gap: 64px; }
+}
+
+/* ---------- ボタン：角丸12px＋右に丸の矢印 ---------- */
+.theme-jr .btn {
+  position: relative; border-radius: var(--r-btn); padding: 0.7em 0.8em 0.7em 1.4em; gap: 14px;
+  box-shadow: none; transition: background-color var(--t-ui), color var(--t-ui), border-color var(--t-ui);
+}
+.theme-jr .btn:hover { transform: none; box-shadow: none; }
+/* 右の丸（文字色で塗る） */
+.theme-jr .btn::after, .theme-jr .btn[target="_blank"]::after {
+  content: ""; width: 26px; height: 26px; flex: none; border: 0; border-radius: 50%; transform: none;
+  background: currentColor; -webkit-mask: none; mask: none;
+}
+/* 丸の中の矢印（ボタンの地の色で描く）。外部リンクは右上向き */
+.theme-jr .btn::before {
+  content: ""; position: absolute; right: calc(0.8em + 10px); top: 50%; width: 7px; height: 7px; margin-top: -3.5px;
+  border: solid var(--btn-bg, #fff); border-width: 2px 2px 0 0; rotate: 45deg; z-index: 1;
+  transition: translate var(--t-ui);
+}
+.theme-jr .btn[target="_blank"]::before { rotate: 0deg; right: calc(0.8em + 9px); }
+.theme-jr .btn:hover::before { translate: 2px 0; }
+.theme-jr .btn[target="_blank"]:hover::before { translate: 1px -1px; }
+
+.theme-jr .btn--accent { --btn-bg: var(--orange); }
+.theme-jr .btn--navy, .theme-jr .btn--green { --btn-bg: var(--jr-green); background: var(--jr-green); color: #fff; }
+.theme-jr .btn--navy:hover, .theme-jr .btn--green:hover { --btn-bg: var(--jr-green-dark); background: var(--jr-green-dark); }
+.theme-jr .btn--outline, .theme-jr .btn--ghost-light { --btn-bg: #fff; border-color: var(--jr-green); color: var(--jr-green); background: #fff; }
+.theme-jr .btn--outline:hover, .theme-jr .btn--ghost-light:hover { --btn-bg: var(--jr-green-pale); background: var(--jr-green-pale); }
+.theme-jr .hero-jr .btn--ghost-light { --btn-bg: var(--jr-hero); border-color: var(--ink); color: var(--ink); background: transparent; }
+.theme-jr .hero-jr .btn--ghost-light:hover { --btn-bg: #fff; background: #fff; }
+
+/* ---------- ② 私たちについて ---------- */
+.theme-jr .about__title { color: var(--jr-green); }
+.theme-jr .about__lead { color: var(--ink); font-weight: 700; }
+
+/* ---------- ③ 壁の章：はっきりした緑。レンガは丸い面 ---------- */
+.theme-jr .wall { overflow: hidden; }
+.theme-jr .wall__title { color: #fff; }
+.theme-jr .wall__myth {
+  background: rgba(0, 40, 0, .25); border-radius: var(--r-box); box-shadow: none; padding: 24px 28px;
+  background-image: none;
+}
+.theme-jr .wall__tag { color: #D9F0C8; }
+.theme-jr .wall__truth { border-left: 0; padding: 20px 4px 0; }
+.theme-jr .wall__tag--truth { display: inline-block; background: #fff; color: var(--jr-green); border-radius: var(--r-pill); padding: 2px 12px; margin-bottom: 8px; }
+@media (min-width: 900px) { .theme-jr .wall__truth { padding: 4px 0 0; } }
+
+/* ---------- ④ 戦う相手 ---------- */
+.theme-jr .enemy__title { color: var(--jr-green); }
+.theme-jr .enemy__statement { color: var(--ink); }
+
+/* ---------- ⑤ 0歳から働くまで：番号の丸＋丸いカード ---------- */
+.theme-jr .chevrons { gap: 12px; counter-reset: step; }
+.theme-jr .chevron {
+  clip-path: none; margin: 0; border-radius: var(--r-box); background: var(--jr-gray) !important; color: var(--ink);
+  padding: 20px 20px 22px; min-height: 0; gap: 4px; position: relative;
+}
+.theme-jr .chevron::before {
+  counter-increment: step; content: counter(step, decimal-leading-zero);
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--jr-green); color: #fff; font-family: var(--font-en); font-weight: 600; font-size: 0.9375rem; margin-bottom: 8px;
+}
+.theme-jr .chevron:nth-child(n+5)::before { background: var(--job-navy); }
+.theme-jr .chevron__name { color: var(--ink); }
+.theme-jr .chevron__desc { color: var(--ink-soft); }
+@media (min-width: 900px) {
+  .theme-jr .chevrons { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+  .theme-jr .chevron, .theme-jr .chevron:first-child { clip-path: none; padding: 22px 18px; }
+  .theme-jr .chevron:not(:last-child)::after {
+    content: ""; position: absolute; right: -11px; top: 38px; width: 8px; height: 8px;
+    border: solid var(--jr-green); border-width: 2px 2px 0 0; transform: rotate(45deg);
+  }
+}
+.theme-jr .work__close { color: var(--jr-green); }
+.theme-jr .work__values-title { color: var(--ink); }
+.theme-jr .values { border-top: 0; gap: 12px; }
+.theme-jr .values li { background: var(--jr-green-pale); border-radius: var(--r-box); border: 0; padding: 20px 22px; }
+.theme-jr .values__name { color: var(--jr-green); }
+
+/* ---------- ⑥ 募集職種：薄いグレーの地に、白い丸いカード ---------- */
+.theme-jr .chip { border-color: transparent; box-shadow: var(--jr-soft); }
+.theme-jr .jobs__note { color: var(--ink-soft); }
+.theme-jr .job-group::after { background: #D3D9E2; }
+.theme-jr .job {
+  border-radius: var(--r-card); box-shadow: var(--jr-soft);
+  transition: box-shadow var(--t-ui);
+}
+.theme-jr .job:hover { box-shadow: var(--jr-soft-hover); }
+/* 職種の色の帯 → 左上の角のタブ（ロゴのタブと同じ形） */
+.theme-jr .job__band {
+  display: inline-block; width: auto; max-width: calc(100% + var(--job-pad));
+  clip-path: none; border-radius: 0 0 24px 0;
+  padding: 16px 28px 16px var(--job-pad); margin: 0 0 28px calc(-1 * var(--job-pad));
+}
+@media (min-width: 900px) {
+  .theme-jr .job--flip .job__band { display: block; width: fit-content; margin: 0 calc(-1 * var(--job-pad)) 28px auto; padding: 16px var(--job-pad) 16px 28px; clip-path: none; border-radius: 0 0 0 24px; }
+}
+.theme-jr .job__photo .ph { border-radius: var(--r-box); }
+.theme-jr .job__badges li { border: 0; background: color-mix(in srgb, var(--job-c) 12%, #fff); border-radius: var(--r-pill); padding: 6px 14px; }
+.theme-jr .job__info { background: var(--jr-gray); border-top: 0; border-radius: var(--r-box); padding: 4px 24px; }
+.theme-jr .job__info dt { display: flex; align-items: center; gap: 8px; }
+.theme-jr .job__info dt::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--jr-dot); }
+.theme-jr .job__info-item { border-bottom-color: #D9DEE6; }
+.theme-jr .jobs__visit { background: #fff; border-radius: var(--r-card); box-shadow: var(--jr-soft); }
+
+/* ---------- ⑦ 働く環境：淡い緑の地に、白い丸いカード ---------- */
+.theme-jr .env__lead { color: var(--ink); margin-top: 0; }
+.theme-jr .env__group { background: #fff; color: var(--ink); border-radius: var(--r-box); }
+.theme-jr .env__head { border-bottom-color: #E1E7DA; color: var(--ink); }
+.theme-jr .env__head::before { width: 10px; height: 10px; border-radius: 50%; background: var(--jr-green); }
+.theme-jr .env__group li::before { background: var(--jr-dot); }
+
+/* ---------- ⑧ 数字：丸いカード ---------- */
+.theme-jr .numbers__when { border-bottom: 0; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+.theme-jr .numbers__when::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--jr-dot); }
+.theme-jr .stats { gap: 12px; margin-top: 8px; }
+.theme-jr .stat { background: var(--jr-gray); border-radius: var(--r-box); border: 0; padding: 20px 22px; }
+.theme-jr .stat dd { color: var(--jr-green); }
+
+/* ---------- ⑩ 採用の流れ：緑の丸い番号を、橙の線でつなぐ ---------- */
+.theme-jr .flow__card { background: #fff; border-radius: var(--r-card); padding: clamp(24px, 4vw, 48px); max-width: 860px; }
+.theme-jr .flow__list { gap: 0; grid-template-columns: 1fr; position: relative; }
+.theme-jr .flow__list li {
+  grid-template-columns: 44px 1fr; gap: 16px; align-items: center; background: none; border-radius: 0;
+  padding: 14px 0; position: relative;
+}
+.theme-jr .flow__list li + li { border-left: 0; padding-left: 0; }
+.theme-jr .flow__list li:not(:last-child)::after {
+  content: ""; position: absolute; left: 21px; top: calc(50% + 22px); height: calc(100% - 44px); width: 2px; background: var(--jr-dot);
+}
+.theme-jr .flow__list li p { border-bottom: 1px dashed #CBD3DE; padding-bottom: 12px; }
+.theme-jr .flow__list li:last-child p { border-bottom: 0; padding-bottom: 0; }
+.theme-jr .flow__step {
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--jr-green); color: #fff; font-size: 0.9375rem;
+}
+.theme-jr .flow__note { color: var(--ink); }
+
+/* ---------- ⑪ 見学・応募：緑の地に、白い大きな丸い面 ---------- */
+.theme-jr .entry__card { background: #fff; color: var(--ink); border-radius: var(--r-hero); padding: clamp(28px, 5vw, 64px); position: relative; z-index: 1; }
+.theme-jr .entry .eyebrow { color: var(--jr-green); }
+.theme-jr .entry__block { background: var(--jr-gray); }
+.theme-jr .entry__head { color: var(--ink-soft); }
+.theme-jr .entry__tel { color: var(--jr-green); }
+.theme-jr .entry__small { color: var(--ink-soft); }
+.theme-jr .entry__insta { border-top-color: #DDE2EA; }
+.theme-jr .otter-slot--dark { z-index: 2; }
+
+/* ---------- フッター（紺のまま。ロゴのプレートも同じ） ---------- */
+
+/* ---------- スマホの固定バー：白いバーに丸いボタン ---------- */
+@media (max-width: 767px) {
+  .theme-jr .fixed-bar { background: #fff; box-shadow: 0 -4px 24px rgba(0, 33, 78, .12); }
+  .theme-jr .fixed-bar__btn { border-radius: var(--r-btn); }
+  .theme-jr .fixed-bar__btn--tel { color: var(--jr-green); border-color: var(--jr-green); }
+}
+
+/* ---------- 浮かぶ図形（ロゴの多色をやわらげた色。飾り） ---------- */
+.theme-jr .floaties { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.theme-jr .hero-jr .floaties { overflow: visible; }
+.theme-jr .fl { position: absolute; left: var(--x); top: var(--y); width: var(--size); height: var(--size); translate: 0 var(--py, 0px); }
+.theme-jr .fl i { display: block; width: 100%; height: 100%; opacity: .85; }
+.theme-jr .fl--circle i { border-radius: 50%; }
+.theme-jr .fl--square i { border-radius: 30%; rotate: 14deg; }
+.theme-jr .fl--half i { border-radius: 50%; }
+.theme-jr .fl--tri i { clip-path: polygon(50% 6%, 96% 92%, 4% 92%); border-radius: 0; rotate: -12deg; }
+.theme-jr .c-red i    { background: linear-gradient(135deg, var(--k-red) 50%, var(--k-orange) 50%); }
+.theme-jr .c-yellow i { background: linear-gradient(90deg, var(--k-yellow) 50%, var(--k-red) 50%); }
+.theme-jr .c-green i  { background: linear-gradient(135deg, var(--k-green) 50%, var(--k-blue) 50%); }
+.theme-jr .c-blue i   { background: var(--k-blue); }
+.theme-jr .c-purple i { background: linear-gradient(45deg, var(--k-purple) 50%, var(--k-blue) 50%); }
+.theme-jr .c-orange i { background: var(--k-orange); }
+.theme-jr .sec--green .fl i { opacity: .55; }
+.theme-jr .wall > .wrap, .theme-jr .env > .wrap, .theme-jr .entry > .wrap, .theme-jr .work > .wrap { position: relative; z-index: 1; }
+
+/* 動き：動きを減らす設定でないときだけ（html.motion-ok は JS が付ける） */
+@keyframes jr-bob { from { transform: translateY(-6px) rotate(-4deg); } to { transform: translateY(8px) rotate(5deg); } }
+html.motion-ok .theme-jr .hero-jr .fl i { animation: jr-bob var(--dur, 7s) ease-in-out infinite alternate; }
+html.motion-ok .theme-jr.is-paused .fl i,
+html.motion-ok .theme-jr.is-hero-off .fl i { animation-play-state: paused; } /* 停止ボタン・画面外 */
+
+/* スクロールで現れる：カード類だけ、少し下から（章ごとの一律フェードにはしない） */
+html.motion-ok .theme-jr [data-reveal] { transition: opacity var(--t-reveal), translate var(--t-reveal); transition-delay: var(--delay, 0s); }
+html.motion-ok .theme-jr [data-reveal]:not(.is-in) { opacity: 0; translate: 0 28px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-jr .hero-jr__slide, .theme-jr .hero-jr__dot, .theme-jr .btn, .theme-jr .btn::before, .theme-jr .job, .theme-jr .site-nav { transition: none !important; }
+  .theme-jr .fl { translate: none !important; }
+}
+
+/* ---------- 幅の調整（数字のカードと電話番号が折り返さないように） ---------- */
+@media (min-width: 768px) {
+  .theme-jr .stats, .theme-jr .stats--three { grid-template-columns: repeat(3, 1fr); }
+}
+.theme-jr .stat__num { font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.5rem); }
+.theme-jr .entry__tel { white-space: nowrap; font-size: clamp(1.625rem, 1.3rem + 1.2vw, 2.125rem); }
+.theme-jr .entry__grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+.theme-jr .entry__block .btn { font-size: 0.9375rem; }
+/* 大きい英字は単語の途中で折らない。スマホでは少し小さく */
+.theme-jr .eyebrow { overflow-wrap: normal; word-break: keep-all; font-size: clamp(2.25rem, 1rem + 6vw, 5rem); }
+/* スマホのヒーロー：文字に重なる位置の図形は出さない */
+@media (max-width: 899px) {
+  .theme-jr .hero-jr .fl--square, .theme-jr .hero-jr .fl.c-orange { display: none; }
+}
