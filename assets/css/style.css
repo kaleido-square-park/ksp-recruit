@@ -31,6 +31,30 @@
   --gutter: clamp(16px, 4vw, 40px);
   --header-h: 64px;
   --focus: var(--navy);
+
+  /* 角の丸み：要素が大きいほど大きく、ボタンはさらに丸く */
+  --r-xs: 6px;     /* バッジ */
+  --r-sm: 10px;    /* ロゴのプレートなど小さい面 */
+  --r-md: 16px;    /* 写真の枠・情報欄・レンガ */
+  --r-lg: 20px;    /* 章の中の面（働く環境・見学応募・流れ） */
+  --r-xl: 28px;    /* 職種のシーン */
+  --r-pill: 999px; /* ボタン・チップ */
+
+  /* 影：灰色ではなく紺みのある色。近い影＋遠い影を重ねる。大事なものだけに付ける */
+  --shadow-float:
+    0 1px 2px rgba(0, 33, 78, .06),
+    0 6px 14px -4px rgba(0, 33, 78, .10),
+    0 24px 48px -12px rgba(0, 33, 78, .20);
+  --shadow-btn:
+    0 1px 2px rgba(0, 33, 78, .14),
+    0 8px 18px -6px rgba(0, 33, 78, .36);
+  --shadow-btn-hover:
+    0 2px 4px rgba(0, 33, 78, .14),
+    0 14px 26px -8px rgba(0, 33, 78, .42);
+  /* 紺地の上：さらに深い紺の影 */
+  --shadow-on-navy:
+    0 1px 2px rgba(0, 8, 26, .30),
+    0 12px 28px -10px rgba(0, 8, 26, .60);
 }
 
 /* ---------- 基本 ---------- */
@@ -82,12 +106,16 @@ small { font-size: 0.8125rem; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
-  min-height: 52px; padding: 0.7em 1.6em;
+  min-height: 52px; padding: 0.7em 1.8em;
   font-weight: 700; font-size: 1rem; line-height: 1.4; text-decoration: none;
-  border: 2px solid transparent; border-radius: 2px;
-  transition: background-color .2s, color .2s, border-color .2s;
+  border: 2px solid transparent; border-radius: var(--r-pill);
+  transition: background-color .2s, color .2s, border-color .2s, box-shadow .2s, transform .2s;
 }
 .btn::after { content: ""; width: 0.5em; height: 0.5em; border: solid currentColor; border-width: 2px 2px 0 0; transform: rotate(45deg); flex: none; }
+/* 塗りのボタン（大事な導線）だけ浮かせる。枠線だけのボタンは影なし */
+.btn--accent, .btn--navy { box-shadow: var(--shadow-btn); }
+.btn--accent:hover, .btn--navy:hover { box-shadow: var(--shadow-btn-hover); transform: translateY(-1px); }
+.sec--navy .btn--accent, .hero .btn--accent { box-shadow: var(--shadow-on-navy); }
 .btn--accent { background: var(--orange); color: var(--navy); }
 .btn--accent:hover { background: #FFA42B; }
 .btn--navy { background: var(--navy); color: #fff; }
@@ -105,10 +133,10 @@ small { font-size: 0.8125rem; }
 .ph {
   display: grid; place-items: center; text-align: center;
   aspect-ratio: 3 / 2; width: 100%; padding: 16px;
-  background: #E3E7EE; color: #4A5368; border: 1px dashed #A2ABBC;
+  background: #E3E7EE; color: #4A5368; border: 1px dashed #A2ABBC; border-radius: var(--r-md);
   font-size: 0.875rem; font-weight: 500; line-height: 1.6;
 }
-.ph--fill { aspect-ratio: auto; height: 100%; }
+.ph--fill { aspect-ratio: auto; height: 100%; border-radius: 0; }
 
 /* カレイド・ラッコの仮の枠（フェーズ4で「下から顔を出す」演出） */
 .otter-slot {
@@ -130,8 +158,9 @@ small { font-size: 0.8125rem; }
 .site-logo { flex: none; margin-right: auto; }
 .site-logo img { height: 40px; width: auto; }
 .header-jobs {
-  display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px;
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px;
   background: var(--navy); color: #fff; font-weight: 700; font-size: 0.9375rem; text-decoration: none;
+  border-radius: var(--r-pill); box-shadow: var(--shadow-btn);
 }
 .nav-toggle {
   display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 4px 0 8px;
@@ -149,7 +178,7 @@ small { font-size: 0.8125rem; }
 .site-nav ul { display: flex; }
 .site-nav a { display: flex; align-items: center; min-height: 44px; text-decoration: none; font-weight: 700; }
 .site-nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
-.site-nav__cta { background: var(--navy); color: #fff; padding: 0 18px; }
+.site-nav__cta { background: var(--navy); color: #fff; padding: 0 22px; border-radius: var(--r-pill); box-shadow: var(--shadow-btn); }
 .site-nav__cta:hover { background: var(--navy-soft); text-decoration: none !important; }
 
 /* スマホ：メニューは開閉。JSが動かないときはヘッダーの下に並べて見せる */
@@ -163,7 +192,7 @@ small { font-size: 0.8125rem; }
   html:not(.js) .site-nav ul { flex-wrap: wrap; gap: 0 18px; }
   html.js .site-nav {
     position: absolute; left: 0; right: 0; top: 100%;
-    background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 12px 24px rgba(0,33,78,.12);
+    background: #fff; border-radius: 0 0 var(--r-lg) var(--r-lg); box-shadow: var(--shadow-float);
   }
   html.js .site-nav[hidden] { display: none; }
   html.js .site-nav ul { flex-direction: column; padding: 8px var(--gutter) 16px; }
@@ -199,7 +228,7 @@ small { font-size: 0.8125rem; }
 }
 
 /* ---------- 章の境目（斜めのエッジ＋三角タイル） ---------- */
-.edge { position: relative; height: clamp(44px, 7vw, 112px); overflow: hidden; }
+.edge { position: relative; height: clamp(44px, 7vw, 112px); overflow: hidden; margin-block: -1px; z-index: 1; }
 .edge__shape { position: absolute; inset: 0; width: 100%; height: 100%; }
 .edge--navy-paper { background: var(--navy); }
 .edge--navy-paper .edge__shape { fill: var(--paper); }
@@ -267,7 +296,7 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
 .wall__item { display: grid; gap: 0; }
 .wall__myth {
   position: relative;
-  background: var(--navy-soft); padding: 22px 24px;
+  background: var(--navy-soft); padding: 22px 24px; border-radius: var(--r-md); box-shadow: var(--shadow-on-navy);
   font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem); font-weight: 700; line-height: 1.6;
   /* レンガの目地 */
   background-image:
@@ -276,7 +305,7 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
   background-size: 100% 50%, 25% 50%;
 }
 .wall__tag { display: block; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.08em; color: #B9C6E0; margin-bottom: 4px; }
-.wall__truth { padding: 22px 24px 0; border-left: 4px solid var(--green); margin-left: 0; }
+.wall__truth { padding: 22px 24px 0; border-left: 4px solid var(--green); border-radius: 2px; margin-left: 0; }
 .wall__tag--truth { color: #fff; }
 .wall__truth p + p { margin-top: 4px; }
 .wall__finale {
@@ -334,10 +363,11 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
 /* ---------- ⑥ 募集職種 ---------- */
 .job-chips ul { display: flex; flex-wrap: wrap; gap: 10px; }
 .chip {
-  display: inline-flex; align-items: center; min-height: 44px; padding: 6px 16px 6px 12px;
-  border: 1px solid var(--line); border-left: 6px solid var(--chip-c, var(--navy));
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 18px 6px 14px;
+  border: 1px solid var(--line); border-radius: var(--r-pill);
   background: #fff; text-decoration: none; font-weight: 700; font-size: 0.9375rem; line-height: 1.4;
 }
+.chip::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--chip-c, var(--navy)); flex: none; }
 .chip:hover { background: var(--mist); }
 .chip--green { --chip-c: var(--job-green); }
 .chip--orange { --chip-c: var(--job-orange); }
@@ -351,7 +381,12 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
 }
 .job-group::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-.job { --job-c: var(--job-navy); --job-on: #fff; margin-top: clamp(40px, 6vw, 72px); scroll-margin-top: calc(var(--header-h) + 12px); }
+.job {
+  --job-c: var(--job-navy); --job-on: #fff; --job-pad: clamp(20px, 3.4vw, 44px);
+  margin-top: clamp(32px, 5vw, 56px); scroll-margin-top: calc(var(--header-h) + 12px);
+  background: #fff; border-radius: var(--r-xl); box-shadow: var(--shadow-float);
+  padding: 0 var(--job-pad) var(--job-pad); overflow: hidden;
+}
 .job--green { --job-c: var(--job-green); --job-on: #fff; }
 .job--orange { --job-c: var(--job-orange); --job-on: var(--navy); }
 .job--deep { --job-c: var(--job-deep); --job-on: #fff; }
@@ -359,8 +394,10 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
 
 .job__band {
   background: var(--job-c); color: var(--job-on);
-  padding: 18px var(--gutter) 18px 24px; margin-bottom: 24px;
-  width: min(100%, 760px);
+  /* シーンの左上の角に沿う帯。右端は斜めに切る */
+  padding: 20px calc(var(--job-pad) + 24px) 20px var(--job-pad);
+  margin: 0 0 24px calc(-1 * var(--job-pad));
+  width: min(100% + var(--job-pad), 760px);
   clip-path: polygon(0 0, 100% 0, calc(100% - 36px) 100%, 0 100%);
 }
 .job__service { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.06em; }
@@ -370,8 +407,8 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
 .job__catch { font-weight: 700; font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem); line-height: 1.75; color: var(--navy); }
 .job__badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .job__badges li {
-  font-size: 0.8125rem; font-weight: 700; line-height: 1.4; padding: 6px 12px;
-  border: 1.5px solid var(--job-c); color: var(--ink); background: #fff;
+  font-size: 0.8125rem; font-weight: 700; line-height: 1.4; padding: 6px 14px;
+  border: 1.5px solid var(--job-c); border-radius: var(--r-pill); color: var(--ink); background: #fff;
 }
 .job__points-title { margin-top: 24px; font-size: 0.875rem; font-weight: 700; color: var(--ink-soft); letter-spacing: 0.08em; }
 .job__points { margin-top: 8px; display: grid; gap: 10px; }
@@ -383,8 +420,12 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
   content: ""; position: absolute; left: 5px; top: calc(0.42em + 4px); width: 8px; height: 5px;
   border: solid var(--job-on); border-width: 0 0 2px 2px; transform: rotate(-45deg);
 }
-.job__info { display: grid; gap: 0; margin-top: 28px; border-top: 2px solid var(--job-c); }
+.job__info {
+  display: grid; gap: 0; margin-top: 28px; padding: 4px 20px;
+  background: var(--mist); border-radius: var(--r-md); border-top: 4px solid var(--job-c);
+}
 .job__info-item { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.job__info-item:last-child { border-bottom: 0; }
 .job__info dt { font-size: 0.8125rem; font-weight: 700; color: var(--ink-soft); letter-spacing: 0.08em; }
 .job__info dd { margin-top: 4px; font-weight: 700; line-height: 1.75; }
 .job__info dd small { display: block; font-weight: 500; color: var(--ink-soft); }
@@ -397,29 +438,35 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
   .job--flip .job__photo { order: 2; }
 }
 @media (min-width: 900px) {
-  .job--flip .job__band { margin-left: auto; padding-left: 60px; clip-path: polygon(36px 0, 100% 0, 100% 100%, 0 100%); }
+  .job--flip .job__band {
+    margin: 0 calc(-1 * var(--job-pad)) 24px auto; padding: 20px var(--job-pad) 20px calc(var(--job-pad) + 36px);
+    clip-path: polygon(36px 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .job__info-item:nth-last-child(2) { border-bottom: 1px solid var(--line); }
   .job__info { grid-template-columns: repeat(3, 1fr); column-gap: 32px; }
   .job__info-item--wide { grid-column: 1 / -1; }
 }
 
 .jobs__visit {
-  margin-top: clamp(56px, 8vw, 96px); padding: 28px 0; border-block: 2px solid var(--navy);
+  margin-top: clamp(56px, 8vw, 96px); padding: clamp(24px, 3vw, 36px) clamp(20px, 3.4vw, 44px);
+  background: var(--mist); border-radius: var(--r-lg);
   display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between;
 }
 .jobs__visit p { font-weight: 900; font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem); color: var(--navy); }
 
 /* ---------- ⑦ 働く環境 ---------- */
 .env__lead { font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem); font-weight: 700; max-width: 30em; margin-top: -16px; }
-.env__grid { display: grid; gap: 40px; margin-top: clamp(40px, 6vw, 64px); }
+.env__grid { display: grid; gap: 16px; margin-top: clamp(40px, 6vw, 64px); }
+.env__group { background: var(--navy-soft); border-radius: var(--r-lg); padding: clamp(20px, 3vw, 32px); }
 .env__head {
   display: flex; align-items: center; gap: 12px;
   font-size: 1.375rem; font-weight: 900; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.3);
 }
-.env__head::before { content: ""; width: 16px; height: 16px; background: linear-gradient(45deg, var(--green) 50%, var(--orange) 50%); }
+.env__head::before { content: ""; width: 16px; height: 16px; border-radius: 3px; background: linear-gradient(45deg, var(--green) 50%, var(--orange) 50%); }
 .env__group ul { margin-top: 12px; display: grid; gap: 10px; }
 .env__group li { position: relative; padding-left: 18px; line-height: 1.8; }
-.env__group li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 6px; height: 6px; background: #B9C6E0; }
-@media (min-width: 768px) { .env__grid { grid-template-columns: repeat(2, 1fr); column-gap: 56px; row-gap: 56px; } }
+.env__group li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 6px; height: 6px; border-radius: 50%; background: #B9C6E0; }
+@media (min-width: 768px) { .env__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
 
 /* ---------- ⑧ 数字 ---------- */
 .numbers__when {
@@ -442,37 +489,36 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
 }
 
 /* ---------- ⑩ 採用の流れ ---------- */
-.flow__list { display: grid; gap: 0; }
-.flow__list li { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.flow__list { display: grid; gap: 10px; }
+.flow__list li { display: grid; grid-template-columns: 56px 1fr; gap: 12px; align-items: baseline; padding: 18px 20px; background: #fff; border-radius: var(--r-md); }
 .flow__step { font-family: var(--font-en); font-weight: 600; font-size: 1.75rem; line-height: 1; color: var(--green-deep); }
 .flow__list p { font-weight: 700; }
 .flow__note { margin-top: 28px; font-weight: 700; color: var(--navy); }
 @media (min-width: 1000px) {
-  .flow__list { grid-template-columns: repeat(5, 1fr); border-top: 2px solid var(--navy); }
-  .flow__list li { grid-template-columns: 1fr; gap: 8px; padding: 20px 20px 20px 0; border-bottom: 0; position: relative; }
-  .flow__list li + li { padding-left: 20px; border-left: 1px solid var(--line); }
+  .flow__list { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .flow__list li { grid-template-columns: 1fr; gap: 8px; align-content: start; padding: 24px 20px; }
 }
 
 /* ---------- ⑪ 見学・応募 ---------- */
 .entry .sec-title { margin-bottom: 16px; }
 .entry__lead { font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem); font-weight: 700; }
-.entry__grid { display: grid; gap: 32px; margin-top: clamp(40px, 6vw, 64px); }
-.entry__block { display: grid; gap: 12px; align-content: start; justify-items: start; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.3); }
+.entry__grid { display: grid; gap: 16px; margin-top: clamp(40px, 6vw, 64px); }
+.entry__block { display: grid; gap: 12px; align-content: start; justify-items: start; padding: clamp(20px, 3vw, 32px); background: var(--navy-soft); border-radius: var(--r-lg); }
 .entry__head { font-size: 1rem; font-weight: 700; color: #B9C6E0; letter-spacing: 0.06em; }
 .entry__tel { font-family: var(--font-en); font-weight: 600; font-size: clamp(1.875rem, 1.4rem + 2vw, 2.5rem); line-height: 1.2; text-decoration: none; letter-spacing: 0.04em; }
 .entry__tel:hover { text-decoration: underline; }
 .entry__mail { font-family: var(--font-en); font-weight: 500; font-size: 1.125rem; }
 .entry__small { font-size: 0.875rem; color: #D5DDEC; }
-.entry__insta { margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.3); }
+.entry__insta { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.3); }
 .entry__insta ul { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 12px; }
 .entry__insta a { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-en); font-weight: 600; text-underline-offset: 4px; }
 .entry__insta a span { font-family: var(--font-ja); font-weight: 500; font-size: 0.875rem; }
-@media (min-width: 900px) { .entry__grid { grid-template-columns: repeat(3, 1fr); gap: 40px; } }
+@media (min-width: 900px) { .entry__grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
 
 /* ---------- ⑫ フッター ---------- */
 .site-footer { background: var(--navy-deep); color: #fff; padding-block: 56px 32px; }
 .site-footer__inner { display: grid; gap: 32px; }
-.logo-plate { display: inline-block; background: #fff; padding: 10px 16px; }
+.logo-plate { display: inline-block; background: #fff; padding: 10px 16px; border-radius: var(--r-sm); }
 .logo-plate img { height: 40px; width: auto; }
 .site-footer__copy { margin-top: 16px; font-weight: 700; }
 .site-footer__company { font-size: 0.9375rem; line-height: 1.9; }
@@ -492,19 +538,20 @@ h1, h2, h3, h4, .about__lead, .enemy__statement, .job__catch, .work__close, .wal
 @media (max-width: 767px) {
   .fixed-bar {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
-    display: grid; grid-template-columns: 1fr 1fr;
-    padding-bottom: env(safe-area-inset-bottom);
-    background: var(--navy); box-shadow: 0 -6px 18px rgba(0,33,78,.18);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+    background: var(--navy); border-radius: var(--r-lg) var(--r-lg) 0 0;
+    box-shadow: 0 -2px 6px rgba(0, 33, 78, .10), 0 -12px 28px -8px rgba(0, 33, 78, .32);
     transition: transform .3s ease;
   }
   html.js .fixed-bar:not(.is-visible) { transform: translateY(110%); visibility: hidden; }
   .fixed-bar__btn {
-    display: flex; align-items: center; justify-content: center; min-height: 56px; padding: 6px 8px;
+    display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 6px 8px; border-radius: var(--r-pill);
     font-weight: 700; font-size: 0.9375rem; text-decoration: none; text-align: center; line-height: 1.4;
   }
   .fixed-bar__btn--jobs { background: var(--orange); color: var(--navy); }
-  .fixed-bar__btn--tel { color: #fff; }
-  .site-footer { padding-bottom: calc(32px + 56px + env(safe-area-inset-bottom)); }
+  .fixed-bar__btn--tel { color: #fff; border: 2px solid rgba(255,255,255,.8); }
+  .site-footer { padding-bottom: calc(32px + 64px + env(safe-area-inset-bottom)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .fixed-bar, .btn { transition: none; }
