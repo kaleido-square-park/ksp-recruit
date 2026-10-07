@@ -1,6 +1,5 @@
 /* =========================================================
    カレイドスクエアパーク 採用サイト
-   色はブランドブック（表紙・職種ページ）からPillowでサンプリングして確定（2026-10-06）
    ========================================================= */
 
 :root {
@@ -17,7 +16,7 @@
   --mist: #F3F5F8;
   --line: #D6DCE6;
 
-  /* 職種の色（ブランドブックの職種ページ） */
+  /* 職種の色 */
   --job-green: #348800;   /* 保育士・児童指導員 */
   --job-orange: #F45C00;  /* 児童発達支援管理責任者 */
   --job-deep: #043C24;    /* 管理者 */
@@ -130,7 +129,7 @@ small { font-size: 0.8125rem; }
 }
 .ph--fill { aspect-ratio: auto; height: 100%; border-radius: 0; }
 
-/* カレイド・ラッコの仮の枠（フェーズ4で「下から顔を出す」演出） */
+/* カレイド・ラッコの仮の枠 */
 .otter-slot {
   position: absolute; right: var(--gutter); top: 0; transform: translateY(-50%);
   width: 96px; height: 96px; display: grid; place-items: center; text-align: center;
