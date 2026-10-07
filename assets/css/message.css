@@ -220,3 +220,6 @@ html.js .progress { display: block; position: fixed; inset: 0 0 auto; height: 4p
   .tl__no { left: -64px; }
   .tl::before { left: 17px; }
 }
+
+/* 章の見出しのすぐ下に来る小見出しは、上の余白を詰める */
+.chap__title + .sub-title.first { margin-top: 0; }
