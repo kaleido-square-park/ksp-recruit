@@ -1,0 +1,547 @@
+/* =========================================================
+   緑の版（正式版・2026-10-07〜）：style.css の上に重ねるテーマ
+   - 基調はトラインスミス株式会社のロゴの緑（#63A43C）。白い文字を載せる所は濃い緑（#436E28）
+   - 明るい地・丸い面・ふんわりした影・波の境目（JR東日本 障がい者採用サイトの雰囲気を参考。素材・文章・コードは不使用）
+   - body.theme-green のときだけ効く
+   ========================================================= */
+
+.theme-green {
+  /* 地の色：白と、ごく薄いグレー（青み）。章ごとに淡い緑も使う */
+  --jr-gray: #EEF1F5;
+  --jr-hero: #F1F8ED;   /* ヒーローの面も淡い緑 */
+  /* 基調：トラインスミス株式会社のロゴの緑（ロゴ画像から拾った値・JPEGからの近似値）。
+     白い文字とは約3:1しかないので、地・波・点などの面と装飾に使う */
+  --jr-brand: #63A43C;
+  /* 同じ色味で濃くした緑：白い文字を載せるところ（ボタンなど）と、緑の文字に使う
+     （白と6.0、淡いグレーの地とも4.5以上） */
+  --jr-green: #436E28;
+  --jr-green-dark: #3A6022;   /* ボタンのhover */
+  --jr-green-pale: #F1F8ED;   /* 淡い緑の地（本文と14.6） */
+  /* 職種の色：保育士・児童指導員の緑は、基調の黄みの緑とまぎれないよう青みに寄せる（色相98°→169°、白と5.66） */
+  --job-green: #007560;
+  --jr-orange-pale: #FFF4E0;
+  --jr-dot: var(--orange);  /* 小見出しの点・タイムラインの線 */
+
+  /* ロゴの多色をやわらげた色（浮かぶ図形だけに使う） */
+  --k-red: #F4A7A0; --k-orange: #FBC67C; --k-yellow: #F6DE7C;
+  --k-green: #A9D98D; --k-blue: #92C6EA; --k-purple: #C5A9DC;
+
+  /* 丸み：大きい面40px／カード20〜32px／ボタン12px／タグは丸い端 */
+  --r-hero: 40px;
+  --r-card: 32px;
+  --r-box: 20px;
+  --r-btn: 12px;
+
+  /* 影：ほぼ平ら。浮かせたいものだけ、ふんわり広がる紺みの影 */
+  --jr-soft: 0 0 24px rgba(0, 33, 78, .08);
+  --jr-soft-hover: 0 0 32px rgba(0, 33, 78, .14);
+
+  /* 動き：小さなUIは0.2〜0.3秒 ease-out。写真の切り替えはゆっくり */
+  --t-ui: .25s cubic-bezier(.2, .7, .3, 1);
+  --t-reveal: .6s cubic-bezier(.2, .7, .3, 1);
+
+  font-weight: 400;
+}
+.theme-green .prose { max-width: 36em; }
+.theme-green .wrap { width: min(100% - 2 * var(--gutter), 1080px); }
+
+/* ---------- ヘッダー：左上のロゴのタブ＋上に浮かぶ丸いナビ ---------- */
+.theme-green { --header-h: 72px; }
+.theme-green .site-header {
+  position: fixed; inset: 0 0 auto; background: transparent; border: 0; pointer-events: none;
+}
+.theme-green .site-header__inner { width: 100%; height: var(--header-h); padding: 0 12px 0 0; gap: 8px; }
+.theme-green .site-header a, .theme-green .site-header button, .theme-green .site-nav { pointer-events: auto; }
+.theme-green .site-logo {
+  align-self: flex-start; background: #fff; padding: 14px 22px 14px 18px;
+  border-radius: 0 0 24px 0; box-shadow: var(--jr-soft);
+}
+.theme-green .site-logo img { height: 38px; }
+.theme-green .header-jobs { background: var(--jr-green); box-shadow: none; }
+.theme-green .nav-toggle { background: rgba(255,255,255,.92); border-radius: var(--r-pill); padding: 0 16px 0 12px; box-shadow: var(--jr-soft); }
+@media (min-width: 900px) {
+  .theme-green .site-nav {
+    position: absolute; left: 50%; top: 12px; transform: translateX(-50%);
+    background: rgba(238, 241, 245, .92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-radius: var(--r-pill); padding: 5px 5px 5px 26px; transition: box-shadow var(--t-ui);
+  }
+  .theme-green.is-scrolled .site-nav { box-shadow: var(--jr-soft); }
+  .theme-green .site-nav ul { gap: 26px; }
+  .theme-green .site-nav a { font-size: 0.875rem; min-height: 40px; }
+  .theme-green .site-nav__cta { background: var(--jr-green); box-shadow: none; padding: 0 20px; gap: 8px; }
+  .theme-green .site-nav__cta::after { content: "+"; font-family: var(--font-en); font-weight: 500; font-size: 1.1em; }
+}
+@media (max-width: 899px) {
+  .theme-green .site-header__inner { flex-wrap: nowrap; }
+  .theme-green .site-logo { padding: 10px 16px 10px 14px; border-radius: 0 0 20px 0; }
+  .theme-green .site-logo img { height: 30px; }
+  .theme-green .header-jobs { margin-top: 0; }
+  html.js .theme-green .site-nav { top: calc(100% + 4px); left: 12px; right: 12px; border-radius: var(--r-box); }
+  html:not(.js) .theme-green .site-header { position: static; pointer-events: auto; }
+  html:not(.js) .theme-green .site-header__inner { flex-wrap: wrap; padding: 0 12px 8px 0; }
+  html:not(.js) .theme-green .site-nav { padding-left: 16px; }
+}
+
+/* ---------- ① ヒーロー：丸い大きな面。PCでは面だけが先に流れ、写真と見出しは少し留まる ---------- */
+.theme-green .hero-jr { position: relative; background: #fff; }
+.theme-green .hero-jr__panel {
+  position: absolute; inset: 0 12px auto; height: calc(100% - 12px);
+  background: var(--jr-hero); border-radius: 0 0 var(--r-hero) var(--r-hero);
+}
+.theme-green .hero-jr__stage {
+  position: relative; display: grid; gap: 24px;
+  padding: calc(var(--header-h) + 16px) calc(var(--gutter) + 12px) 48px;
+}
+.theme-green .hero-jr__media { position: relative; }
+.theme-green .hero-jr__slides {
+  position: relative; aspect-ratio: 4 / 3; border-radius: var(--r-box); overflow: hidden; background: #E3E7EE;
+}
+.theme-green .hero-jr__slide { position: absolute; inset: 0; }
+.theme-green .hero-jr__slide .ph { height: 100%; aspect-ratio: auto; border-radius: 0; border: 0; }
+/* JSがあるときだけ重ねて、1枚ずつ見せる（ないときは1枚目だけ見える） */
+html.js .theme-green .hero-jr__slide { opacity: 0; transition: opacity 1.2s ease; }
+html.js .theme-green .hero-jr__slide.is-current { opacity: 1; }
+html:not(.js) .theme-green .hero-jr__slide:not(:first-child) { display: none; }
+
+/* スライドの進み具合（縦の点）と停止ボタン */
+.theme-green .hero-jr__ctrl { display: none; }
+html.js .theme-green .hero-jr__ctrl {
+  position: absolute; right: 14px; bottom: 14px; display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.92); border-radius: var(--r-pill); padding: 6px 6px 6px 14px; box-shadow: var(--jr-soft);
+}
+.theme-green .hero-jr__dots { display: flex; gap: 8px; }
+.theme-green .hero-jr__dot { width: 10px; height: 10px; border-radius: 50%; background: #C9D0DB; transition: scale .25s linear, background-color .25s linear; }
+.theme-green .hero-jr__dot.is-current { background: var(--jr-brand); scale: 1.3; }
+.theme-green .motion-toggle {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px 0 10px;
+  border: 0; border-radius: var(--r-pill); background: var(--jr-green); color: #fff;
+  font: inherit; font-size: 0.8125rem; font-weight: 700; cursor: pointer; transition: background-color var(--t-ui);
+}
+.theme-green .motion-toggle:hover { background: var(--jr-green-dark); }
+.theme-green .motion-toggle__icon { width: 12px; height: 12px; position: relative; }
+.theme-green .motion-toggle__icon::before, .theme-green .motion-toggle__icon::after {
+  content: ""; position: absolute; top: 0; width: 4px; height: 12px; background: currentColor; border-radius: 1px;
+}
+.theme-green .motion-toggle__icon::before { left: 1px; }
+.theme-green .motion-toggle__icon::after { right: 1px; }
+.theme-green .motion-toggle[aria-pressed="true"] .motion-toggle__icon::before {
+  left: 2px; width: 0; height: 0; background: none; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent currentColor; border-radius: 0;
+}
+.theme-green .motion-toggle[aria-pressed="true"] .motion-toggle__icon::after { display: none; }
+
+.theme-green .hero-jr__title {
+  font-weight: 900; font-size: clamp(2rem, 1.2rem + 3.6vw, 3.5rem); line-height: 1.5; letter-spacing: 0.02em; color: var(--ink);
+}
+.theme-green .hero-jr__lead { margin-top: 16px; font-size: clamp(1rem, .95rem + .3vw, 1.125rem); font-weight: 500; line-height: 2; max-width: 32em; }
+.theme-green .hero-jr .btn-row { margin-top: 28px; }
+
+@media (min-width: 900px) {
+  /* 面の高さ＝1画面。ステージは sticky で、面が流れきるまで少し留まる */
+  .theme-green .hero-jr { height: calc(100svh + 30svh); }
+  .theme-green .hero-jr__panel { height: calc(100svh - 12px); }
+  .theme-green .hero-jr__stage {
+    position: sticky; top: 0; height: 100svh; min-height: 640px;
+    grid-template-columns: 1fr 1.15fr; align-items: center; gap: clamp(32px, 4vw, 64px);
+    padding: calc(var(--header-h) + 8px) clamp(48px, 7vw, 120px) 56px;
+  }
+  .theme-green .hero-jr__media { order: 2; }
+  .theme-green .hero-jr__slides { border-radius: var(--r-card); aspect-ratio: 5 / 4; }
+  }
+
+/* ---------- 章の境目：やわらかい波（または上の角を丸めた面） ---------- */
+.theme-green .wave { position: relative; height: clamp(36px, 5vw, 72px); background: var(--from); margin-block: -1px; z-index: 1; }
+.theme-green .wave svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.theme-green .wave path { fill: var(--to); }
+.theme-green .sec--round-top { border-radius: var(--r-hero) var(--r-hero) 0 0; margin-top: calc(-1 * var(--r-hero)); z-index: 1; }
+
+/* ---------- 章の色（明るい地＋はっきりした緑） ---------- */
+.theme-green .sec { padding-block: clamp(80px, 12vw, 160px); }
+.theme-green .sec--white { background: #fff; color: var(--ink); }
+.theme-green .sec--gray { background: var(--jr-gray); color: var(--ink); }
+.theme-green .sec--pale { background: var(--jr-green-pale); color: var(--ink); }
+/* ロゴの緑の章：文字は黒に近い色（ロゴの緑と5.19） */
+.theme-green .sec--green { background: var(--jr-brand); color: var(--ink); --focus: var(--navy); }
+
+/* 大きい英字＋小さい日本語（前に橙の点） */
+.theme-green .eyebrow {
+  display: block; margin-bottom: 8px;
+  font-family: var(--font-en); font-weight: 700; font-size: clamp(2.75rem, 1.6rem + 5vw, 5rem);
+  line-height: 1.05; letter-spacing: 0.04em; color: var(--jr-green);
+}
+.theme-green .eyebrow::before { content: none; }
+
+.theme-green .sec-title--sub {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 1.0625rem; font-weight: 700; letter-spacing: 0.06em; line-height: 1.6;
+}
+.theme-green .sec-title--sub::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--jr-dot); flex: none; }
+.theme-green .sec-head { display: grid; gap: 16px; margin-bottom: clamp(40px, 6vw, 72px); }
+.theme-green .sec-head .sec-title { margin-bottom: 0; }
+@media (min-width: 900px) {
+  .theme-green .sec-head--split { grid-template-columns: 1fr 1fr; align-items: end; column-gap: 64px; }
+}
+
+/* ---------- ボタン：角丸12px＋右に丸の矢印 ---------- */
+.theme-green .btn {
+  position: relative; border-radius: var(--r-btn); padding: 0.7em 0.8em 0.7em 1.4em; gap: 14px;
+  box-shadow: none; transition: background-color var(--t-ui), color var(--t-ui), border-color var(--t-ui);
+}
+.theme-green .btn:hover { transform: none; box-shadow: none; }
+/* 右の丸（文字色で塗る） */
+.theme-green .btn::after, .theme-green .btn[target="_blank"]::after {
+  content: ""; width: 26px; height: 26px; flex: none; border: 0; border-radius: 50%; transform: none;
+  background: currentColor; -webkit-mask: none; mask: none;
+}
+/* 丸の中の矢印（ボタンの地の色で描く）。外部リンクは右上向き */
+.theme-green .btn::before {
+  content: ""; position: absolute; right: calc(0.8em + 10px); top: 50%; width: 7px; height: 7px; margin-top: -3.5px;
+  border: solid var(--btn-bg, #fff); border-width: 2px 2px 0 0; rotate: 45deg; z-index: 1;
+  transition: translate var(--t-ui);
+}
+.theme-green .btn[target="_blank"]::before { rotate: 0deg; right: calc(0.8em + 9px); }
+.theme-green .btn:hover::before { translate: 2px 0; }
+.theme-green .btn[target="_blank"]:hover::before { translate: 1px -1px; }
+
+.theme-green .btn--accent { --btn-bg: var(--orange); }
+.theme-green .btn--navy, .theme-green .btn--green { --btn-bg: var(--jr-green); background: var(--jr-green); color: #fff; }
+.theme-green .btn--navy:hover, .theme-green .btn--green:hover { --btn-bg: var(--jr-green-dark); background: var(--jr-green-dark); }
+.theme-green .btn--outline, .theme-green .btn--ghost-light { --btn-bg: #fff; border-color: var(--jr-green); color: var(--jr-green); background: #fff; }
+.theme-green .btn--outline:hover, .theme-green .btn--ghost-light:hover { --btn-bg: var(--jr-green-pale); background: var(--jr-green-pale); }
+.theme-green .hero-jr .btn--ghost-light { --btn-bg: var(--jr-hero); border-color: var(--ink); color: var(--ink); background: transparent; }
+.theme-green .hero-jr .btn--ghost-light:hover { --btn-bg: #fff; background: #fff; }
+
+/* ---------- ② 「福祉の仕事」のイメージを3つこわす：ロゴの緑の地。レンガは白い丸い面 ---------- */
+.theme-green .wall { overflow: hidden; }
+.theme-green .wall__title { color: var(--ink); }
+.theme-green .wall__myth {
+  background: rgba(255, 255, 255, .9); color: var(--ink); border-radius: var(--r-box); box-shadow: none; padding: 24px 28px;
+  background-image: none;
+}
+.theme-green .wall__tag { color: var(--ink-soft); }
+.theme-green .wall__truth { border-left: 0; padding: 20px 4px 0; }
+.theme-green .wall__tag--truth { display: inline-block; background: var(--ink); color: #fff; border-radius: var(--r-pill); padding: 2px 12px; margin-bottom: 8px; }
+@media (min-width: 900px) { .theme-green .wall__truth { padding: 4px 0 0; } }
+
+/* ---------- ⑤ 働く環境：淡い緑の地に、白い丸いカード ---------- */
+.theme-green .env__lead { color: var(--ink); margin-top: 0; }
+.theme-green .env__group { background: #fff; color: var(--ink); border-radius: var(--r-box); }
+.theme-green .env__head { border-bottom-color: #E1E7DA; color: var(--ink); }
+.theme-green .env__head::before { width: 10px; height: 10px; border-radius: 50%; background: var(--jr-brand); }
+.theme-green .env__group li::before { background: var(--jr-dot); }
+
+/* ---------- フッター（紺のまま。ロゴのプレートも同じ） ---------- */
+
+/* ---------- 浮かぶ図形（ロゴの多色をやわらげた色。飾り） ---------- */
+.theme-green .floaties { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.theme-green .hero-jr .floaties { overflow: visible; }
+.theme-green .fl { position: absolute; left: var(--x); top: var(--y); width: var(--size); height: var(--size); translate: 0 var(--py, 0px); }
+.theme-green .fl i { display: block; width: 100%; height: 100%; opacity: .85; }
+.theme-green .fl--circle i { border-radius: 50%; }
+.theme-green .fl--square i { border-radius: 30%; rotate: 14deg; }
+.theme-green .fl--half i { border-radius: 50%; }
+.theme-green .fl--tri i { clip-path: polygon(50% 6%, 96% 92%, 4% 92%); border-radius: 0; rotate: -12deg; }
+.theme-green .c-red i    { background: var(--k-red); }
+.theme-green .c-yellow i { background: var(--k-yellow); }
+.theme-green .c-green i  { background: var(--k-green); }
+.theme-green .c-blue i   { background: var(--k-blue); }
+.theme-green .c-purple i { background: var(--k-purple); }
+.theme-green .c-orange i { background: var(--k-orange); }
+.theme-green .sec--green .fl i { opacity: .7; }
+.theme-green .wall > .wrap, .theme-green .env > .wrap, .theme-green .entry > .wrap, .theme-green .work > .wrap { position: relative; z-index: 1; }
+
+/* 動き：動きを減らす設定でないときだけ（html.motion-ok は JS が付ける） */
+@keyframes jr-bob { from { transform: translateY(-6px) rotate(-4deg); } to { transform: translateY(8px) rotate(5deg); } }
+html.motion-ok .theme-green .hero-jr .fl i { animation: jr-bob var(--dur, 7s) ease-in-out infinite alternate; }
+html.motion-ok .theme-green.is-paused .fl i,
+html.motion-ok .theme-green.is-hero-off .fl i { animation-play-state: paused; } /* 停止ボタン・画面外 */
+
+/* スクロールで現れる：カード類だけ、少し下から（章ごとの一律フェードにはしない） */
+html.motion-ok .theme-green [data-reveal] { transition: opacity var(--t-reveal), translate var(--t-reveal); transition-delay: var(--delay, 0s); }
+html.motion-ok .theme-green [data-reveal]:not(.is-in) { opacity: 0; translate: 0 28px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-green .hero-jr__slide, .theme-green .hero-jr__dot, .theme-green .btn, .theme-green .btn::before, .theme-green .job, .theme-green .site-nav { transition: none !important; }
+  .theme-green .fl { translate: none !important; }
+}
+
+/* 大きい英字は単語の途中で折らない。スマホでは少し小さく */
+.theme-green .eyebrow { overflow-wrap: normal; word-break: keep-all; font-size: clamp(2.25rem, 1rem + 6vw, 5rem); }
+/* スマホのヒーロー：文字に重なる位置の図形は出さない */
+@media (max-width: 899px) {
+  .theme-green .hero-jr .fl--square, .theme-green .hero-jr .fl.c-orange { display: none; }
+}
+
+
+/* =========================================================
+   TOPの7章（2026-10-07 二野先生の画面案に合わせて作り直し）
+   ========================================================= */
+.theme-green { --job-text-orange: #B04600; } /* 児発管の文字（白と5.64、淡い地と4.88） */
+
+/* 横に1pxはみ出さないように（浮かぶ図形などを、ページの幅で切る） */
+.theme-green { overflow-x: clip; }
+.theme-green .hero-jr .floaties { overflow: hidden; }
+
+/* 文節のまとまり：まとまりの途中では折り返さない（幅が足りないときだけ折れる） */
+.theme-green .nb { display: inline-block; }
+
+/* ---------- ヘッダー：会社のロゴ ---------- */
+.theme-green .site-logo { padding: 12px 18px 12px 16px; }
+.theme-green .site-logo img { height: 24px; width: auto; }  /* スマホ：英字だけの版 */
+@media (min-width: 900px) {
+  .theme-green .site-logo { padding: 10px 24px 10px 22px; }
+  .theme-green .site-logo img { height: 56px; }             /* PC：ロゴ全体（下の社名が約14pxで読める） */
+  .theme-green .site-nav ul { gap: 20px; }
+}
+@media (min-width: 900px) and (max-width: 1180px) {
+  .theme-green .site-logo img { height: 48px; }
+  .theme-green .site-nav { left: auto; right: 12px; transform: none; padding-left: 18px; }
+  .theme-green .site-nav ul { gap: 14px; }
+  .theme-green .site-nav a { font-size: 0.8125rem; }
+}
+
+/* ---------- ① ヒーロー ---------- */
+.theme-green .hero-jr__title { font-size: clamp(1.625rem, 1rem + 2.6vw, 2.75rem); line-height: 1.55; letter-spacing: 0.03em; }
+.theme-green .hero-jr__lead { max-width: 34em; }
+
+/* ---------- ② 就労支援の実績（イメージ③の本当の姿の中） ---------- */
+.theme-green .wall__truth p + p, .theme-green .wall__truth dl + p { margin-top: 12px; }
+.theme-green .wall__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; max-width: 560px; }
+.theme-green .wall__stat { background: rgba(255, 255, 255, .9); border-radius: var(--r-box); padding: 14px 18px; }
+.theme-green .wall__stat dt { font-size: 0.875rem; font-weight: 700; color: var(--jr-green); line-height: 1.5; }
+.theme-green .wall__stat dd { font-weight: 700; color: var(--jr-green); }
+.theme-green .wall__num { font-family: var(--font-en); font-weight: 600; font-size: clamp(2.25rem, 1.8rem + 2vw, 3rem); line-height: 1.15; margin-right: 2px; }
+.theme-green .wall__note { font-size: 0.875rem; }
+
+/* ---------- ③ 想い（私たちが戦う相手） ---------- */
+.theme-green .about .wrap { display: block; }
+.theme-green .about__label { font-size: 0.9375rem; font-weight: 700; color: var(--jr-green); letter-spacing: 0.08em; margin-bottom: 16px; }
+.theme-green .about__statement { font-weight: 900; font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); line-height: 1.6; color: var(--ink); max-width: 22em; margin-bottom: 28px; }
+.theme-green .about__body { max-width: 36em; }
+.theme-green .about__value {
+  display: inline-block; margin-top: 24px; padding: 4px 16px;
+  border: 1.5px solid var(--jr-green); border-radius: var(--r-pill);
+  color: var(--jr-green); font-weight: 700; font-size: 0.9375rem; line-height: 1.6;
+}
+.theme-green .about .btn-row { margin-top: 24px; }
+
+/* ---------- ④ 事業紹介：1枚のカードの中の番号付きリスト ---------- */
+.theme-green .work__card { background: #fff; border-radius: var(--r-card); padding: 8px clamp(20px, 3vw, 36px); }
+.theme-green .work__list { display: grid; }
+.theme-green .work__list li {
+  display: grid; grid-template-columns: 44px 1fr; column-gap: 18px; align-items: center;
+  padding: 18px 0; border-bottom: 1px solid #E3E8EE;
+}
+.theme-green .work__list li:last-child { border-bottom: 0; }
+.theme-green .work__num {
+  grid-row: span 2; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--jr-green); color: #fff; font-family: var(--font-en); font-weight: 600; font-size: 0.9375rem;
+}
+.theme-green .work__list li.is-adult .work__num { background: var(--job-navy); }
+.theme-green .work__name { font-weight: 700; font-size: 1.0625rem; line-height: 1.5; }
+.theme-green .work__desc { color: var(--ink-soft); font-size: 0.9375rem; line-height: 1.6; }
+@media (min-width: 900px) {
+  .theme-green .work__list { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; column-gap: 48px; }
+  .theme-green .work__list li:nth-child(3) { border-bottom: 0; }
+}
+.theme-green .work__note { margin-top: 28px; }
+.theme-green .work__close { margin-top: 16px; color: var(--jr-green); font-weight: 900; font-size: clamp(1.125rem, 1rem + .6vw, 1.375rem); }
+
+/* ---------- ⑤ 働く環境：冒頭に6つの数字 ---------- */
+.theme-green .sec-title--sub::before { content: none; }
+.theme-green .env__lead { font-weight: 700; font-size: clamp(1.0625rem, 1rem + .4vw, 1.25rem); max-width: 30em; }
+.theme-green .env__when { margin-top: 32px; font-size: 0.875rem; font-weight: 500; color: var(--ink-soft); }
+.theme-green .env__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
+.theme-green .env__stat { background: #fff; border-radius: 16px; padding: 12px 14px; }
+.theme-green .env__stat dt { font-size: 0.8125rem; font-weight: 700; color: var(--ink-soft); line-height: 1.5; }
+.theme-green .env__stat dd { font-weight: 700; color: var(--jr-green); font-size: 0.8125rem; }
+.theme-green .env__num { font-family: var(--font-en); font-weight: 600; font-size: clamp(1.625rem, 1.2rem + 1.8vw, 2.5rem); line-height: 1.2; margin-inline: 1px; }
+@media (min-width: 900px) { .theme-green .env__stats { grid-template-columns: repeat(6, 1fr); gap: 12px; } .theme-green .env__stat { padding: 16px 18px; } }
+.theme-green .env__grid { margin-top: 20px; gap: 14px; }
+@media (min-width: 768px) { .theme-green .env__grid { grid-template-columns: 1fr; } }
+@media (min-width: 1000px) { .theme-green .env__grid { grid-template-columns: 1.3fr 1fr 1fr; align-items: start; } }
+
+/* ---------- ⑥ 募集職種：2グループのカード ---------- */
+.theme-green .job-group { margin-top: clamp(36px, 5vw, 56px); margin-bottom: 16px; font-size: 1.125rem; }
+.theme-green .job-group--child { color: var(--jr-green); }
+.theme-green .job-group--adult { color: var(--job-navy); }
+.theme-green .jcards { display: grid; gap: 16px; }
+@media (min-width: 900px) { .theme-green .jcards { grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; } }
+
+.theme-green .jcard {
+  --jc: var(--job-navy); --jc-text: var(--job-navy);
+  background: #fff; border-radius: 24px; box-shadow: var(--jr-soft);
+  padding: clamp(18px, 2.4vw, 28px); scroll-margin-top: calc(var(--header-h) + 12px);
+}
+.theme-green .jcard--green  { --jc: var(--job-green);  --jc-text: var(--job-green); }
+.theme-green .jcard--orange { --jc: var(--job-orange); --jc-text: var(--job-text-orange); }
+.theme-green .jcard--deep   { --jc: var(--job-deep);   --jc-text: var(--job-deep); }
+.theme-green .jcard--navy   { --jc: var(--job-navy);   --jc-text: var(--job-navy); }
+.theme-green .jcard__head { display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: start; }
+.theme-green .jcard__photo .ph { aspect-ratio: 1 / 1; border-radius: 16px; font-size: 0.75rem; padding: 6px; }
+.theme-green .jcard__service { font-size: 0.8125rem; font-weight: 700; color: var(--jc-text); line-height: 1.5; }
+.theme-green .jcard__title { font-size: clamp(1.25rem, 1.1rem + .6vw, 1.5rem); font-weight: 900; line-height: 1.4; margin-top: 2px; }
+.theme-green .jcard__catch { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.7; margin-top: 4px; }
+.theme-green .jcard__badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.theme-green .jcard__badges li {
+  font-size: 0.8125rem; font-weight: 700; line-height: 1.4; padding: 5px 12px;
+  border-radius: var(--r-pill); color: var(--jc-text); background: color-mix(in srgb, var(--jc) 12%, #fff);
+}
+.theme-green .jcard__points { margin-top: 14px; display: grid; gap: 8px; }
+.theme-green .jcard__points li { position: relative; padding-left: 26px; font-size: 0.9375rem; line-height: 1.7; }
+.theme-green .jcard__points li::before {
+  content: ""; position: absolute; left: 3px; top: 0.45em; width: 12px; height: 7px;
+  border: solid var(--jc); border-width: 0 0 2.5px 2.5px; transform: rotate(-45deg);
+}
+.theme-green .jcard__info { margin-top: 16px; padding-top: 14px; border-top: 1px solid #E3E8EE; display: grid; gap: 6px; }
+.theme-green .jcard__info > div { display: grid; grid-template-columns: 5.5em 1fr; gap: 8px; font-size: 0.875rem; line-height: 1.7; }
+.theme-green .jcard__info dt { font-weight: 700; }
+.theme-green .jcard__info dd { font-weight: 500; }
+.theme-green .jcard__cta { margin-top: 18px; display: grid; gap: 10px; }
+.theme-green .jcard__note { font-size: 0.8125rem; color: var(--ink-soft); text-align: center; }
+.theme-green .jobs__common { margin-top: 28px; font-size: 0.9375rem; color: var(--ink-soft); }
+.theme-green .jobs__common a { color: var(--jr-green); font-weight: 700; text-underline-offset: 3px; }
+
+/* ボタン：幅いっぱい／矢印なし／外部リンクの印だけ */
+.theme-green .btn--block { display: flex; width: 100%; justify-content: center; min-height: 56px; padding: 0.8em 1.2em; }
+.theme-green .btn--plain::before, .theme-green .btn--plain::after { content: none; }
+.theme-green .btn--ext::before { content: none; }
+.theme-green .btn--ext::after, .theme-green .btn--ext[target="_blank"]::after {
+  width: 1em; height: 1em; border-radius: 0; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M7 1h4v4M11 1 5.5 6.5M9 7.5V11H1V3h3.5' fill='none' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M7 1h4v4M11 1 5.5 6.5M9 7.5V11H1V3h3.5' fill='none' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* ---------- ⑦ 見学・応募：ロゴの緑の地に白い大きな面 ---------- */
+.theme-green .entry__card { background: #fff; color: var(--ink); border-radius: var(--r-hero); padding: clamp(24px, 5vw, 64px); position: relative; z-index: 1; max-width: 860px; margin-inline: auto; }
+.theme-green .entry .eyebrow { color: var(--jr-green); }
+.theme-green .entry .sec-title { margin-bottom: 24px; }
+.theme-green .entry__flow { background: var(--jr-gray); border-radius: var(--r-box); padding: clamp(18px, 3vw, 28px); }
+.theme-green .entry__flow-title { font-size: 0.9375rem; font-weight: 700; color: var(--ink-soft); }
+.theme-green .entry__flow ol { counter-reset: flow; display: grid; gap: 12px; margin-top: 12px; }
+.theme-green .entry__flow li { counter-increment: flow; display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; line-height: 1.7; }
+.theme-green .entry__flow li::before {
+  content: counter(flow); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--jr-green); color: #fff; font-family: var(--font-en); font-weight: 600; font-size: 0.875rem; margin-top: 1px;
+}
+.theme-green .entry__actions { display: grid; gap: 12px; margin-top: 20px; }
+@media (min-width: 768px) { .theme-green .entry__actions { grid-template-columns: 1fr 1fr; } }
+.theme-green .entry__actions .btn--outline { border-width: 1.5px; }
+.theme-green .entry__insta { margin-top: 24px; padding-top: 16px; border-top: 1px solid #E3E8EE; }
+.theme-green .entry__head { font-size: 0.875rem; font-weight: 700; color: var(--ink-soft); }
+.theme-green .entry__insta ul { display: grid; gap: 0; margin-top: 4px; }
+.theme-green .entry__insta a { color: var(--jr-green); display: inline-flex; align-items: center; min-height: 40px; font-family: var(--font-en); font-weight: 600; text-underline-offset: 4px; }
+.theme-green .entry__insta a span { color: var(--ink-soft); }
+
+/* ---------- 見学パネル ---------- */
+/* JSなし：⑦の下に、そのまま案内として表示する */
+.theme-green .tour { background: var(--jr-brand); padding: 0 var(--gutter) clamp(56px, 8vw, 96px); }
+.theme-green .tour__sheet { background: #fff; border-radius: var(--r-card); padding: 24px clamp(20px, 4vw, 32px); max-width: 560px; margin-inline: auto; }
+.theme-green .tour__grip, html:not(.js) .theme-green .tour__close, html:not(.js) .theme-green .tour__copy { display: none; }
+.theme-green .tour__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.theme-green .tour__title { font-size: 1.375rem; font-weight: 900; }
+.theme-green .tour__close { display: grid; place-items: center; width: 44px; height: 44px; margin-right: -8px; border: 0; background: none; color: var(--ink-soft); border-radius: 50%; cursor: pointer; }
+.theme-green .tour__close svg { width: 22px; height: 22px; }
+.theme-green .tour__close:hover { background: var(--jr-gray); }
+.theme-green .tour__lead { color: var(--ink-soft); font-size: 0.9375rem; margin: 6px 0 16px; }
+.theme-green .tour__opt {
+  display: grid; grid-template-columns: 48px 1fr 12px; gap: 14px; align-items: center;
+  padding: 14px 16px; border: 1px solid #D3DAE3; border-radius: 16px; text-decoration: none; color: var(--ink);
+  transition: background-color var(--t-ui), border-color var(--t-ui);
+}
+.theme-green .tour__opt + .tour__opt { margin-top: 10px; }
+.theme-green .tour__opt:hover { background: var(--jr-green-pale); border-color: var(--jr-brand); }
+.theme-green .tour__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--jr-green-pale); color: var(--jr-green); }
+.theme-green .tour__icon svg { width: 24px; height: 24px; }
+.theme-green .tour__text { display: grid; }
+.theme-green .tour__opt-title { font-weight: 700; font-size: 1.0625rem; }
+.theme-green .tour__opt-sub { font-size: 0.875rem; color: var(--ink-soft); line-height: 1.6; }
+.theme-green .tour__chev { width: 8px; height: 8px; border: solid #8A93A3; border-width: 2px 2px 0 0; transform: rotate(45deg); }
+.theme-green .tour__addr {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: 12px; padding: 10px 10px 10px 16px; background: var(--jr-gray); border-radius: 14px;
+}
+.theme-green .tour__mail { font-family: var(--font-en); font-size: 1rem; overflow-wrap: anywhere; user-select: all; -webkit-user-select: all; }
+.theme-green .tour__copy {
+  flex: none; min-height: 40px; padding: 0 16px; border: 1.5px solid var(--jr-green); border-radius: 10px;
+  background: #fff; color: var(--jr-green); font: inherit; font-weight: 700; font-size: 0.875rem; cursor: pointer;
+}
+.theme-green .tour__copy:hover { background: var(--jr-green-pale); }
+.theme-green .tour__msg { min-height: 1.6em; margin-top: 8px; font-size: 0.875rem; color: var(--jr-green); font-weight: 700; }
+
+/* JSあり：画面の下から開くパネル（PCは画面の中央） */
+html.js .theme-green .tour { position: fixed; inset: 0; z-index: 200; padding: 0; background: rgba(16, 28, 12, .5); display: none; opacity: 0; transition: opacity .25s ease; }
+html.js .theme-green .tour.is-open { display: block; }
+html.js .theme-green .tour.is-shown { opacity: 1; }
+html.js .theme-green .tour:focus { outline: none; }
+html.js .theme-green .tour__sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; max-width: none; margin: 0;
+  border-radius: 24px 24px 0 0; padding: 10px 20px calc(20px + env(safe-area-inset-bottom));
+  max-height: 92vh; overflow-y: auto; box-shadow: 0 -12px 40px rgba(0, 33, 78, .2);
+  transform: translateY(100%); transition: transform .3s cubic-bezier(.2, .7, .3, 1);
+}
+html.js .theme-green .tour.is-shown .tour__sheet { transform: none; }
+html.js .theme-green .tour__grip { display: block; width: 40px; height: 4px; border-radius: 2px; background: #CBD3DE; margin: 0 auto 10px; }
+@media (min-width: 768px) {
+  html.js .theme-green .tour__sheet {
+    left: 50%; top: 50%; bottom: auto; width: min(480px, calc(100% - 32px));
+    border-radius: var(--r-card); padding: 24px 28px; transform: translate(-50%, -46%);
+  }
+  html.js .theme-green .tour.is-shown .tour__sheet { transform: translate(-50%, -50%); }
+  html.js .theme-green .tour__grip { display: none; }
+}
+html.is-locked { overflow: hidden; }
+
+/* ---------- スマホの固定バー：「募集職種を見る」「見学を相談する」 ---------- */
+@media (max-width: 767px) {
+  .theme-green .fixed-bar { background: #fff; box-shadow: 0 -4px 24px rgba(0, 33, 78, .12); }
+  .theme-green .fixed-bar__btn { border-radius: var(--r-btn); }
+  .theme-green .fixed-bar__btn--tour { color: var(--jr-green); border: 1.5px solid var(--jr-green); background: #fff; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .theme-green .tour, html.js .theme-green .tour__sheet, .theme-green .tour__opt { transition: none; }
+}
+
+/* ---------- 余白と見出しの調整（間延びしないように） ---------- */
+.theme-green .sec { padding-block: clamp(56px, 8vw, 112px); }
+.theme-green .sec-title { font-size: clamp(1.3rem, 0.95rem + 1.6vw, 2.25rem); letter-spacing: 0.02em; }
+.theme-green .eyebrow { margin-bottom: 4px; }
+.theme-green .wave { height: clamp(28px, 4vw, 60px); }
+/* フッターのロゴ：下の社名が読める大きさに */
+.theme-green .logo-plate img { height: 56px; }
+/* スマホ：文字の多い章では浮かぶ図形を出さない（本文に重なるため） */
+@media (max-width: 899px) {
+  .theme-green .wall .floaties, .theme-green .entry .floaties { display: none; }
+}
+
+/* ---------- 二野先生の画面案との見比べによる調整（2026-10-07） ---------- */
+/* 文字組み：約物を詰めて、1行の字数を画面案に近づける（本文の大きさは16px以上のまま） */
+.theme-green { font-feature-settings: "palt" 1; letter-spacing: 0.02em; }
+/* ボタンの矢印：丸の中の矢印 → シンプルな「→」 */
+.theme-green .btn { padding: 0.7em 1.4em; gap: 12px; }
+.theme-green .btn::before { content: none; }
+.theme-green .btn::after, .theme-green .btn[target="_blank"]::after {
+  width: 1.05em; height: 1.05em; border-radius: 0; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 8h11M9 3.5 13.5 8 9 12.5' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 8h11M9 3.5 13.5 8 9 12.5' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: translate var(--t-ui);
+}
+.theme-green .btn:hover::after { translate: 2px 0; }
+.theme-green .btn--ext::after, .theme-green .btn--ext[target="_blank"]::after {
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M7 1h4v4M11 1 5.5 6.5M9 7.5V11H1V3h3.5' fill='none' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M7 1h4v4M11 1 5.5 6.5M9 7.5V11H1V3h3.5' fill='none' stroke='%23000' stroke-width='1.4'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.theme-green .btn--plain::after { content: none; }
+/* ② イメージの問い・実績カード */
+.theme-green .wall__myth { font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.375rem); padding: 18px 22px; }
+.theme-green .wall__stat dt { font-size: 0.8125rem; }
+/* ④ 番号の丸を小さく */
+.theme-green .work__list li { grid-template-columns: 36px 1fr; column-gap: 16px; padding: 14px 0; }
+.theme-green .work__num { width: 36px; height: 36px; font-size: 0.875rem; }
+/* ⑤ 見出しの点をなくし、箇条書きは黒っぽい小さな点 */
+.theme-green .env__head::before { content: none; }
+.theme-green .env__head { font-size: 1.25rem; }
+.theme-green .env__group li::before { background: var(--ink); width: 4px; height: 4px; top: 0.8em; left: 4px; }
+/* 見学パネル：右端の「›」はなし */
+.theme-green .tour__opt { grid-template-columns: 48px 1fr; }
+.theme-green .tour__chev { display: none; }

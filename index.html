@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>採用情報｜カレイドスクエアパーク（新潟県村上市・胎内市）｜トラインスミス株式会社</title>
-<meta name="description" content="違いが、力になる場所。子どもから大人までの自立を、ワンストップで支える。新潟県村上市・胎内市のカレイドスクエアパークで、保育士・児童指導員・児童発達支援管理責任者・管理者・就労移行支援員を募集しています。">
+<meta name="description" content="地域や社会に新しい可能性を生み出すソーシャルベンチャー。子どもから大人までの自立を“ワンストップ”で支えるカレイドスクエアパークで、保育士・児童指導員・児童発達支援管理責任者・管理者・就労移行支援員を募集しています（新潟県村上市・胎内市）。">
 <link rel="canonical" href="https://takeaki-hada.github.io/ksp-recruit/">
-<meta name="theme-color" content="#00214E">
+<meta name="theme-color" content="#436E28">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="カレイドスクエアパーク 採用情報">
-<meta property="og:title" content="違いが、力になる場所。｜カレイドスクエアパーク 採用情報">
-<meta property="og:description" content="子どもから大人までの自立を、ワンストップで支える。新潟県村上市・胎内市で、一緒に働く仲間を募集しています。">
+<meta property="og:site_name" content="トラインスミス株式会社 採用情報">
+<meta property="og:title" content="地域や社会に新しい可能性を生み出すソーシャルベンチャー｜トラインスミス株式会社 採用情報">
+<meta property="og:description" content="子どもから大人までの自立を“ワンストップ”で支える「カレイドスクエアパーク」を運営しています。新潟県村上市・胎内市で、一緒に働く仲間を募集しています。">
 <meta property="og:url" content="https://takeaki-hada.github.io/ksp-recruit/">
 <meta property="og:image" content="https://takeaki-hada.github.io/ksp-recruit/assets/img/ogp.jpg">
 <meta property="og:locale" content="ja_JP">
@@ -22,35 +22,38 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
-<!-- お試し版（JR風）：TOPだけに重ねるスタイル -->
-<link rel="stylesheet" href="assets/css/try-jr.css">
+<link rel="stylesheet" href="assets/css/theme.css">
 <script>document.documentElement.classList.add('js');
-// お試し版：動きを減らす設定でなければ、最初の描画の前に motion-ok を付ける（ちらつき防止）
+// 動きを減らす設定でなければ、最初の描画の前に motion-ok を付ける（ちらつき防止）
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion-ok');</script>
 <script src="assets/js/main.js" defer></script>
-<script src="assets/js/try-jr.js" defer></script>
+<script src="assets/js/top.js" defer></script>
 </head>
-<body class="page-top theme-jr">
+<body class="page-top theme-green">
 
 <a class="skip-link" href="#main">本文へスキップ</a>
 
-<!-- ===== ヘッダー ===== -->
+<!-- ===== ヘッダー（スマホはロゴとメニューだけ） ===== -->
 <header class="site-header">
   <div class="site-header__inner">
     <a class="site-logo" href="./">
-      <img src="assets/img/logo/ksp-logo-yoko.png" width="1024" height="381" alt="カレイドスクエアパーク 採用情報トップ">
+      <!-- PC：ロゴ全体／スマホ：小さいと「トラインスミス株式会社」が読めないので英字だけの版 -->
+      <picture>
+        <source media="(min-width: 900px)" srcset="assets/img/logo/tringsmith-logo.png" width="903" height="237">
+        <img src="assets/img/logo/tringsmith-logo-en.png" width="903" height="154" alt="トラインスミス株式会社">
+      </picture>
     </a>
-    <a class="header-jobs" href="#jobs">募集職種</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       <span class="nav-toggle__bar" aria-hidden="true"></span>
       <span class="nav-toggle__label">メニュー</span>
     </button>
     <nav class="site-nav" id="site-nav" aria-label="サイト内">
       <ul>
-        <li><a href="message.html">想い</a></li>
-        <li><a href="#work">仕事</a></li>
-        <li><a href="#jobs">募集職種</a></li>
+        <li><a href="#wall">福祉のイメージ</a></li>
+        <li><a href="#about">想い</a></li>
+        <li><a href="#work">事業紹介</a></li>
         <li><a href="#environment">働く環境</a></li>
+        <li><a href="#jobs">募集職種</a></li>
         <li><a class="site-nav__cta" href="#entry">見学・応募</a></li>
       </ul>
     </nav>
@@ -60,15 +63,14 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
 <main id="main">
 
 <!-- ===== ① ヒーロー ===== -->
-<!-- お試し版：丸い大きな面。PCでは面だけが先に流れ、写真と見出しは少し留まる。写真は5秒ごとにゆっくり切り替わる（停止ボタンあり） -->
-<section class="hero-jr" aria-labelledby="hero-title">
+<!-- 丸い大きな面。PCでは面だけが先に流れ、写真と見出しは少し留まる。写真は5秒ごとにゆっくり切り替わる（停止ボタンあり） -->
+<section class="hero-jr" id="top" aria-labelledby="hero-title">
   <div class="hero-jr__panel" aria-hidden="true"></div>
   <div class="floaties" aria-hidden="true">
     <span class="fl fl--half c-yellow" data-depth=".10" style="--x:46%;--y:14%;--size:34px;--dur:6s"><i></i></span>
     <span class="fl fl--square c-red" data-depth=".18" style="--x:6%;--y:70%;--size:28px;--dur:8s"><i></i></span>
     <span class="fl fl--circle c-green" data-depth=".12" style="--x:52%;--y:78%;--size:46px;--dur:7s"><i></i></span>
     <span class="fl fl--tri c-purple" data-depth=".2" style="--x:92%;--y:20%;--size:30px;--dur:9s"><i></i></span>
-    <span class="fl fl--circle c-orange" data-depth=".25" style="--x:88%;--y:86%;--size:22px;--dur:6.5s"><i></i></span>
   </div>
   <div class="hero-jr__stage">
     <div class="hero-jr__media">
@@ -83,8 +85,8 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
       </div>
     </div>
     <div class="hero-jr__body">
-      <h1 class="hero-jr__title" id="hero-title">違いが、<br>力になる場所。</h1>
-      <p class="hero-jr__lead">子どもから大人までの自立を、ワンストップで支える。<br class="br-pc">新潟県村上市・胎内市で、一緒に働く仲間を募集しています。</p>
+      <h1 class="hero-jr__title" id="hero-title"><span class="nb">地域や社会に</span><span class="nb">新しい可能性を生み出す</span><span class="nb">ソーシャルベンチャー</span></h1>
+      <p class="hero-jr__lead">私たちは、子どもから大人までの自立を“ワンストップ”で支える「カレイドスクエアパーク」を運営しています。新潟県村上市・胎内市で、一緒に働く仲間を募集しています。</p>
       <div class="btn-row">
         <a class="btn btn--accent" href="#jobs">募集中の職種を見る</a>
         <a class="btn btn--ghost-light" href="message.html">想いを読む</a>
@@ -93,27 +95,14 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
   </div>
 </section>
 
-
-<!-- ===== ② 私たちについて ===== -->
-<section class="sec sec--white about" aria-labelledby="about-title">
-  <div class="wrap">
-    <h2 class="about__title" id="about-title">私たちについて</h2>
-    <div class="prose about__body">
-      <p class="about__lead">私たちは一人ひとりの違いを価値に変え、地域や社会に新しい可能性を生み出すソーシャルベンチャーです。</p>
-      <p>カレイドスクエアパークは「絶えず変化し続ける広場」という意味です。広場には、たくさんの人が集まり、思い思いに過ごす。そこにいる人たちに変化を届けつづけ、わたしたち自身も変わりつづけて、どんどん進化していきたい。</p>
-    </div>
-  </div>
-</section>
-
 <div class="wave" aria-hidden="true" style="--from:#fff;--to:var(--jr-brand)"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
-<!-- ===== ③ 看板の演出：「福祉の仕事」のイメージを、3つこわす ===== -->
+<!-- ===== ② 「福祉の仕事」のイメージを、3つこわす ===== -->
 <!-- フェーズ4で canvas（aria-hidden）の演出を重ねる。テキストはこのまま読めるように残す -->
 <section class="sec sec--green wall" id="wall" aria-labelledby="wall-title">
   <div class="floaties" aria-hidden="true">
-    <span class="fl fl--circle c-green" data-depth=".15" style="--x:86%;--y:8%;--size:80px;--dur:7s"><i></i></span>
-    <span class="fl fl--half c-yellow" data-depth=".25" style="--x:4%;--y:46%;--size:40px;--dur:7s"><i></i></span>
-    <span class="fl fl--square c-blue" data-depth=".2" style="--x:90%;--y:74%;--size:36px;--dur:7s"><i></i></span>
+    <span class="fl fl--circle c-green" data-depth=".15" style="--x:86%;--y:6%;--size:80px"><i></i></span>
+    <span class="fl fl--half c-yellow" data-depth=".25" style="--x:4%;--y:40%;--size:40px"><i></i></span>
   </div>
   <div class="wrap">
     <h2 class="wall__title" id="wall-title">「福祉の仕事」のイメージを、3つこわします。</h2>
@@ -122,21 +111,27 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
         <p class="wall__myth"><span class="wall__tag">よくあるイメージ①</span>福祉の仕事って、「お世話」や「奉仕」？</p>
         <div class="wall__truth">
           <p class="wall__tag wall__tag--truth">本当の姿</p>
-          <p>ちがう。私たちの仕事は「自立支援」。手を差し伸べて助けるだけでは、その人は一生、誰かに頼り続けることになる。本当に育てたいのは、その人自身が「自分の足で社会を生きていく力」です。</p>
+          <p>私たちの仕事は「自立支援」。手を差し伸べて助けるだけでは、その人は一生、誰かに頼り続けることになる。本当に育てたいのは、その人自身が「自分の足で社会を生きていく力」です。</p>
         </div>
       </li>
       <li class="wall__item">
         <p class="wall__myth"><span class="wall__tag">よくあるイメージ②</span>福祉の仕事って、地味でアナログ？</p>
         <div class="wall__truth">
           <p class="wall__tag wall__tag--truth">本当の姿</p>
-          <p>ちがう。クルーには1人1台パソコンを貸与。記録や情報共有はシステム化し、書類はAIが下書きする。人は、人にしかできないことに時間を使う。</p>
+          <p>クルーには1人1台パソコンを貸与。記録や情報共有はシステム化し、書類はAIが下書きする。人は、人にしかできないことに時間を使う。</p>
         </div>
       </li>
       <li class="wall__item">
         <p class="wall__myth"><span class="wall__tag">よくあるイメージ③</span>障がいがあると、働けない？</p>
         <div class="wall__truth">
           <p class="wall__tag wall__tag--truth">本当の姿</p>
-          <p>ちがう。道具や環境しだいで、「できない」は変わる。カレイドの就労支援から就職したメンバーは29人。そのうち22人が、今も働いています。（2022年度〜2026年9月時点）</p>
+          <p>道具や環境しだいで、「できない」は変わる。カレイドの就労支援から就職したメンバーは——</p>
+          <dl class="wall__stats">
+            <div class="wall__stat"><dt>就職したメンバー</dt><dd><span class="wall__num">29</span>人</dd></div>
+            <div class="wall__stat"><dt>そのうち今も働いている</dt><dd><span class="wall__num">22</span>人</dd></div>
+          </dl>
+          <p>2025年度は過去最多の10人が就職。就職先は、工場・お店・病院・介護施設・市役所など。</p>
+          <p class="wall__note">※2022年度〜2026年9月時点</p>
         </div>
       </li>
     </ol>
@@ -146,280 +141,67 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
 
 <div class="wave" aria-hidden="true" style="--from:var(--jr-brand);--to:#fff"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
-<!-- ===== ④ 私たちが戦う相手 ===== -->
+<!-- ===== ③ 想い（私たちが戦う相手） ===== -->
 <!-- 文言は二野先生の確認後、公開前に直すことがある -->
-<section class="sec sec--white enemy" aria-labelledby="enemy-title">
+<section class="sec sec--white about" id="about" aria-labelledby="about-title">
   <div class="wrap">
-    <h2 class="enemy__title" id="enemy-title">私たちが戦う相手</h2>
-    <p class="enemy__statement">カレイドスクエアパークが戦う相手は、役割を用意しないまま、人を「支えられる側」に振り分ける社会。</p>
-    <div class="prose">
+    <h2 class="about__label" id="about-title">私たちが戦う相手</h2>
+    <p class="about__statement"><span class="nb">役割を用意しないまま、</span><span class="nb">人を「支えられる側」に</span><span class="nb">振り分ける社会。</span></p>
+    <div class="prose about__body">
       <p>今、当たり前だと思っていることを、ふと「それが当たり前でいいのだろうか」と思い直し、他にいい未来になる手段があるなら、それを実行していきたい。そういう想いで日々働いているのが、私たちです。</p>
+      <p>カレイドスクエアパークは「絶えず変化し続ける広場」という意味。私たち自身も、変わりつづけていきます。</p>
     </div>
+    <p class="about__value">大切にしていること：脱現状維持</p>
     <div class="btn-row">
-      <a class="btn btn--navy" href="message.html">代表からの手紙を読む</a>
+      <a class="btn btn--green" href="message.html">代表からの手紙を読む</a>
     </div>
   </div>
 </section>
 
-<!-- ===== ⑤ WHAT WE DO／0歳から働くまで ===== -->
-<section class="sec sec--white work" id="work" aria-labelledby="work-title">
-  <div class="floaties" aria-hidden="true">
-    <span class="fl fl--half c-red" data-depth=".18" style="--x:90%;--y:6%;--size:42px;--dur:7s"><i></i></span>
-    <span class="fl fl--tri c-green" data-depth=".22" style="--x:3%;--y:58%;--size:30px;--dur:7s"><i></i></span>
-  </div>
+<!-- ===== ④ 事業紹介（WHAT WE DO） ===== -->
+<section class="sec sec--gray sec--round-top work" id="work" aria-labelledby="work-title">
   <div class="wrap">
     <p class="eyebrow" lang="en" aria-hidden="true">WHAT WE DO</p>
-    <h2 class="sec-title" id="work-title">子どもから大人までの自立をワンストップで支援する事業所です</h2>
-
-    <ol class="chevrons" aria-label="0歳から働くまでの6つの支援">
-      <li data-reveal class="chevron"><span class="chevron__name">保育所等訪問支援</span><span class="chevron__desc">0〜18歳。出先に出向いて支援</span></li>
-      <li data-reveal class="chevron"><span class="chevron__name">放課後等デイサービス</span><span class="chevron__desc">小1〜高3。学校後の通所支援</span></li>
-      <li data-reveal class="chevron"><span class="chevron__name">就労選択支援</span><span class="chevron__desc">高校生〜。働ける力を見定める</span></li>
-      <li data-reveal class="chevron"><span class="chevron__name">自立訓練</span><span class="chevron__desc">生活・対人・集中力を整える</span></li>
-      <li data-reveal class="chevron"><span class="chevron__name">就労移行支援</span><span class="chevron__desc">一般就労に向けた訓練</span></li>
-      <li data-reveal class="chevron"><span class="chevron__name">就労定着支援</span><span class="chevron__desc">長く働き続けられるよう支える</span></li>
-    </ol>
-
+    <h2 class="sec-title" id="work-title"><span class="nb">子どもから大人までの自立を</span><span class="nb">ワンストップで支援する事業所です</span></h2>
+    <div class="work__card">
+      <ol class="work__list" aria-label="0歳から働くまでの6つの事業">
+        <li><span class="work__num" aria-hidden="true">01</span><span class="work__name">保育所等訪問支援</span><span class="work__desc">0〜18歳。出先に出向いて支援</span></li>
+        <li><span class="work__num" aria-hidden="true">02</span><span class="work__name">放課後等デイサービス</span><span class="work__desc">小1〜高3。学校後の通所支援</span></li>
+        <li><span class="work__num" aria-hidden="true">03</span><span class="work__name">就労選択支援</span><span class="work__desc">高校生〜。働ける力を見定める</span></li>
+        <li><span class="work__num" aria-hidden="true">04</span><span class="work__name">自立訓練</span><span class="work__desc">生活・対人・集中力を整える</span></li>
+        <li class="is-adult"><span class="work__num" aria-hidden="true">05</span><span class="work__name">就労移行支援</span><span class="work__desc">一般就労に向けた訓練</span></li>
+        <li class="is-adult"><span class="work__num" aria-hidden="true">06</span><span class="work__name">就労定着支援</span><span class="work__desc">長く働き続けられるよう支える</span></li>
+      </ol>
+    </div>
     <p class="work__note">さらに、胎内市から放課後児童クラブ（学童）への専門家派遣も受託しています。</p>
     <p class="work__close">この地域で、ここまでやっている場所は、そう多くありません。</p>
-
-    <h3 class="work__values-title">大切にしていること</h3>
-    <ul class="values">
-      <li data-reveal><span class="values__name">一人ひとりに寄り添う</span><span class="values__desc">一人ひとりの想いやペースを大切に支えます</span></li>
-      <li data-reveal><span class="values__name">地域とのつながりをつくる</span><span class="values__desc">地域や企業、行政とつながり、支え合える関係を築きます</span></li>
-      <li data-reveal><span class="values__name">社会性・主体性の向上</span><span class="values__desc">多様な経験を通じて、社会で生きていく力を育みます</span></li>
-      <li data-reveal><span class="values__name">脱現状維持</span><span class="values__desc">変化を恐れず、未来に向かって挑戦し続けます</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ===== ⑥ JOBS／募集中の職種 ===== -->
-<!-- 求人の正本はAirワーク。給与・勤務地・必須条件は Airワークと一致させる（2026年10月6日確認） -->
-<section class="sec sec--gray sec--round-top jobs" id="jobs" aria-labelledby="jobs-title">
-  <div class="otter-slot" aria-hidden="true">ラッコ：仮の枠</div>
-  <div class="wrap">
-    <p class="eyebrow" lang="en" aria-hidden="true">JOBS</p>
-    <h2 class="sec-title sec-title--sub" id="jobs-title">募集中の職種</h2>
-
-    <nav class="job-chips" aria-label="職種の目次">
-      <ul>
-        <li><a class="chip chip--green" href="#job-hoikushi">保育士</a></li>
-        <li><a class="chip chip--green" href="#job-jidoshidoin">児童指導員</a></li>
-        <li><a class="chip chip--orange" href="#job-jihatsukan">児童発達支援管理責任者</a></li>
-        <li><a class="chip chip--deep" href="#job-kanrisha">放課後等デイサービスの管理者</a></li>
-        <li><a class="chip chip--navy" href="#job-shuro">就労移行支援員</a></li>
-      </ul>
-    </nav>
-
-    <p class="jobs__note">掲載している条件は2026年10月時点のものです。最新の条件は各求人ページでご確認ください。</p>
-
-    <h3 class="job-group">子どもの支援</h3>
-
-    <!-- ===== 求人：保育士 ===== -->
-    <article data-reveal class="job job--green" id="job-hoikushi" aria-labelledby="job-hoikushi-title">
-      <header class="job__band">
-        <p class="job__service">放課後等デイサービス｜正社員</p>
-        <h4 class="job__title" id="job-hoikushi-title">保育士</h4>
-      </header>
-      <div class="job__grid">
-        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：保育士の仕事の様子（横長）</div></div>
-        <div class="job__body">
-          <p class="job__catch">子どもたちの「できた！」を一緒に喜び、その子らしさを育む仕事です。</p>
-          <ul class="job__badges" aria-label="特徴">
-            <li>放デイ経験不問</li><li>ブランク歓迎</li><li>主婦（夫）活躍中</li>
-          </ul>
-          <h5 class="job__points-title">この仕事の魅力</h5>
-          <ul class="job__points">
-            <li>土日休み・残業は月2時間以下。子育てや家庭と両立しやすい</li>
-            <li>保育士資格の手当（国家資格手当 3万8,000円）と、実務経験5年ごとの経験手当（5,000円）を新設</li>
-            <li>有給とは別に取れる「サポート休暇（有給）」年5日。子の看護等休暇は高校修了まで・一律10日</li>
-          </ul>
-        </div>
-      </div>
-      <dl class="job__info">
-        <div class="job__info-item"><dt>給与</dt><dd>月給 24万1,520円〜25万6,000円<small>基本給＋一律手当の総額</small></dd></div>
-        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月2時間以下</dd></div>
-        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク村上（村上市松山260-7／村上駅から車で5分）<br>カレイドスクエアパーク胎内（胎内市下館1147／平木田駅から車で5分）</dd></div>
-        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格</dt><dd>普通自動車免許（AT限定可）・保育士資格</dd></div>
-      </dl>
-      <p class="job__also">PT・OT・ST・公認心理師・臨床心理士の資格をお持ちの方も応募できます</p>
-      <div class="job__cta">
-        <div class="btn-row">
-          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/11693881/" target="_blank" rel="noopener">村上の求人を見る</a>
-          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/12866211/" target="_blank" rel="noopener">胎内の求人を見る</a>
-        </div>
-        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
-      </div>
-    </article>
-
-    <!-- ===== 求人：児童指導員 ===== -->
-    <article data-reveal class="job job--green job--flip" id="job-jidoshidoin" aria-labelledby="job-jidoshidoin-title">
-      <header class="job__band">
-        <p class="job__service">放課後等デイサービス｜正社員</p>
-        <h4 class="job__title" id="job-jidoshidoin-title">児童指導員</h4>
-      </header>
-      <div class="job__grid">
-        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：児童指導員の仕事の様子（横長）</div></div>
-        <div class="job__body">
-          <p class="job__catch">子どもたちの「できた！」を一緒に喜び、その子らしさを育む仕事です。</p>
-          <ul class="job__badges" aria-label="特徴">
-            <li>ブランク歓迎</li><li>経験者歓迎</li><li>主婦（夫）活躍中</li>
-          </ul>
-          <h5 class="job__points-title">この仕事の魅力</h5>
-          <ul class="job__points">
-            <li>土日休み・残業は月2時間以下</li>
-            <li>発達特性のある子どもたちへの対応を、クルー一丸となって学び、考え、実行できる環境</li>
-            <li>要件を満たせば、児童発達支援管理責任者などへのキャリアチェンジも可能（資格取得の費用は会社負担）</li>
-          </ul>
-        </div>
-      </div>
-      <dl class="job__info">
-        <div class="job__info-item"><dt>給与</dt><dd>月給 23万6,520円〜25万1,000円<small>基本給＋一律手当の総額</small></dd></div>
-        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月2時間以下</dd></div>
-        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク村上（村上市松山260-7／村上駅から車で5分）</dd></div>
-        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格</dt><dd>普通自動車免許（AT限定可）・児童指導員任用資格（くわしい要件は求人ページへ）</dd></div>
-      </dl>
-      <p class="job__also">PT・OT・ST・公認心理師・臨床心理士の資格をお持ちの方も応募できます</p>
-      <div class="job__cta">
-        <div class="btn-row">
-          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/11886854/" target="_blank" rel="noopener">詳細を見る</a>
-        </div>
-        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
-      </div>
-    </article>
-
-    <!-- ===== 求人：児童発達支援管理責任者 ===== -->
-    <article data-reveal class="job job--orange" id="job-jihatsukan" aria-labelledby="job-jihatsukan-title">
-      <header class="job__band">
-        <p class="job__service">放課後等デイサービス｜正社員</p>
-        <h4 class="job__title" id="job-jihatsukan-title">児童発達支援管理責任者</h4>
-      </header>
-      <div class="job__grid">
-        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：児童発達支援管理責任者の仕事の様子（横長）</div></div>
-        <div class="job__body">
-          <p class="job__catch">チームの中心で、子どもたちの自立支援をデザインする仕事です。基礎研修修了者もOK。</p>
-          <ul class="job__badges" aria-label="特徴">
-            <li>基礎研修修了者もOK</li><li>マネジメント経験歓迎</li><li>中抜けOK</li>
-          </ul>
-          <h5 class="job__points-title">この仕事の魅力</h5>
-          <ul class="job__points">
-            <li>基礎研修修了の方は、現職の児発管のサポートを受けながらOJTで業務に入れます</li>
-            <li>中抜けOK・1時間単位の有給・看護等休暇。児発管の資格を持つクルー4人中3人が子育てと両立しています</li>
-            <li>資格取得の費用は会社負担。管理者・エリアマネージャーへのキャリアパスもあります</li>
-          </ul>
-        </div>
-      </div>
-      <dl class="job__info">
-        <div class="job__info-item"><dt>給与</dt><dd>月給 26万5,000円〜<small>基本給＋一律手当の総額</small></dd></div>
-        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月平均20時間以内</dd></div>
-        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク胎内（胎内市下館1147／平木田駅から車で5分）</dd></div>
-        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格</dt><dd>普通自動車免許（AT限定可）・児童発達支援管理責任者（基礎研修修了でもOK）</dd></div>
-      </dl>
-      <div class="job__cta">
-        <div class="btn-row">
-          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/7631910/" target="_blank" rel="noopener">詳細を見る</a>
-        </div>
-        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
-      </div>
-    </article>
-
-    <!-- ===== 求人：放課後等デイサービスの管理者 ===== -->
-    <article data-reveal class="job job--deep job--flip" id="job-kanrisha" aria-labelledby="job-kanrisha-title">
-      <header class="job__band">
-        <p class="job__service">放課後等デイサービス｜正社員</p>
-        <h4 class="job__title" id="job-kanrisha-title">放課後等デイサービスの管理者</h4>
-      </header>
-      <div class="job__grid">
-        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：管理者の仕事の様子（横長）</div></div>
-        <div class="job__body">
-          <p class="job__catch">マネジメント経験を活かせる！子どもたちの自立を支えるやりがいある仕事です。</p>
-          <ul class="job__badges" aria-label="特徴">
-            <li>マネジメント経験歓迎</li><li>賞与年2回</li><li>週休2日制・土日休み</li>
-          </ul>
-          <h5 class="job__points-title">この仕事の魅力</h5>
-          <ul class="job__points">
-            <li>施設の運営管理、サービスの統括、売上管理、クルーの労務・モチベーション管理まで、マネジメント経験を活かせます</li>
-            <li>PC・スマホの活用で業務効率化を実現</li>
-            <li>お子さまの急な体調不良など、家庭の事情によるお休みにも柔軟に対応</li>
-          </ul>
-        </div>
-      </div>
-      <dl class="job__info">
-        <div class="job__info-item"><dt>給与</dt><dd>月給 28万円〜33万3,000円<small>基本給＋一律手当の総額</small></dd></div>
-        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月平均20時間以内</dd></div>
-        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク胎内（胎内市下館1147／平木田駅から車で5分）</dd></div>
-        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格・経験</dt><dd>普通自動車免許（AT限定可）・児童福祉事業での現場経験2年以上</dd></div>
-      </dl>
-      <div class="job__cta">
-        <div class="btn-row">
-          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/12048560/" target="_blank" rel="noopener">詳細を見る</a>
-        </div>
-        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
-      </div>
-    </article>
-
-    <h3 class="job-group">大人の支援</h3>
-
-    <!-- ===== 求人：就労移行支援員 ===== -->
-    <article data-reveal class="job job--navy" id="job-shuro" aria-labelledby="job-shuro-title">
-      <header class="job__band">
-        <p class="job__service">就労移行支援｜正社員</p>
-        <h4 class="job__title" id="job-shuro-title">就労移行支援員</h4>
-      </header>
-      <div class="job__grid">
-        <div class="job__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：就労移行支援員の仕事の様子（横長）</div></div>
-        <div class="job__body">
-          <p class="job__catch">「働きたい」という想いに寄り添い、その人らしい一歩を支える仕事です。未経験・無資格OK。</p>
-          <ul class="job__badges" aria-label="特徴">
-            <li>未経験歓迎</li><li>資格不問</li><li>30〜40代活躍中</li>
-          </ul>
-          <h5 class="job__points-title">この仕事の魅力</h5>
-          <ul class="job__points">
-            <li>メンバーの「働きたい」を実現できるやりがい。就職が決まる瞬間に立ち会えます</li>
-            <li>元営業・IT・接客など、福祉以外の業界から来たクルーも活躍しています</li>
-            <li>残業は月8時間以下。定時で帰るクルーも多い</li>
-          </ul>
-        </div>
-      </div>
-      <dl class="job__info">
-        <div class="job__info-item"><dt>給与</dt><dd>月給 22万3,500円〜<small>基本給＋一律手当の総額</small></dd></div>
-        <div class="job__info-item"><dt>勤務時間・休日</dt><dd>9:00〜18:00（休憩60分）<br>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）<br>残業：月8時間以下</dd></div>
-        <div class="job__info-item"><dt>勤務地</dt><dd>カレイドスクエアパーク胎内（胎内市下館1147／平木田駅から車で5分）</dd></div>
-        <div class="job__info-item job__info-item--wide"><dt>応募に必要な資格・スキル</dt><dd>普通自動車免許（AT限定可）・基本的なPC操作（メール・Word・Excel）</dd></div>
-      </dl>
-      <div class="job__cta">
-        <div class="btn-row">
-          <a class="btn btn--navy" href="https://arwrk.net/recruit/tringsmith/11744493/" target="_blank" rel="noopener">詳細を見る</a>
-        </div>
-        <p class="job__cta-note">Airワークの求人ページが開きます。応募もこちらから</p>
-      </div>
-    </article>
-
-    <div class="jobs__visit">
-      <p>応募の前に、職場の見学もできます</p>
-      <a class="btn btn--outline" href="#entry">見学について問い合わせる</a>
-    </div>
   </div>
 </section>
 
 <div class="wave" aria-hidden="true" style="--from:var(--jr-gray);--to:var(--jr-green-pale)"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
-<!-- ===== ⑦ ENVIRONMENT／働く環境 ===== -->
+<!-- ===== ⑤ 働く環境（ENVIRONMENT。数字を含む） ===== -->
 <section class="sec sec--pale env" id="environment" aria-labelledby="env-title">
-  <div class="floaties" aria-hidden="true">
-    <span class="fl fl--square c-orange" data-depth=".2" style="--x:88%;--y:5%;--size:44px;--dur:7s"><i></i></span>
-    <span class="fl fl--circle c-purple" data-depth=".25" style="--x:2%;--y:30%;--size:30px;--dur:7s"><i></i></span>
-    <span class="fl fl--half c-green" data-depth=".15" style="--x:93%;--y:80%;--size:56px;--dur:7s"><i></i></span>
-  </div>
   <div class="wrap">
     <p class="eyebrow" lang="en" aria-hidden="true">ENVIRONMENT</p>
     <h2 class="sec-title sec-title--sub" id="env-title">働く環境</h2>
     <p class="env__lead">勤務場所や時間など個々の事情に寄り添い、柔軟な働き方を一緒に模索します。</p>
 
+    <h3 class="env__when">2026年7月時点</h3>
+    <dl class="env__stats">
+      <div class="env__stat"><dt>クルー数</dt><dd><span class="env__num">26</span>名</dd></div>
+      <div class="env__stat"><dt>平均年齢</dt><dd><span class="env__num">38</span>歳</dd></div>
+      <div class="env__stat"><dt>男女比</dt><dd><span class="env__num">3:7</span></dd></div>
+      <div class="env__stat"><dt>有給取得率</dt><dd>約<span class="env__num">80</span>%</dd></div>
+      <div class="env__stat"><dt>育休復帰率</dt><dd><span class="env__num">100</span>%</dd></div>
+      <div class="env__stat"><dt>設立</dt><dd><span class="env__num">2018</span>年</dd></div>
+    </dl>
+
     <div class="env__grid">
       <section data-reveal class="env__group" aria-labelledby="env-rest">
         <h3 class="env__head" id="env-rest">休む</h3>
         <ul>
+          <li>9:00〜18:00（休憩60分）</li>
           <li>土日休み（祝日は開所）・GW・夏季休暇・年末年始（12/29〜1/3）</li>
           <li>有給は1時間単位で取得OK</li>
           <li>有給とは別に取れる「サポート休暇（有給）」年5日（本人の体調不良・通院、子の看護、介護などに使える。2026年4月〜）</li>
@@ -446,114 +228,199 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
           <li>キャリアアップのための資格取得を支援</li>
         </ul>
       </section>
-      <section data-reveal class="env__group" aria-labelledby="env-tools">
-        <h3 class="env__head" id="env-tools">道具</h3>
-        <ul>
-          <li>記録や情報共有をシステム化。</li>
-          <li>AIを活用した支援計画の作成支援で、より質の高い支援に集中できる。</li>
-          <li>クルーに1人1台パソコンを貸与</li>
-        </ul>
-      </section>
     </div>
   </div>
 </section>
 
-<div class="wave" aria-hidden="true" style="--from:var(--jr-green-pale);--to:#fff"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
+<div class="wave" aria-hidden="true" style="--from:var(--jr-green-pale);--to:var(--jr-gray)"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
-<!-- ===== ⑧ NUMBERS／数字で見るKSP ===== -->
-<section class="sec sec--white numbers" aria-labelledby="numbers-title">
+<!-- ===== ⑥ 募集職種（JOBS） ===== -->
+<!-- 求人の正本はAirワーク。給与・必須条件は Airワークと一致させる（2026年10月6日確認）。勤務時間・休日は「働く環境」に共通で記載 -->
+<section class="sec sec--gray jobs" id="jobs" aria-labelledby="jobs-title">
   <div class="wrap">
-    <p class="eyebrow" lang="en" aria-hidden="true">NUMBERS</p>
-    <h2 class="sec-title sec-title--sub" id="numbers-title">数字で見るKSP</h2>
+    <p class="eyebrow" lang="en" aria-hidden="true">JOBS</p>
+    <h2 class="sec-title sec-title--sub" id="jobs-title">募集中の職種</h2>
+    <p class="jobs__note">掲載している条件は2026年10月時点のものです。最新の条件は各求人ページでご確認ください。</p>
 
-    <h3 class="numbers__when">2026年7月時点</h3>
-    <dl class="stats">
-      <div data-reveal class="stat"><dt>設立</dt><dd><span class="stat__num">2018</span>年</dd></div>
-      <div data-reveal class="stat"><dt>クルー数</dt><dd><span class="stat__num">26</span>名</dd></div>
-      <div data-reveal class="stat"><dt>平均年齢</dt><dd><span class="stat__num">38</span>歳</dd></div>
-      <div data-reveal class="stat"><dt>有給取得率</dt><dd>約<span class="stat__num">80</span>%</dd></div>
-      <div data-reveal class="stat"><dt>育休復帰率</dt><dd><span class="stat__num">100</span>%</dd></div>
-      <div data-reveal class="stat"><dt>男女比</dt><dd><span class="stat__num">3:7</span></dd></div>
-    </dl>
+    <h3 class="job-group job-group--child">子どもの支援</h3>
+    <div class="jcards">
 
-    <h3 class="numbers__when">2026年9月時点（就労支援の実績）</h3>
-    <dl class="stats stats--three">
-      <div data-reveal class="stat"><dt>就職したメンバー（2022年度〜）</dt><dd><span class="stat__num">29</span>人</dd></div>
-      <div data-reveal class="stat"><dt>そのうち今も働いている</dt><dd><span class="stat__num">22</span>人</dd></div>
-      <div data-reveal class="stat"><dt>2025年度の就職（過去最多）</dt><dd><span class="stat__num">10</span>人</dd></div>
-    </dl>
-    <p class="numbers__note">就職先は、工場・お店・病院・介護施設・市役所など</p>
+      <!-- ===== 求人：保育士 ===== -->
+      <article data-reveal class="jcard jcard--green" id="job-hoikushi" aria-labelledby="job-hoikushi-title">
+        <div class="jcard__head">
+          <div class="jcard__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真<br>仕事の様子</div></div>
+          <div>
+            <p class="jcard__service">放課後等デイサービス｜正社員</p>
+            <h4 class="jcard__title" id="job-hoikushi-title">保育士</h4>
+            <p class="jcard__catch">子どもたちの「できた！」を一緒に喜び、その子らしさを育む仕事</p>
+          </div>
+        </div>
+        <ul class="jcard__badges" aria-label="特徴"><li>放デイ経験不問</li><li>ブランク歓迎</li><li>主婦（夫）活躍中</li></ul>
+        <ul class="jcard__points" aria-label="この仕事の魅力">
+          <li>保育士資格を評価する国家資格手当・経験手当あり</li>
+          <li>残業は月2時間以下。子育てや家庭と両立しやすい</li>
+        </ul>
+        <dl class="jcard__info">
+          <div><dt>給与</dt><dd>月給 24万1,520円〜25万6,000円</dd></div>
+          <div><dt>勤務地</dt><dd>村上・胎内</dd></div>
+          <div><dt>資格</dt><dd>普通自動車免許（AT限定可）・保育士資格</dd></div>
+        </dl>
+        <div class="jcard__cta">
+          <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/11693881/" target="_blank" rel="noopener">村上の求人詳細・応募へ</a>
+          <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/12866211/" target="_blank" rel="noopener">胎内の求人詳細・応募へ</a>
+          <p class="jcard__note">Airワークの求人ページが開きます</p>
+        </div>
+      </article>
+
+      <!-- ===== 求人：児童指導員 ===== -->
+      <article data-reveal class="jcard jcard--green" id="job-jidoshidoin" aria-labelledby="job-jidoshidoin-title">
+        <div class="jcard__head">
+          <div class="jcard__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真<br>仕事の様子</div></div>
+          <div>
+            <p class="jcard__service">放課後等デイサービス｜正社員</p>
+            <h4 class="jcard__title" id="job-jidoshidoin-title">児童指導員</h4>
+            <p class="jcard__catch">子どもたちの「できた！」を一緒に喜び、その子らしさを育む仕事</p>
+          </div>
+        </div>
+        <ul class="jcard__badges" aria-label="特徴"><li>ブランク歓迎</li><li>経験者歓迎</li><li>主婦（夫）活躍中</li></ul>
+        <ul class="jcard__points" aria-label="この仕事の魅力">
+          <li>発達特性のある子どもたちへの対応を、クルー一丸となって学び、考え、実行できる環境</li>
+          <li>要件を満たせば、児童発達支援管理責任者などへのキャリアチェンジも可能（資格取得の費用は会社負担）</li>
+        </ul>
+        <dl class="jcard__info">
+          <div><dt>給与</dt><dd>月給 23万6,520円〜25万1,000円</dd></div>
+          <div><dt>勤務地</dt><dd>村上</dd></div>
+          <div><dt>資格</dt><dd>普通自動車免許（AT限定可）・児童指導員任用資格（くわしい要件は求人ページへ）</dd></div>
+        </dl>
+        <div class="jcard__cta">
+          <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/11886854/" target="_blank" rel="noopener">求人詳細・応募へ</a>
+          <p class="jcard__note">Airワークの求人ページが開きます</p>
+        </div>
+      </article>
+
+      <!-- ===== 求人：児童発達支援管理責任者 ===== -->
+      <article data-reveal class="jcard jcard--orange" id="job-jihatsukan" aria-labelledby="job-jihatsukan-title">
+        <div class="jcard__head">
+          <div class="jcard__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真<br>仕事の様子</div></div>
+          <div>
+            <p class="jcard__service">放課後等デイサービス｜正社員</p>
+            <h4 class="jcard__title" id="job-jihatsukan-title">児童発達支援管理責任者</h4>
+            <p class="jcard__catch">チームの中心で、子どもたちの自立支援をデザインする仕事</p>
+          </div>
+        </div>
+        <ul class="jcard__badges" aria-label="特徴"><li>基礎研修修了者もOK</li><li>マネジメント経験歓迎</li><li>中抜けOK</li></ul>
+        <ul class="jcard__points" aria-label="この仕事の魅力">
+          <li>基礎研修修了の方は、現場の児発管のサポートを受けながらOJTで業務に入れます</li>
+          <li>資格取得の費用は会社負担。管理者・エリアマネージャーへのキャリアパスあり</li>
+        </ul>
+        <dl class="jcard__info">
+          <div><dt>給与</dt><dd>月給 26万5,000円〜</dd></div>
+          <div><dt>勤務地</dt><dd>胎内</dd></div>
+          <div><dt>資格</dt><dd>普通自動車免許（AT限定可）・児童発達支援管理責任者（基礎研修修了でもOK）</dd></div>
+        </dl>
+        <div class="jcard__cta">
+          <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/7631910/" target="_blank" rel="noopener">求人詳細・応募へ</a>
+          <p class="jcard__note">Airワークの求人ページが開きます</p>
+        </div>
+      </article>
+
+      <!-- ===== 求人：放課後等デイサービスの管理者 ===== -->
+      <article data-reveal class="jcard jcard--deep" id="job-kanrisha" aria-labelledby="job-kanrisha-title">
+        <div class="jcard__head">
+          <div class="jcard__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真<br>仕事の様子</div></div>
+          <div>
+            <p class="jcard__service">放課後等デイサービス｜正社員</p>
+            <h4 class="jcard__title" id="job-kanrisha-title">放課後等デイサービスの管理者</h4>
+            <p class="jcard__catch">マネジメント経験を活かせる！子どもたちの自立を支えるやりがいある仕事</p>
+          </div>
+        </div>
+        <ul class="jcard__badges" aria-label="特徴"><li>マネジメント経験歓迎</li><li>賞与年2回</li><li>週休2日制・土日休み</li></ul>
+        <ul class="jcard__points" aria-label="この仕事の魅力">
+          <li>施設の運営管理、サービスの統括、売上管理、クルーの労務・モチベーション管理まで、マネジメント経験を活かせます</li>
+          <li>お子さまの急な体調不良など、家庭の事情によるお休みにも柔軟に対応</li>
+        </ul>
+        <dl class="jcard__info">
+          <div><dt>給与</dt><dd>月給 28万円〜33万3,000円</dd></div>
+          <div><dt>勤務地</dt><dd>胎内</dd></div>
+          <div><dt>資格・経験</dt><dd>普通自動車免許（AT限定可）・児童福祉事業での現場経験2年以上</dd></div>
+        </dl>
+        <div class="jcard__cta">
+          <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/12048560/" target="_blank" rel="noopener">求人詳細・応募へ</a>
+          <p class="jcard__note">Airワークの求人ページが開きます</p>
+        </div>
+      </article>
+    </div>
+
+    <h3 class="job-group job-group--adult">大人の支援</h3>
+    <div class="jcards">
+
+      <!-- ===== 求人：就労移行支援員 ===== -->
+      <article data-reveal class="jcard jcard--navy" id="job-shuro" aria-labelledby="job-shuro-title">
+        <div class="jcard__head">
+          <div class="jcard__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真<br>仕事の様子</div></div>
+          <div>
+            <p class="jcard__service">就労移行支援｜正社員</p>
+            <h4 class="jcard__title" id="job-shuro-title">就労移行支援員</h4>
+            <p class="jcard__catch">「働きたい」という想いに寄り添い、その人らしい一歩を支える仕事</p>
+          </div>
+        </div>
+        <ul class="jcard__badges" aria-label="特徴"><li>未経験歓迎</li><li>資格不問</li><li>30〜40代活躍中</li></ul>
+        <ul class="jcard__points" aria-label="この仕事の魅力">
+          <li>メンバーの「働きたい」を実現できるやりがい。就職が決まる瞬間に立ち会えます</li>
+          <li>元営業・IT・接客など、福祉以外の業界から来たクルーも活躍しています</li>
+        </ul>
+        <dl class="jcard__info">
+          <div><dt>給与</dt><dd>月給 22万3,500円〜</dd></div>
+          <div><dt>勤務地</dt><dd>胎内</dd></div>
+          <div><dt>資格・スキル</dt><dd>普通自動車免許（AT限定可）・基本的なPC操作（メール・Word・Excel）</dd></div>
+        </dl>
+        <div class="jcard__cta">
+          <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/11744493/" target="_blank" rel="noopener">求人詳細・応募へ</a>
+          <p class="jcard__note">Airワークの求人ページが開きます</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="jobs__common">勤務時間・休日・福利厚生は全職種共通です。くわしくは「<a href="#environment">働く環境</a>」をご覧ください。</p>
   </div>
 </section>
 
-<!-- ===== ⑨ VOICE／クルーの声 =====
-  実在のクルーに取材した言葉と写真がそろうまで表示しない。
+<!-- ===== ⑨ クルーの声（取材の言葉と写真がそろうまで表示しない） =====
   1人分：写真（縦4:5）、職種、入社年、見出しの一言、本文150字程度。
-<section class="sec sec--paper voice" id="voice" aria-labelledby="voice-title">
+<section class="sec voice" id="voice" aria-labelledby="voice-title">
   <div class="wrap">
     <p class="eyebrow" lang="en" aria-hidden="true">VOICE</p>
-    <h2 class="sec-title" id="voice-title">クルーの声</h2>
-    <article class="voice__item">
-      <img src="assets/img/photos/voice-XX.webp" width="800" height="1000" alt="" loading="lazy">
-      <p class="voice__role">職種（入社○年）</p>
-      <h3 class="voice__head">見出しの一言</h3>
-      <p>本文150字程度</p>
-    </article>
+    <h2 class="sec-title sec-title--sub" id="voice-title">クルーの声</h2>
   </div>
 </section>
 -->
 
-<!-- ===== ⑩ FLOW／採用の流れ ===== -->
-<section class="sec sec--gray sec--round-top flow" aria-labelledby="flow-title">
-  <div class="wrap">
-    <p class="eyebrow" lang="en" aria-hidden="true">FLOW</p>
-    <h2 class="sec-title sec-title--sub" id="flow-title">採用の流れ</h2>
-    <div data-reveal class="flow__card">
-    <ol class="flow__list">
-      <li><span class="flow__step" lang="en" aria-hidden="true">01</span><p>応募（各求人ページから。電話での応募もOK）</p></li>
-      <li><span class="flow__step" lang="en" aria-hidden="true">02</span><p>履歴書（写真貼付）のご提出（郵送・メールどちらでも）</p></li>
-      <li><span class="flow__step" lang="en" aria-hidden="true">03</span><p>書類選考（履歴書の到着後7日以内にご連絡）</p></li>
-      <li><span class="flow__step" lang="en" aria-hidden="true">04</span><p>面接（1日で完結・2回／管理者との面接、代表との面接）</p></li>
-      <li><span class="flow__step" lang="en" aria-hidden="true">05</span><p>結果のご連絡（面接後10日以内）→ 入社</p></li>
-    </ol>
-    <p class="flow__note">応募の前に、職場の見学もできます。お気軽にお問い合わせください。</p>
-    </div>
-  </div>
-</section>
-
 <div class="wave" aria-hidden="true" style="--from:var(--jr-gray);--to:var(--jr-brand)"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 
-<!-- ===== ⑪ ENTRY／見学・応募 ===== -->
+<!-- ===== ⑦ 見学・応募（ENTRY。応募の流れを含む） ===== -->
 <section class="sec sec--green entry" id="entry" aria-labelledby="entry-title">
   <div class="floaties" aria-hidden="true">
-    <span class="fl fl--circle c-yellow" data-depth=".2" style="--x:4%;--y:10%;--size:52px;--dur:7s"><i></i></span>
-    <span class="fl fl--square c-red" data-depth=".25" style="--x:92%;--y:40%;--size:34px;--dur:7s"><i></i></span>
-    <span class="fl fl--half c-blue" data-depth=".15" style="--x:6%;--y:86%;--size:40px;--dur:7s"><i></i></span>
+    <span class="fl fl--circle c-yellow" data-depth=".2" style="--x:4%;--y:10%;--size:52px"><i></i></span>
+    <span class="fl fl--square c-red" data-depth=".25" style="--x:92%;--y:40%;--size:34px"><i></i></span>
   </div>
-  <div class="otter-slot otter-slot--dark" aria-hidden="true">ラッコ：仮の枠</div>
   <div class="wrap">
   <div class="entry__card">
     <p class="eyebrow" lang="en" aria-hidden="true">ENTRY</p>
-    <h2 class="sec-title entry__title" id="entry-title">一緒に、未来をつくりましょう。</h2>
-    <p class="entry__lead">ワクワクしながら、未来を創る一歩をここから踏み出してみませんか？</p>
-
-    <div class="entry__grid">
-      <div data-reveal class="entry__block">
-        <h3 class="entry__head">応募する</h3>
-        <a class="btn btn--ghost-light" href="#jobs">募集中の職種を見る</a>
-      </div>
-      <div data-reveal class="entry__block">
-        <h3 class="entry__head">電話</h3>
-        <p><a class="entry__tel" href="tel:0254289362"><span lang="en">0254-28-9362</span></a></p>
-        <p class="entry__small">受付 月〜金 9:00〜18:00</p>
-      </div>
-      <div data-reveal class="entry__block">
-        <h3 class="entry__head">メール</h3>
-        <p><a class="entry__mail" href="mailto:recruit@tringsmith.co.jp">recruit@tringsmith.co.jp</a></p>
-        <a class="btn btn--ghost-light" href="mailto:recruit@tringsmith.co.jp?subject=%E8%A6%8B%E5%AD%A6%E5%B8%8C%E6%9C%9B">見学希望のメールを送る</a>
-      </div>
+    <h2 class="sec-title entry__title" id="entry-title"><span class="nb">一緒に、未来を</span><span class="nb">つくりましょう。</span></h2>
+    <div class="entry__flow">
+      <h3 class="entry__flow-title">応募の流れ</h3>
+      <ol>
+        <li>応募（各求人ページから。電話での応募もOK）</li>
+        <li>履歴書（写真貼付）のご提出（郵送・メールどちらでも）</li>
+        <li>書類選考（履歴書の到着後7日以内にご連絡）</li>
+        <li>面接（1日で完結・2回／管理者との面接、代表との面接）</li>
+        <li>結果のご連絡（面接後10日以内）→ 入社</li>
+      </ol>
     </div>
-
+    <div class="entry__actions">
+      <a class="btn btn--accent btn--block btn--plain" href="#jobs">募集中の職種を見る</a>
+      <a class="btn btn--outline btn--block btn--plain" href="#tour" data-tour-open>見学を相談する（電話・メール）</a>
+    </div>
     <div class="entry__insta">
       <h3 class="entry__head" lang="en">Instagram</h3>
       <ul>
@@ -566,13 +433,45 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
   </div>
 </section>
 
+<!-- ===== 見学パネル =====
+  JSあり：「見学を相談する」で画面の下から開く（PCは画面の中央）。閉じる：×・背景・Esc。開いている間はパネルの中だけを操作できる。
+  JSなし：ページ内のこの場所（#tour）に、電話番号とメールアドレスがそのまま表示される。 -->
+<section class="tour" id="tour" aria-labelledby="tour-title" tabindex="-1">
+  <div class="tour__sheet">
+    <div class="tour__grip" aria-hidden="true"></div>
+    <div class="tour__top">
+      <h2 class="tour__title" id="tour-title">見学のご相談</h2>
+      <button class="tour__close" type="button" aria-label="閉じる">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <p class="tour__lead">ご都合のよい方法でお気軽にどうぞ</p>
+    <a class="tour__opt" href="tel:0254289362">
+      <span class="tour__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M6.6 3.5l2.6 3.2a1.4 1.4 0 0 1-.1 1.9L7.8 9.9a12 12 0 0 0 6.3 6.3l1.3-1.3a1.4 1.4 0 0 1 1.9-.1l3.2 2.6a1.4 1.4 0 0 1 .1 2l-1.5 1.6c-.9.9-2.2 1.2-3.4.8A19 19 0 0 1 3.2 7.3c-.4-1.2-.1-2.5.8-3.4l1.6-1.5a1.4 1.4 0 0 1 2 .1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+      <span class="tour__text"><span class="tour__opt-title">電話で相談する</span><span class="tour__opt-sub"><span lang="en">0254-28-9362</span>｜受付 月〜金 9:00〜18:00</span></span>
+      <span class="tour__chev" aria-hidden="true"></span>
+    </a>
+    <a class="tour__opt" href="mailto:recruit@tringsmith.co.jp?subject=%E8%A6%8B%E5%AD%A6%E5%B8%8C%E6%9C%9B">
+      <span class="tour__icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="5.5" width="18" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.8 7l8.2 6 8.2-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+      <!-- 返信の目安「2営業日以内」は【要確認】（羽田さんの確認待ち） -->
+      <span class="tour__text"><span class="tour__opt-title">メールで相談する</span><span class="tour__opt-sub">24時間受付・2営業日以内にご返信</span></span>
+      <span class="tour__chev" aria-hidden="true"></span>
+    </a>
+    <div class="tour__addr">
+      <span class="tour__mail" id="tour-mail" lang="en">recruit@tringsmith.co.jp</span>
+      <button class="tour__copy" type="button" aria-describedby="tour-mail">コピー</button>
+    </div>
+    <p class="tour__msg" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
 </main>
 
-<!-- ===== ⑫ フッター ===== -->
+<!-- ===== フッター ===== -->
 <footer class="site-footer">
   <div class="wrap site-footer__inner">
     <div class="site-footer__brand">
-      <span class="logo-plate"><img src="assets/img/logo/ksp-logo-yoko.png" width="1024" height="381" alt="カレイドスクエアパーク" loading="lazy"></span>
+      <span class="logo-plate"><img src="assets/img/logo/tringsmith-logo.png" width="903" height="237" alt="トラインスミス株式会社" loading="lazy"></span>
       <p class="site-footer__copy">誰もが自分らしく生きられる社会の実現を、あなたと。</p>
     </div>
     <div class="site-footer__company">
@@ -583,10 +482,11 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
     </div>
     <nav class="site-footer__nav" aria-label="フッター">
       <ul>
-        <li><a href="message.html">想い</a></li>
-        <li><a href="#work">仕事</a></li>
-        <li><a href="#jobs">募集職種</a></li>
+        <li><a href="#wall">福祉のイメージ</a></li>
+        <li><a href="#about">想い</a></li>
+        <li><a href="#work">事業紹介</a></li>
         <li><a href="#environment">働く環境</a></li>
+        <li><a href="#jobs">募集職種</a></li>
         <li><a href="#entry">見学・応募</a></li>
       </ul>
     </nav>
@@ -597,7 +497,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
 <!-- ===== スマホの固定バー（ヒーローを過ぎてから表示） ===== -->
 <div class="fixed-bar" id="fixed-bar">
   <a class="fixed-bar__btn fixed-bar__btn--jobs" href="#jobs">募集職種を見る</a>
-  <a class="fixed-bar__btn fixed-bar__btn--tel" href="tel:0254289362">電話で見学を相談</a>
+  <a class="fixed-bar__btn fixed-bar__btn--tour" href="#tour" data-tour-open>見学を相談する</a>
 </div>
 
 </body>
