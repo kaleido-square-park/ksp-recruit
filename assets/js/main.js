@@ -37,7 +37,7 @@
 
   // ---------- スマホの固定バー：ヒーローを過ぎてから表示 ----------
   var bar = document.getElementById('fixed-bar');
-  var hero = document.querySelector('.hero');
+  var hero = document.querySelector('.hero, .hero-jr');
   if (bar && hero && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) {
       bar.classList.toggle('is-visible', !entries[0].isIntersecting);
