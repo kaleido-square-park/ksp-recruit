@@ -208,7 +208,6 @@ html.js .progress { display: block; position: fixed; inset: 0 0 auto; height: 4p
 /* 終章 */
 .chap--end { padding-block: clamp(72px, 11vw, 128px); }
 .chap--end .chap__title { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem); }
-.sign { margin-top: 12px; font-weight: 700; line-height: 1.8; }
 .sign-img { margin-top: 24px; text-align: right; }
 .sign-img img { display: inline-block; width: min(60%, 280px); height: auto; }
 .author { margin-top: 32px; background: var(--jr-green-pale); border-radius: var(--r-card); padding: clamp(20px, 4vw, 32px); }
