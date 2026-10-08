@@ -93,41 +93,10 @@
   padding: calc(var(--header-h) + 16px) calc(var(--gutter) + 12px) 48px;
 }
 .theme-green .hero-jr__media { position: relative; }
-.theme-green .hero-jr__slides {
+.theme-green .hero-jr__photo {
   position: relative; aspect-ratio: 4 / 3; border-radius: var(--r-box); overflow: hidden; background: #E3E7EE;
 }
-.theme-green .hero-jr__slide { position: absolute; inset: 0; }
-.theme-green .hero-jr__slide .ph { height: 100%; aspect-ratio: auto; border-radius: 0; border: 0; }
-/* JSがあるときだけ重ねて、1枚ずつ見せる（ないときは1枚目だけ見える） */
-html.js .theme-green .hero-jr__slide { opacity: 0; transition: opacity 1.2s ease; }
-html.js .theme-green .hero-jr__slide.is-current { opacity: 1; }
-html:not(.js) .theme-green .hero-jr__slide:not(:first-child) { display: none; }
-
-/* スライドの進み具合（縦の点）と停止ボタン */
-.theme-green .hero-jr__ctrl { display: none; }
-html.js .theme-green .hero-jr__ctrl {
-  position: absolute; right: 14px; bottom: 14px; display: flex; align-items: center; gap: 10px;
-  background: rgba(255,255,255,.92); border-radius: var(--r-pill); padding: 6px 6px 6px 14px; box-shadow: var(--jr-soft);
-}
-.theme-green .hero-jr__dots { display: flex; gap: 8px; }
-.theme-green .hero-jr__dot { width: 10px; height: 10px; border-radius: 50%; background: #C9D0DB; transition: scale .25s linear, background-color .25s linear; }
-.theme-green .hero-jr__dot.is-current { background: var(--jr-brand); scale: 1.3; }
-.theme-green .motion-toggle {
-  display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px 0 10px;
-  border: 0; border-radius: var(--r-pill); background: var(--jr-green); color: #fff;
-  font: inherit; font-size: 0.8125rem; font-weight: 700; cursor: pointer; transition: background-color var(--t-ui);
-}
-.theme-green .motion-toggle:hover { background: var(--jr-green-dark); }
-.theme-green .motion-toggle__icon { width: 12px; height: 12px; position: relative; }
-.theme-green .motion-toggle__icon::before, .theme-green .motion-toggle__icon::after {
-  content: ""; position: absolute; top: 0; width: 4px; height: 12px; background: currentColor; border-radius: 1px;
-}
-.theme-green .motion-toggle__icon::before { left: 1px; }
-.theme-green .motion-toggle__icon::after { right: 1px; }
-.theme-green .motion-toggle[aria-pressed="true"] .motion-toggle__icon::before {
-  left: 2px; width: 0; height: 0; background: none; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent currentColor; border-radius: 0;
-}
-.theme-green .motion-toggle[aria-pressed="true"] .motion-toggle__icon::after { display: none; }
+.theme-green .hero-jr__photo .ph { height: 100%; aspect-ratio: auto; border-radius: 0; border: 0; }
 
 .theme-green .hero-jr__title {
   font-weight: 900; font-size: clamp(2rem, 1.2rem + 3.6vw, 3.5rem); line-height: 1.5; letter-spacing: 0.02em; color: var(--ink);
@@ -145,7 +114,7 @@ html.js .theme-green .hero-jr__ctrl {
     padding: calc(var(--header-h) + 8px) clamp(48px, 7vw, 120px) 56px;
   }
   .theme-green .hero-jr__media { order: 2; }
-  .theme-green .hero-jr__slides { border-radius: var(--r-card); aspect-ratio: 5 / 4; }
+  .theme-green .hero-jr__photo { border-radius: var(--r-card); aspect-ratio: 5 / 4; }
   }
 
 /* ---------- 章の境目：やわらかい波（または上の角を丸めた面） ---------- */
@@ -251,16 +220,15 @@ html.js .theme-green .hero-jr__ctrl {
 
 /* 動き：動きを減らす設定でないときだけ（html.motion-ok は JS が付ける） */
 @keyframes jr-bob { from { transform: translateY(-6px) rotate(-4deg); } to { transform: translateY(8px) rotate(5deg); } }
-html.motion-ok .theme-green .hero-jr .fl i { animation: jr-bob var(--dur, 7s) ease-in-out infinite alternate; }
-html.motion-ok .theme-green.is-paused .fl i,
-html.motion-ok .theme-green.is-hero-off .fl i { animation-play-state: paused; } /* 停止ボタン・画面外 */
+/* ヒーローの図形の揺れは一度だけ（約5秒で止まる） */
+html.motion-ok .theme-green .hero-jr .fl i { animation: jr-bob 5s ease-in-out 1 forwards; }
 
 /* スクロールで現れる：カード類だけ、少し下から（章ごとの一律フェードにはしない） */
 html.motion-ok .theme-green [data-reveal] { transition: opacity var(--t-reveal), translate var(--t-reveal); transition-delay: var(--delay, 0s); }
 html.motion-ok .theme-green [data-reveal]:not(.is-in) { opacity: 0; translate: 0 28px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .theme-green .hero-jr__slide, .theme-green .hero-jr__dot, .theme-green .btn, .theme-green .btn::before, .theme-green .job, .theme-green .site-nav { transition: none !important; }
+  .theme-green .btn, .theme-green .btn::before, .theme-green .job, .theme-green .site-nav { transition: none !important; }
   .theme-green .fl { translate: none !important; }
 }
 
@@ -389,8 +357,9 @@ html.motion-ok .theme-green [data-reveal]:not(.is-in) { opacity: 0; translate: 0
 .theme-green .jcard__points { margin-top: 14px; display: grid; gap: 8px; }
 .theme-green .jcard__points li { position: relative; padding-left: 26px; font-size: 0.9375rem; line-height: 1.7; }
 .theme-green .jcard__points li::before {
-  content: ""; position: absolute; left: 3px; top: 0.45em; width: 12px; height: 7px;
-  border: solid var(--jc); border-width: 0 0 2.5px 2.5px; transform: rotate(-45deg);
+  content: ""; position: absolute; left: 2px; top: 0.4em; width: 16px; height: 16px; background: var(--jc);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8.5 6.5 12.5 13.5 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 8.5 6.5 12.5 13.5 4' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .theme-green .jcard__info { margin-top: 16px; padding-top: 14px; border-top: 1px solid #E3E8EE; display: grid; gap: 6px; }
 .theme-green .jcard__info > div { display: grid; grid-template-columns: 5.5em 1fr; gap: 8px; font-size: 0.875rem; line-height: 1.7; }
@@ -545,3 +514,62 @@ html.is-locked { overflow: hidden; }
 /* 見学パネル：右端の「›」はなし */
 .theme-green .tour__opt { grid-template-columns: 48px 1fr; }
 .theme-green .tour__chev { display: none; }
+
+
+/* =========================================================
+   二野先生の提案（TOP修正）
+   ========================================================= */
+.theme-green { --orange-text: #9A4A00; } /* 橙の枠線ボタンの文字（白と6.8、淡い緑の地と6.2） */
+
+/* ② 注釈 */
+.theme-green .wall__crew { margin-top: 12px; }
+
+/* ③ 代表からの手紙の予告カード */
+.theme-green .letter { margin-top: 32px; max-width: 36em; background: var(--jr-green-pale); border-radius: var(--r-card); padding: clamp(20px, 4vw, 32px); }
+.theme-green .letter__head { display: flex; align-items: center; gap: 16px; }
+.theme-green .letter__photo { flex: none; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border: 2px solid #fff; background: #E3E7EE; }
+.theme-green .letter__photo .ph, .theme-green .letter__photo img { width: 100%; height: 100%; aspect-ratio: 1 / 1; border: 0; border-radius: 0; object-fit: cover; font-size: 0.75rem; padding: 0; }
+.theme-green .letter__label { font-weight: 700; color: var(--jr-green); letter-spacing: 0.04em; line-height: 1.5; }
+.theme-green .letter__label span { font-family: var(--font-en); font-weight: 600; letter-spacing: 0.08em; }
+.theme-green .letter__name { font-size: 0.9375rem; color: var(--ink-soft); line-height: 1.6; }
+.theme-green .letter__title { margin-top: 20px; font-size: clamp(1.25rem, 1.05rem + 1vw, 1.625rem); font-weight: 700; line-height: 1.6; }
+.theme-green .letter__excerpt { margin-top: 14px; padding-left: 16px; border-left: 3px solid var(--jr-brand); line-height: 1.8; }
+.theme-green .btn--letter { margin-top: 20px; background: #fff; border: 1.5px solid var(--orange); color: var(--orange-text); font-weight: 500; }
+.theme-green .btn--letter:hover { background: var(--jr-orange-pale); }
+.theme-green .ico { width: 1.1em; height: 1.1em; flex: none; transition: translate var(--t-ui); }
+.theme-green .btn:hover .ico { translate: 2px 0; }
+@media (min-width: 600px) { .theme-green .btn--letter { display: inline-flex; width: auto; padding-inline: 2.4em; } }
+
+/* ⑥ 職種タグ・共通の一行 */
+.theme-green .jobs__nav { margin-top: 24px; }
+.theme-green .jobs__nav ul { display: flex; flex-wrap: wrap; gap: 8px; }
+.theme-green .jobs__nav a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 6px 16px; border-radius: var(--r-pill);
+  background: #fff; border: 1.5px solid var(--jr-green); color: var(--jr-green); font-weight: 700; font-size: 0.9375rem; line-height: 1.4;
+  text-decoration: none; transition: background-color var(--t-ui), color var(--t-ui);
+}
+.theme-green .jobs__nav a:hover { background: var(--jr-green); color: #fff; }
+.theme-green .jobs__shared { margin-top: 16px; padding: 12px 18px; background: #fff; border-radius: var(--r-box); font-weight: 500; line-height: 1.7; }
+.theme-green .jobs__shared-label { font-weight: 700; color: var(--jr-green); }
+.theme-green .jcard__plus { margin-top: 10px; font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.7; }
+
+/* クルーボイス（データのある職種だけ、カードに入れる） */
+.theme-green .jcard__voice {
+  display: grid; grid-template-columns: 56px 1fr 20px; gap: 14px; align-items: center; margin-top: 18px;
+  padding: 14px 16px; background: #F1EEE8; border-radius: 16px; color: var(--ink); text-decoration: none;
+  transition: background-color var(--t-ui);
+}
+.theme-green .jcard__voice:hover { background: #E8E4DB; }
+.theme-green .jcard__voice-photo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; background: #B7B1A6; }
+.theme-green .jcard__voice-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.theme-green .jcard__voice-label { display: block; font-size: 0.8125rem; font-weight: 700; color: var(--jc-text); line-height: 1.5; }
+.theme-green .jcard__voice-quote { display: block; margin-top: 2px; font-weight: 700; line-height: 1.6; }
+.theme-green .jcard__voice .ico { width: 20px; height: 20px; color: var(--jc-text); }
+.theme-green .jcard__voice:hover .ico { translate: 2px 0; }
+
+/* ⑦ 手紙への一行リンク（試し置き） */
+.theme-green .entry__letter { margin: 0 0 20px; text-align: center; position: relative; z-index: 1; }
+.theme-green .entry__letter a { display: inline-block; padding-block: 10px; line-height: 1.7; font-weight: 700; color: var(--ink); text-underline-offset: 4px; }
+.theme-green .entry__letter a:hover { text-decoration-thickness: 2px; }
+
+.theme-green .entry__letter .ico { display: inline-block; vertical-align: -0.2em; margin-left: 6px; }

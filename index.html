@@ -28,6 +28,7 @@
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion-ok');</script>
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/top.js" defer></script>
+<script src="assets/js/tour.js" defer></script>
 </head>
 <body class="page-top theme-green">
 
@@ -63,7 +64,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
 <main id="main">
 
 <!-- ===== ① ヒーロー ===== -->
-<!-- 丸い大きな面。PCでは面だけが先に流れ、写真と見出しは少し留まる。写真は5秒ごとにゆっくり切り替わる（停止ボタンあり） -->
+<!-- 丸い大きな面。PCでは面だけが先に流れ、写真と見出しは少し留まる。写真は1枚の固定 -->
 <section class="hero-jr" id="top" aria-labelledby="hero-title">
   <div class="hero-jr__panel" aria-hidden="true"></div>
   <div class="floaties" aria-hidden="true">
@@ -74,15 +75,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
   </div>
   <div class="hero-jr__stage">
     <div class="hero-jr__media">
-      <div class="hero-jr__slides" role="group" aria-roledescription="スライドショー" aria-label="クルーの写真">
-        <div class="hero-jr__slide is-current"><div class="ph" role="img" aria-label="写真の仮の枠">写真：クルーの集合写真（横長）</div></div>
-        <div class="hero-jr__slide"><div class="ph" role="img" aria-label="写真の仮の枠">写真：子どもの支援の様子（横長）</div></div>
-        <div class="hero-jr__slide"><div class="ph" role="img" aria-label="写真の仮の枠">写真：大人の支援の様子（横長）</div></div>
-      </div>
-      <div class="hero-jr__ctrl">
-        <span class="hero-jr__dots" aria-hidden="true"><i class="hero-jr__dot is-current"></i><i class="hero-jr__dot"></i><i class="hero-jr__dot"></i></span>
-        <button class="motion-toggle" type="button" aria-pressed="false" aria-label="写真の切り替えと動きを停止"><span class="motion-toggle__icon" aria-hidden="true"></span><span class="motion-toggle__label">停止</span></button>
-      </div>
+      <div class="hero-jr__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真：クルーの集合写真（横長）</div></div>
     </div>
     <div class="hero-jr__body">
       <h1 class="hero-jr__title" id="hero-title"><span class="nb">地域や社会に</span><span class="nb">新しい可能性を生み出す</span><span class="nb">ソーシャルベンチャー</span></h1>
@@ -118,6 +111,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
         <div class="wall__truth">
           <p class="wall__tag wall__tag--truth">本当の姿</p>
           <p>クルーには1人1台パソコンを貸与。記録や情報共有はシステム化し、書類はAIが下書きする。人は、人にしかできないことに時間を使う。</p>
+          <p class="wall__note wall__crew">KSPでは、一緒に働く職員を「クルー」と呼んでいます</p>
         </div>
       </li>
       <li class="wall__item">
@@ -146,12 +140,20 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
     <h2 class="about__label" id="about-title">私たちが戦う相手</h2>
     <p class="about__statement"><span class="nb">役割を用意しないまま、</span><span class="nb">人を「支えられる側」に</span><span class="nb">振り分ける社会。</span></p>
     <div class="prose about__body">
-      <p>今、当たり前だと思っていることを、ふと「それが当たり前でいいのだろうか」と思い直し、他にいい未来になる手段があるなら、それを実行していきたい。そういう想いで日々働いているのが、私たちです。</p>
-      <p>カレイドスクエアパークは「絶えず変化し続ける広場」という意味。私たち自身も、変わりつづけていきます。</p>
+      <p>今、当たり前だと思っていることを、ふと「それが当たり前でいいのだろうか」と思い直し、他にいい未来になる手段があるなら、それを実行していきたい。そういう想いで、日々働いています。</p>
+      <p>カレイドスクエアパークは「絶えず変化し続ける広場」という意味。働く一人ひとりも、変わりつづけていきます。</p>
     </div>
-    <p class="about__value">大切にしていること：脱現状維持</p>
-    <div class="btn-row">
-      <a class="btn btn--green" href="message.html">代表からの手紙を読む</a>
+    <div class="letter">
+      <div class="letter__head">
+        <div class="letter__photo"><div class="ph" role="img" aria-label="写真の仮の枠">写真</div></div>
+        <div>
+          <p class="letter__label"><span lang="en">MESSAGE</span>｜代表からの手紙</p>
+          <p class="letter__name">代表取締役　羽田 健亮</p>
+        </div>
+      </div>
+      <h3 class="letter__title"><span class="nb">私たちは、</span><span class="nb">何のために働くのか</span></h3>
+      <p class="letter__excerpt">今、本気で社会の「偏見」という壁を壊そうとしています。</p>
+      <a class="btn btn--letter btn--block btn--plain" href="message.html">続きを読む<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
@@ -239,6 +241,17 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
     <h2 class="sec-title sec-title--sub" id="jobs-title">募集中の職種</h2>
     <p class="jobs__note">掲載している条件は2026年10月時点のものです。最新の条件は各求人ページでご確認ください。</p>
 
+    <nav class="jobs__nav" aria-label="職種へ移動">
+      <ul>
+        <li><a href="#job-hoikushi">保育士</a></li>
+        <li><a href="#job-jidoshidoin">児童指導員</a></li>
+        <li><a href="#job-jihatsukan">児童発達支援管理責任者</a></li>
+        <li><a href="#job-kanrisha">放課後等デイサービスの管理者</a></li>
+        <li><a href="#job-shuro">就労移行支援員</a></li>
+      </ul>
+    </nav>
+    <p class="jobs__shared"><span class="jobs__shared-label">全職種共通</span>　9:00〜18:00（休憩60分）／土日休み（祝日は開所）</p>
+
     <h3 class="job-group job-group--child">子どもの支援</h3>
     <div class="jcards">
 
@@ -262,6 +275,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
           <div><dt>勤務地</dt><dd>村上・胎内</dd></div>
           <div><dt>資格</dt><dd>普通自動車免許（AT限定可）・保育士資格</dd></div>
         </dl>
+        <p class="jcard__plus">PT・OT・ST・公認心理師・臨床心理士の資格をお持ちの方も応募できます</p>
         <div class="jcard__cta">
           <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/11693881/" target="_blank" rel="noopener">村上の求人詳細・応募へ</a>
           <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/12866211/" target="_blank" rel="noopener">胎内の求人詳細・応募へ</a>
@@ -289,6 +303,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
           <div><dt>勤務地</dt><dd>村上</dd></div>
           <div><dt>資格</dt><dd>普通自動車免許（AT限定可）・児童指導員任用資格（くわしい要件は求人ページへ）</dd></div>
         </dl>
+        <p class="jcard__plus">PT・OT・ST・公認心理師・臨床心理士の資格をお持ちの方も応募できます</p>
         <div class="jcard__cta">
           <a class="btn btn--green btn--block btn--ext" href="https://arwrk.net/recruit/tringsmith/11886854/" target="_blank" rel="noopener">求人詳細・応募へ</a>
           <p class="jcard__note">Airワークの求人ページが開きます</p>
@@ -331,7 +346,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
             <p class="jcard__catch">マネジメント経験を活かせる！子どもたちの自立を支えるやりがいある仕事</p>
           </div>
         </div>
-        <ul class="jcard__badges" aria-label="特徴"><li>マネジメント経験歓迎</li><li>賞与年2回</li><li>週休2日制・土日休み</li></ul>
+        <ul class="jcard__badges" aria-label="特徴"><li>マネジメント経験歓迎</li><li>賞与年2回</li></ul>
         <ul class="jcard__points" aria-label="この仕事の魅力">
           <li>施設の運営管理、サービスの統括、売上管理、クルーの労務・モチベーション管理まで、マネジメント経験を活かせます</li>
           <li>お子さまの急な体調不良など、家庭の事情によるお休みにも柔軟に対応</li>
@@ -378,7 +393,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
       </article>
     </div>
 
-    <p class="jobs__common">勤務時間・休日・福利厚生は全職種共通です。くわしくは「<a href="#environment">働く環境</a>」をご覧ください。</p>
+    <p class="jobs__common">福利厚生は全職種共通です。くわしくは「<a href="#environment">働く環境</a>」をご覧ください。</p>
   </div>
 </section>
 
@@ -391,6 +406,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
     <span class="fl fl--square c-red" data-depth=".25" style="--x:92%;--y:40%;--size:34px"><i></i></span>
   </div>
   <div class="wrap">
+  <p class="entry__letter"><a href="message.html">応募の前に、代表からの手紙を読んでみませんか<svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
   <div class="entry__card">
     <p class="eyebrow" lang="en" aria-hidden="true">ENTRY</p>
     <h2 class="sec-title entry__title" id="entry-title"><span class="nb">一緒に、未来を</span><span class="nb">つくりましょう。</span></h2>
