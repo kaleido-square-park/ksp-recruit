@@ -525,15 +525,15 @@ html.is-locked { overflow: hidden; }
 .theme-green .wall__crew { margin-top: 12px; }
 
 /* ③ 代表からの手紙の予告カード */
-.theme-green .letter { margin-top: 32px; max-width: 36em; background: var(--jr-green-pale); border-radius: var(--r-card); padding: clamp(20px, 4vw, 32px); }
-.theme-green .letter__head { display: flex; align-items: center; gap: 16px; }
-.theme-green .letter__photo { flex: none; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border: 2px solid #fff; background: #E3E7EE; }
-.theme-green .letter__photo .ph, .theme-green .letter__photo img { width: 100%; height: 100%; aspect-ratio: 1 / 1; border: 0; border-radius: 0; object-fit: cover; font-size: 0.75rem; padding: 0; }
-.theme-green .letter__label { font-weight: 700; color: var(--jr-green); letter-spacing: 0.04em; line-height: 1.5; }
-.theme-green .letter__label span { font-family: var(--font-en); font-weight: 600; letter-spacing: 0.08em; }
-.theme-green .letter__name { font-size: 0.9375rem; color: var(--ink-soft); line-height: 1.6; }
-.theme-green .letter__title { margin-top: 20px; font-size: clamp(1.25rem, 1.05rem + 1vw, 1.625rem); font-weight: 700; line-height: 1.6; }
-.theme-green .letter__excerpt { margin-top: 14px; padding-left: 16px; border-left: 3px solid var(--jr-brand); line-height: 1.8; }
+.theme-green .lcard { margin-top: 32px; max-width: 36em; background: var(--jr-green-pale); border-radius: var(--r-card); padding: clamp(20px, 4vw, 32px); }
+.theme-green .lcard__head { display: flex; align-items: center; gap: 16px; }
+.theme-green .lcard__photo { flex: none; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border: 2px solid #fff; background: #E3E7EE; }
+.theme-green .lcard__photo .ph, .theme-green .lcard__photo img { width: 100%; height: 100%; aspect-ratio: 1 / 1; border: 0; border-radius: 0; object-fit: cover; font-size: 0.75rem; padding: 0; }
+.theme-green .lcard__label { font-weight: 700; color: var(--jr-green); letter-spacing: 0.04em; line-height: 1.5; }
+.theme-green .lcard__label span { font-family: var(--font-en); font-weight: 600; letter-spacing: 0.08em; }
+.theme-green .lcard__name { font-size: 0.9375rem; color: var(--ink-soft); line-height: 1.6; }
+.theme-green .lcard__title { margin-top: 20px; font-size: clamp(1.25rem, 1.05rem + 1vw, 1.625rem); font-weight: 700; line-height: 1.6; }
+.theme-green .lcard__excerpt { margin-top: 14px; padding-left: 16px; border-left: 3px solid var(--jr-brand); line-height: 1.8; }
 .theme-green .btn--letter { margin-top: 20px; background: #fff; border: 1.5px solid var(--orange); color: var(--orange-text); font-weight: 500; }
 .theme-green .btn--letter:hover { background: var(--jr-orange-pale); }
 .theme-green .ico { width: 1.1em; height: 1.1em; flex: none; transition: translate var(--t-ui); }
@@ -541,16 +541,7 @@ html.is-locked { overflow: hidden; }
 @media (min-width: 600px) { .theme-green .btn--letter { display: inline-flex; width: auto; padding-inline: 2.4em; } }
 
 /* ⑥ 職種タグ・共通の一行 */
-.theme-green .jobs__nav { margin-top: 24px; }
-.theme-green .jobs__nav ul { display: flex; flex-wrap: wrap; gap: 8px; }
-.theme-green .jobs__nav a {
-  display: inline-flex; align-items: center; min-height: 44px; padding: 6px 16px; border-radius: var(--r-pill);
-  background: #fff; border: 1.5px solid var(--jr-green); color: var(--jr-green); font-weight: 700; font-size: 0.9375rem; line-height: 1.4;
-  text-decoration: none; transition: background-color var(--t-ui), color var(--t-ui);
-}
-.theme-green .jobs__nav a:hover { background: var(--jr-green); color: #fff; }
-.theme-green .jobs__shared { margin-top: 16px; padding: 12px 18px; background: #fff; border-radius: var(--r-box); font-weight: 500; line-height: 1.7; }
-.theme-green .jobs__shared-label { font-weight: 700; color: var(--jr-green); }
+.theme-green .jobs__shared { margin-top: 16px; font-size: 0.875rem; color: var(--ink-soft); line-height: 1.7; }
 .theme-green .jcard__plus { margin-top: 10px; font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.7; }
 
 /* クルーボイス（データのある職種だけ、カードに入れる） */
@@ -567,9 +558,8 @@ html.is-locked { overflow: hidden; }
 .theme-green .jcard__voice .ico { width: 20px; height: 20px; color: var(--jc-text); }
 .theme-green .jcard__voice:hover .ico { translate: 2px 0; }
 
-/* ⑦ 手紙への一行リンク（試し置き） */
-.theme-green .entry__letter { margin: 0 0 20px; text-align: center; position: relative; z-index: 1; }
-.theme-green .entry__letter a { display: inline-block; padding-block: 10px; line-height: 1.7; font-weight: 700; color: var(--ink); text-underline-offset: 4px; }
-.theme-green .entry__letter a:hover { text-decoration-thickness: 2px; }
 
-.theme-green .entry__letter .ico { display: inline-block; vertical-align: -0.2em; margin-left: 6px; }
+
+/* 職種タグ：丸い端＋職種色のドット（緑版では影つき） */
+.theme-green .chip { border-color: transparent; box-shadow: var(--jr-soft); }
+.theme-green .job-chips { margin-top: 24px; }
