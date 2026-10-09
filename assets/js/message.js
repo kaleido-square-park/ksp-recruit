@@ -9,9 +9,20 @@
   // ---------- 読み進み具合のバー ----------
   var bar = document.querySelector('.progress__bar');
   var ticking = false;
+  // 幅の広い画面で固定している目次は、フッターの手前で止める（フッターに重ならない）
+  var tocBox = document.querySelector('.toc__box');
+  var footer = document.querySelector('.site-footer');
+  var tocWide = window.matchMedia('(min-width: 1280px)');
+  function stopTocAtFooter() {
+    if (!tocBox || !footer) return;
+    if (!tocWide.matches) { tocBox.style.transform = ''; return; }
+    var gap = footer.getBoundingClientRect().top - (tocBox.offsetTop + tocBox.offsetHeight) - 24;
+    tocBox.style.transform = gap < 0 ? 'translateY(' + gap.toFixed(1) + 'px)' : '';
+  }
   function update() {
     ticking = false;
     onScrollHeader();
+    stopTocAtFooter();
     if (!bar) return;
     var max = document.documentElement.scrollHeight - window.innerHeight;
     var ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
