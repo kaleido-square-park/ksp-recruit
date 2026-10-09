@@ -561,3 +561,72 @@ html.is-locked { overflow: hidden; }
 /* 職種タグ：丸い端＋職種色のドット（緑版では影つき） */
 .theme-green .chip { border-color: transparent; box-shadow: var(--jr-soft); }
 .theme-green .job-chips { margin-top: 24px; }
+
+
+/* =========================================================
+   ヘッダーとメニュー（二野先生の提案）
+   ========================================================= */
+.ico-ext { display: inline-block; width: 0.85em; height: 0.85em; margin-left: 4px; flex: none; vertical-align: -0.05em; }
+
+/* PC：メニューの外側の箱は無いものとして扱い、下の小さなリンクは出さない */
+.theme-green .site-nav__panel { display: contents; }
+.theme-green .site-nav__sub { display: none; }
+
+/* フッター：プライバシーポリシーは薄い文字 */
+.site-footer__privacy { margin-top: 4px; }
+.site-footer__privacy a { font-size: 0.8125rem; color: rgba(255, 255, 255, .65); }
+.site-footer__privacy a:hover { color: #fff; }
+
+@media (max-width: 899px) {
+  .theme-green { --header-h: 60px; }
+  /* 背景は透けない白。下にスクロールしている間は隠し、少し戻すと出る（main.js） */
+  .theme-green .site-header {
+    background: #fff; pointer-events: auto;
+    box-shadow: 0 1px 0 rgba(0, 33, 78, .08), 0 6px 18px rgba(0, 33, 78, .06);
+    transition: transform .25s ease, background-color .2s ease;
+  }
+  html.js .theme-green .site-header.is-hidden { transform: translateY(-100%); }
+  .theme-green .site-header__inner { height: var(--header-h); }
+  .theme-green .site-logo { box-shadow: none; }
+  .theme-green .nav-toggle { background: var(--jr-gray); box-shadow: none; }
+  /* メニューを開いている間：ヘッダーはうす青いグレー、ロゴとボタンは白、下の固定バーは隠す */
+  .theme-green.menu-open .site-header { background: #E3E7EE; box-shadow: none; }
+  .theme-green.menu-open .nav-toggle { background: #fff; }
+  .theme-green.menu-open .fixed-bar { display: none; }
+
+  html.js .theme-green .site-nav {
+    left: 0; right: 0; top: 100%; background: #E3E7EE; padding: 0 12px 16px;
+    border-radius: 0 0 var(--r-card) var(--r-card); box-shadow: 0 16px 32px rgba(0, 33, 78, .16);
+    max-height: calc(100svh - var(--header-h)); overflow-y: auto;
+  }
+  .theme-green .site-nav__panel { display: block; background: #fff; border-radius: var(--r-box); padding: 4px 20px 20px; }
+  html.js .theme-green .site-nav ul { padding: 0; }
+  html.js .theme-green .site-nav .site-nav__sub li + li { border-top: 0; }
+  .theme-green .site-nav__list li + li { border-top: 1px solid #D5DBC9; }
+  .theme-green .site-nav__list a { justify-content: space-between; min-height: 56px; font-weight: 500; }
+  .theme-green .site-nav__list a:hover { text-decoration: none; color: var(--jr-green); }
+  .theme-green .site-nav__list a:not(.site-nav__cta)::after {
+    content: ""; width: 16px; height: 16px; background: var(--jr-green);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3l5 5-5 5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3l5 5-5 5' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .theme-green .site-nav__list li:last-child { border-top: 0; }
+  /* 見学・応募：塗りのオレンジ（固定バーと同じ色） */
+  .theme-green .site-nav .site-nav__cta {
+    margin-top: 20px; justify-content: center; min-height: 56px; padding: 0 22px;
+    background: var(--orange); color: var(--navy); border-radius: var(--r-pill); box-shadow: none; font-weight: 700;
+  }
+  .theme-green .site-nav .site-nav__cta:hover { background: #FFA42B; color: var(--navy); }
+  .theme-green .site-nav .site-nav__cta::after { content: none; }
+  .theme-green .site-nav__sub { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 18px; margin-top: 12px; }
+  .theme-green .site-nav .site-nav__sub a {
+    justify-content: center; min-height: 44px; font-size: 0.875rem; font-weight: 400; color: var(--ink-soft);
+    text-decoration: underline; text-underline-offset: 4px;
+  }
+  .theme-green .site-nav .site-nav__sub a:hover { color: var(--ink); }
+  /* JSが動かないとき：ヘッダーの下に並べて表示 */
+  html:not(.js) .theme-green .site-nav__panel { background: none; padding: 0; }
+  html:not(.js) .theme-green .site-nav__sub { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-green .site-header { transition: none; }
+}
