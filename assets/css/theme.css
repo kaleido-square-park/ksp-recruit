@@ -367,8 +367,6 @@ html.motion-ok .theme-green [data-reveal]:not(.is-in) { opacity: 0; translate: 0
 .theme-green .jcard__info dd { font-weight: 500; }
 .theme-green .jcard__cta { margin-top: 18px; display: grid; gap: 10px; }
 .theme-green .jcard__note { font-size: 0.8125rem; color: var(--ink-soft); text-align: center; }
-.theme-green .jobs__common { margin-top: 28px; font-size: 0.9375rem; color: var(--ink-soft); }
-.theme-green .jobs__common a { color: var(--jr-green); font-weight: 700; text-underline-offset: 3px; }
 
 /* ボタン：幅いっぱい／矢印なし／外部リンクの印だけ */
 .theme-green .btn--block { display: flex; width: 100%; justify-content: center; min-height: 56px; padding: 0.8em 1.2em; }

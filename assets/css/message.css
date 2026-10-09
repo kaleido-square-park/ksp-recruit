@@ -20,11 +20,18 @@ html.js .progress { display: block; position: fixed; inset: 0 0 auto; height: 4p
 .msg-hero__inner .eyebrow { margin-bottom: 12px; }
 .msg-hero__title { margin-top: 20px; font-weight: 900; font-size: clamp(2rem, 1.2rem + 3.6vw, 3.5rem); line-height: 1.5; color: var(--ink); }
 .msg-hero__by { font-weight: 700; color: var(--jr-green); letter-spacing: 0.08em; }
-.msg-hero__who { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 28px; }
+.msg-hero__who { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 28px; }
 .msg-hero__name { font-weight: 500; color: var(--jr-green); line-height: 1.6; font-size: clamp(0.8125rem, 0.7rem + 0.5vw, 1rem); }
-.msg-hero__photo { flex: none; width: 76px; height: 76px; border-radius: 50%; overflow: hidden; border: 3px solid #fff; background: #E3E7EE; }
+.msg-hero__photo { flex: none; width: 104px; height: 104px; border-radius: 50%; overflow: hidden; border: 3px solid #fff; background: #E3E7EE; }
 .msg-hero__photo .ph, .msg-hero__photo img { display: block; width: 100%; height: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 0; border-radius: 0; font-size: 0.75rem; padding: 0; }
-@media (min-width: 768px) { .msg-hero__photo { width: 96px; height: 96px; } }
+@media (min-width: 900px) {
+  /* PC：タイトルの右に写真、その下に肩書き */
+  .msg-hero__inner { display: grid; grid-template-columns: 1fr auto; column-gap: 48px; align-items: end; }
+  .msg-hero__inner > :not(.msg-hero__who) { grid-column: 1; }
+  .msg-hero__who { grid-column: 2; grid-row: 1 / span 3; flex-direction: column; align-items: center; justify-content: flex-end; gap: 14px; margin-top: 0; }
+  .msg-hero__photo { order: -1; width: 160px; height: 160px; border-width: 4px; box-shadow: var(--jr-soft); }
+  .msg-hero__name { text-align: center; }
+}
 .msg-hero .floaties { overflow: hidden; }
 .page-message .fl i { animation: none; }
 @media (max-width: 899px) { .msg-hero .fl.c-purple, .msg-hero .fl.c-green, .chap--end .floaties { display: none; } }
@@ -208,20 +215,15 @@ html.js .progress { display: block; position: fixed; inset: 0 0 auto; height: 4p
 /* 終章 */
 .chap--end { padding-block: clamp(72px, 11vw, 128px); }
 .chap--end .chap__title { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem); }
-.sign-img { margin-top: 24px; text-align: right; }
+.sign-img { margin-block: 44px 40px; text-align: right; }
 .sign-img img { display: inline-block; width: min(60%, 280px); height: auto; }
-.author { margin-top: 32px; background: var(--jr-green-pale); border-radius: var(--r-card); padding: clamp(20px, 4vw, 32px); }
+.author { margin-top: 0; background: var(--jr-green-pale); border-radius: var(--r-card); padding: clamp(20px, 4vw, 32px); }
 .author__label { font-weight: 700; color: var(--jr-green); letter-spacing: 0.04em; }
-.author__org { margin-top: 14px; color: var(--ink-soft); line-height: 1.7; }
+.author__org { margin-top: 14px; font-weight: 700; line-height: 1.7; }
 .author__name { margin-top: 4px; font-weight: 700; font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem); line-height: 1.5; }
 .author__bio { margin-top: 14px; font-size: 0.9375rem; line-height: 1.9; }
 .epilogue__actions { margin-top: 32px; }
 @media (max-width: 767px) { .epilogue__actions { display: none; } } /* 固定バーが出る幅では重複するので隠す */
-.epilogue__tel { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-top: 20px; font-weight: 700; }
-.epilogue__tel-label { font-size: 0.8125rem; }
-.epilogue__tel a { font-family: var(--font-en); font-weight: 600; font-size: 1.375rem; text-underline-offset: 4px; }
-.epilogue__tel a { display: inline-flex; align-items: center; min-height: 44px; }
-.epilogue__tel span:last-child { font-size: 0.875rem; }
 .chap--end .btn--accent { --btn-bg: var(--orange); }
 
 /* 現在のページ */
