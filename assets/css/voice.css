@@ -28,3 +28,12 @@
 .theme-green .voice-end__actions { display: grid; gap: 12px; margin: 28px auto 0; max-width: 560px; }
 @media (min-width: 768px) { .theme-green .voice-end__actions { grid-template-columns: 1fr 1fr; } }
 .theme-green .voice-end__actions .btn--outline { border-width: 1.5px; }
+
+/* 出典と時点 */
+.theme-green .voice-source { margin-top: clamp(32px, 5vw, 48px); padding-left: 54px; font-size: 0.8125rem; color: var(--ink-soft); line-height: 1.7; }
+@media (max-width: 599px) { .theme-green .voice-source { padding-left: 0; } }
+
+/* メニューとフッター：今いるページ */
+.page-voice .site-nav a[aria-current="page"] { color: var(--jr-green); }
+.page-voice .site-footer__nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 5px; }
+.theme-green .voice-hero__nowrap { display: inline-block; }

@@ -5,23 +5,23 @@
   クルーボイス（インタビュー）のひな形。このファイルはどこからもリンクせず、sitemap にも入れない。
   記事を追加する手順
   1. このファイルを voice/ にコピーして、ファイル名を付ける（例：hoikushi-01.html）。先頭が _ のファイルは公開されないので、必ず名前を変える。
-  2. [ ] の中を書き換える。質問は4問で固定。
+  2. [ ] の中を書き換える。質問は4問が基本（Airワークのインタビューを使うときは、その質問と回答をそのまま使う。例：yasuda.html は1問）。
        Q1 前職と、KSPに入ったきっかけは？
        Q2 今の仕事で、一番うれしかった瞬間は？
        Q3 KSPの働きやすいところは？
        Q4 応募を迷っている人へひと言。
-  3. 顔写真（実在の本人のもの）を assets/img/voice/ に置き、img の src と alt を直す。
+  3. 顔写真（実在の本人のもの）を、顔が中心の正方形に切り出し、WebP・メタデータなしで assets/img/photos/ に置く（記事用480px・カード用112px。例：yasuda-480.webp / yasuda-112.webp）。img の src と alt を直す。
   4. <title>・description・canonical・og:url・og:title を直し、noindex の meta を削除する。
   5. index.html の該当する職種カードの、「求人詳細・応募へ」のボタンの前（jcard__info の後）に、下のカード用の枠を入れる。
-       一言は Q2 か Q4 の回答から選ぶ。ラベルは「入社◯年目」または「前職：○○」。
+       一言は Q2 か Q4 の回答から選ぶ。ラベルは「◯年入社（前職の経歴など）」の形（例：2024年入社（保育士歴 約20年））。
   6. sitemap.xml に、このページの <url> を追加する。
-  7. 最初の1本を公開するときは、全ページ（index.html・message.html・404.html・voice の各記事）のヘッダーのメニューとフッターのナビに、
-     「クルーボイス」の項目を足す（「募集職種」の次）。飛び先は、記事が1本のあいだはその記事。2本以上になったら一覧ページ（voice/index.html）を作ってそちらに変える。
+  7. メニューとフッターのナビの「クルーボイス」（「募集職種」の次。第1号の公開で追加済み）は、記事が1本のあいだはその記事（今は yasuda.html）に飛ぶ。
+     2本以上になったら一覧ページ（voice/index.html）を作り、全ページ（index.html・message.html・404.html・voice の各記事）の飛び先をそちらに変える。
 
   職種カードに入れる枠：
   <a class="jcard__voice" href="voice/[ファイル名].html">
-    <span class="jcard__voice-photo"><img src="assets/img/voice/[ファイル名].jpg" width="112" height="112" alt="[お名前または職種]の顔写真" loading="lazy"></span>
-    <span class="jcard__voice-text"><span class="jcard__voice-label">クルーボイス｜入社[◯]年目</span><span class="jcard__voice-quote">「[インタビューの一言]」</span></span>
+    <span class="jcard__voice-photo"><img src="assets/img/photos/[ファイル名]-112.webp" width="112" height="112" alt="[お名前または職種]の顔写真" loading="lazy"></span>
+    <span class="jcard__voice-text"><span class="jcard__voice-label">クルーボイス｜[◯年入社（前職の経歴など）]</span><span class="jcard__voice-quote">「[インタビューの一言]」</span></span>
     <svg class="ico" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </a>
 -->
@@ -75,6 +75,7 @@
           <li><a href="../message.html">代表からの手紙</a></li>
           <li><a href="../index.html#environment">働く環境</a></li>
           <li><a href="../index.html#jobs">募集職種</a></li>
+          <li><a href="yasuda.html">クルーボイス</a></li>
           <li><a class="site-nav__cta" href="../index.html#entry">見学・応募</a></li>
         </ul>
         <ul class="site-nav__sub">
@@ -92,7 +93,7 @@
 <!-- ===== 冒頭：顔写真（丸）・職種・一言 ===== -->
 <section class="voice-hero" aria-labelledby="voice-title">
   <div class="voice-hero__inner">
-    <div class="voice-hero__photo"><img src="../assets/img/voice/[ファイル名].jpg" width="480" height="480" alt="[お名前または職種]の顔写真"></div>
+    <div class="voice-hero__photo"><img src="../assets/img/photos/[ファイル名]-480.webp" width="480" height="480" alt="[お名前または職種]の顔写真"></div>
     <div>
       <p class="voice-hero__label"><span lang="en">CREW VOICE</span>｜クルーボイス</p>
       <h1 class="voice-hero__title" id="voice-title">[インタビューの一言]</h1>
@@ -187,6 +188,7 @@
         <li><a href="../message.html">代表からの手紙</a></li>
         <li><a href="../index.html#environment">働く環境</a></li>
         <li><a href="../index.html#jobs">募集職種</a></li>
+        <li><a href="yasuda.html">クルーボイス</a></li>
         <li><a href="../index.html#entry">見学・応募</a></li>
       </ul>
     </nav>
@@ -200,7 +202,7 @@
           <span class="visually-hidden">（新しいタブで開きます）</span></a></li>
         <li><a class="related-card" href="https://www.tringsmith.co.jp/" target="_blank" rel="noopener">
           <span class="related-card__logo related-card__logo--ts"><img src="../assets/img/logo/ts-g.webp" width="48" height="48" alt="" loading="lazy"></span>
-          <span class="related-card__body"><span class="related-card__sub">運営会社</span><span class="related-card__name">トラインスミス株式会社</span></span>
+          <span class="related-card__body"><span class="related-card__name">トラインスミス株式会社</span><span class="related-card__sub">運営会社についてくわしく見る</span></span>
           <svg class="related-card__ico" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M7 1h4v4M11 1 5.5 6.5M9 7.5V11H1V3h3.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
           <span class="visually-hidden">（新しいタブで開きます）</span></a></li>
       </ul>
