@@ -641,6 +641,8 @@ html.is-locked { overflow: hidden; }
 .related-card__logo img { width: 40px; height: 40px; }
 .related-card__body { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.5; }
 .related-card__name { font-size: 1.0625rem; font-weight: 500; }
+/* 名前：折り返すときは「カレイド／スクエアパーク」「トラインスミス／株式会社」の間だけ */
+.related-card__name > span { display: inline-block; }
 .related-card__sub { font-size: 0.8125rem; color: #555; }
 .related-card__ico { flex: none; width: 18px; height: 18px; color: #3E6B1A; }
 @media (max-width: 899px) {
