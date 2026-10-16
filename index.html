@@ -32,6 +32,10 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     if (!location.hash && !sessionStorage.getItem('ksp-opening')) {
       sessionStorage.setItem('ksp-opening', '1');
       document.documentElement.classList.add('opening');
+      // オープニングで出すロゴは、ここで読み込みと展開を始めておく（間に合わないと、ページの読み込み中は描かれないため）
+      var opLogo = window.opLogo = new Image();
+      opLogo.src = 'assets/img/logo/tringsmith-logo.png';
+      if (opLogo.decode) opLogo.decode().catch(function () {});
     }
   } catch (e) {}
 }</script>

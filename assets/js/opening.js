@@ -1,7 +1,7 @@
 /* TOPの入口の動き
-   - オープニング（このタブで初めて開いたときだけ）：紺の画面に光の粒が瞬きながら現れ、
-     写真の真ん中に集まり、光の中から写真が見えてくる（約1.8秒）
-   - ヒーローの図形：画面の端から飛んできて、小さく弾んで止まる（毎回。オープニングがあるときは途中から重ねる）
+   - オープニング（このタブで初めて開いたときだけ）：サイトと同じ淡い緑の画面に光の粒が瞬きながら現れ、
+     画面の中央に集まり、ふんわり光った中からロゴが現れて、ふわっとヒーローに切り替わる（約2.4秒）
+   - ヒーローの図形：画面の端から飛んできて、小さく弾んで止まる（毎回。オープニングがあるときは終わりに重ねる）
    - タップ・スクロール・キー操作で、すぐに完成した画面に飛ぶ
    - 動きは transform と opacity だけ。覆いは飾り（aria-hidden）で、見出しや本文はHTMLのまま
    - 動きを減らす設定・JSが動かないときは、何もしない（最初から完成した画面） */
@@ -42,7 +42,7 @@
     });
   }
 
-  // 読み込みに時間がかかって、紺の画面がもう長く出ていたら、オープニングはやめる
+  // 読み込みに時間がかかって、覆いがもう長く出ていたら、オープニングはやめる
   var late = performance.now() > 2500;
   if (!root.classList.contains('opening') || !cover || !canAnimate || !hero || late) {
     if (cover) cover.remove();
@@ -52,41 +52,34 @@
   }
 
   // ---------- オープニング ----------
-  // 時間はページを開いてからの目安（ms）。紺の画面がすでに出ていた分（最大0.2秒）は差し引く
+  // 時間はページを開いてからの目安（ms）。覆いがすでに出ていた分（最大0.2秒）は差し引く
   var lag = Math.min(200, performance.now());
   function at(t) { return Math.max(0, t - lag); }
 
   cover.classList.add('is-live');
   var vw = window.innerWidth, vh = window.innerHeight;
-  var img = hero.querySelector('.hero-jr__photo img');
-  var box = img.parentElement;
-  var pr = box.getBoundingClientRect();
-  // 光が集まる場所：写真の真ん中（画面の外にはみ出すときは画面の中に寄せる）
-  var cx = Math.min(Math.max(pr.left + pr.width / 2, 40), vw - 40);
-  var cy = Math.min(Math.max(pr.top + pr.height / 2, 40), vh - 40);
+  var cx = vw / 2, cy = vh / 2; // 光が集まる場所：画面の中央
 
   var bg = el('div', 'op-bg', cover);
 
-  // 写真（本物の写真と同じ場所・同じ大きさ。上に、あらかじめぼかした小さい写真を重ねる）
-  var photo = el('div', 'op-photo', cover);
-  // 端は内側の整数pxにそろえる（本物の写真より1pxでも大きいと、表示の速さの計測で別の画像として数えられるため）
-  var L = Math.ceil(pr.left), T = Math.ceil(pr.top);
-  photo.style.cssText = 'left:' + L + 'px;top:' + T + 'px;width:' + (Math.floor(pr.right) - L) + 'px;height:' + (Math.floor(pr.bottom) - T) + 'px;border-radius:' + getComputedStyle(box).borderRadius;
-  var sharp = el('img', '', photo);
-  sharp.alt = '';
-  sharp.src = img.currentSrc || img.src;
-  var blur = el('img', '', photo);
-  blur.alt = '';
-  blur.src = 'assets/img/photos/hero-blur.webp';
-
-  // やわらかい光のかたまり
-  var g = Math.min(Math.max(pr.width, pr.height) * 0.9, Math.max(vw, vh) * 0.8);
+  // やわらかい光（ロゴのまわりがふんわり明るくなる程度）
+  var g = Math.min(vw, vh) * 0.9;
   var glow = el('div', 'op-glow', cover);
   glow.style.cssText = 'left:' + (cx - g / 2) + 'px;top:' + (cy - g / 2) + 'px;width:' + g + 'px;height:' + g + 'px';
 
-  // 光の粒（ロゴの多色をやわらげた色と白）
-  var colors = ['var(--k-red)', 'var(--k-orange)', 'var(--k-yellow)', 'var(--k-green)', 'var(--k-blue)', 'var(--k-purple)', '#fff', '#FFF4D6'];
-  var count = vw < 900 ? 24 : 30;
+  // ロゴ（支給の画像そのまま。幅はスマホで画面の64%、最大420px）
+  var lw = Math.min(vw * 0.64, 420), lh = lw * 237 / 903;
+  var logo = window.opLogo || new Image(); // <head> で読み込みを始めたもの
+  logo.className = 'op-logo';
+  logo.alt = '';
+  if (!logo.src) logo.src = 'assets/img/logo/tringsmith-logo.png';
+  cover.appendChild(logo);
+  logo.style.cssText = 'left:' + (cx - lw / 2) + 'px;top:' + (cy - lh / 2) + 'px;width:' + lw + 'px;height:' + lh + 'px';
+
+  // 光の粒（サイトのオレンジ・ロゴの緑・ロゴの多色を濃くした色）。PCは少し多く、画面の幅に合わせて大きく（最大1.6倍）
+  var colors = ['#F99000', '#63A43C', '#E0675C', '#E2B100', '#3E8ED0', '#9466C2', '#436E28'];
+  var count = vw < 900 ? 22 : 32;
+  var k = Math.min(Math.max(vw / 390, 1), 1.6);
   var anims = [];
   var minD = Math.min(vw, vh) * 0.18;
   for (var n = 0; n < count; n++) {
@@ -95,22 +88,22 @@
     if (d < minD) { x = cx + (x - cx) / (d || 1) * minD; y = cy + (y - cy) / (d || 1) * minD; }
     var star = Math.random() < 0.4;
     var sp = el('span', 'op-spark' + (star ? ' op-star' : ''), cover);
-    sp.style.cssText = 'left:' + x + 'px;top:' + y + 'px;--s:' + (star ? rnd(12, 22) : rnd(7, 15)).toFixed(1) + 'px;--c:' + colors[n % colors.length];
+    sp.style.cssText = 'left:' + x + 'px;top:' + y + 'px;--s:' + ((star ? rnd(12, 22) : rnd(8, 15)) * k).toFixed(1) + 'px;--c:' + colors[n % colors.length];
     var dot = el('i', '', sp);
 
-    // 瞬き：現れて、1回だけ少し暗くなって、また明るく（1つの粒の点滅は1秒に3回より少ない）→ 集まりきって消える
-    var t0 = 200 + rnd(0, 400), tEnd = 1250, D = tEnd - t0;
+    // 瞬き：現れて、1回だけ少し暗くなって、また明るく（1つの粒の点滅は1秒に3回より少ない）→ 中央でふくらみながら消える
+    var t0 = 200 + rnd(0, 400), tEnd = 1320, D = tEnd - t0;
     var o = function (t) { return (t - t0) / D; };
     anims.push(dot.animate([
       { opacity: 0, transform: 'scale(.3)' },
       { opacity: 1, transform: 'scale(1)', offset: o(t0 + 150) },
-      { opacity: 0.35, transform: 'scale(.7)', offset: o(t0 + 320) },
+      { opacity: 0.4, transform: 'scale(.7)', offset: o(t0 + 320) },
       { opacity: 1, transform: 'scale(1.05)', offset: o(t0 + 500) },
-      { opacity: 1, transform: 'scale(.5)', offset: o(1150) },
-      { opacity: 0, transform: 'scale(.3)' }
+      { opacity: 1, transform: 'scale(.8)', offset: o(1180) },
+      { opacity: 0, transform: 'scale(1.8)' }
     ], { duration: D, delay: at(t0), easing: 'ease-in-out', fill: 'both' }));
 
-    // 集まる：ゆるやかに、少しずつ遅れて写真の真ん中へ
+    // 集まる：ゆるやかに、少しずつ遅れて画面の中央へ
     var tg = 700 + rnd(0, 150);
     anims.push(sp.animate([
       { translate: '0px 0px' },
@@ -118,46 +111,27 @@
     ], { duration: 1200 + rnd(0, 60) - tg, delay: at(tg), easing: 'cubic-bezier(.5,0,.3,1)', fill: 'both' }));
   }
 
+  // ぱっと光る（やわらかく）
   anims.push(glow.animate([
-    { opacity: 0, transform: 'scale(.25)' },
-    { opacity: 1, transform: 'scale(.8)', offset: 0.45 },
-    { opacity: 0.9, transform: 'scale(1.1)', offset: 0.6 },
-    { opacity: 0, transform: 'scale(1.8)' }
-  ], { duration: 800, delay: at(850), easing: 'ease-out', fill: 'both' }));
+    { opacity: 0, transform: 'scale(.3)' },
+    { opacity: 0.9, transform: 'scale(1)', offset: 0.35 },
+    { opacity: 0.55, transform: 'scale(1.15)', offset: 0.7 },
+    { opacity: 0, transform: 'scale(1.3)' }
+  ], { duration: 700, delay: at(1100), easing: 'ease-out', fill: 'both' }));
 
-  // 景色が見えてくる：少し大きい状態から元の大きさへ戻りながら現れ、ぼけが解ける
-  // 拡大するのは枠の中の写真だけ（枠は本物の写真と同じ大きさのまま。本物より大きく描かない）
-  anims.push(photo.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 280, delay: at(1000), easing: 'ease-out', fill: 'both' }));
-  [sharp, blur].forEach(function (im) {
-    anims.push(im.animate([{ transform: 'scale(1.06)' }, { transform: 'scale(1)' }], { duration: 800, delay: at(1000), easing: 'cubic-bezier(.2,.6,.3,1)', fill: 'both' }));
-  });
-  anims.push(blur.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, delay: at(1250), easing: 'ease-in-out', fill: 'both' }));
+  // ロゴが現れ（少し小さい・薄い → 元の大きさ）、ふわっと薄れる（1.2〜1.7秒で現れ、1.7〜2.3秒で薄れる）
+  // 1つのアニメーションにまとめる（同じ要素に2つ重ねると、読み込み中に動かなくなるため）
+  anims.push(logo.animate([
+    { opacity: 0, transform: 'scale(.94)', easing: 'cubic-bezier(.2,.6,.3,1)' },
+    { opacity: 1, transform: 'scale(1)', offset: 500 / 1100, easing: 'ease-in-out' },
+    { opacity: 0, transform: 'scale(1.03)' }
+  ], { duration: 1100, delay: at(1200), fill: 'both' }));
 
-  // 紺の覆いが消える → 覆いを取り除く
-  var bgAnim = bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 450, delay: at(1350), easing: 'ease-in-out', fill: 'both' });
+  // 覆いが消えて、ヒーローが見える → 覆いを取り除く
+  var bgAnim = bg.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 650, delay: at(1750), easing: 'ease-in-out', fill: 'both' });
   anims.push(bgAnim);
 
-  var shapes = introShapes(at(1300));
-  var afterT = setTimeout(afterglow, at(1600));
-  var afters = [];
-
-  // 余韻：写真が鮮明になったあと、2〜3粒のキラキラが写真の上でふっと消える
-  function afterglow() {
-    var media = hero.querySelector('.hero-jr__media');
-    if (!media) return;
-    [[0.24, 0.3], [0.7, 0.22], [0.56, 0.7]].forEach(function (p, k) {
-      var a = el('span', 'op-after op-star', media);
-      a.setAttribute('aria-hidden', 'true');
-      afters.push(a);
-      a.style.cssText = 'left:' + p[0] * 100 + '%;top:' + p[1] * 100 + '%;--s:' + (16 + k * 3) + 'px;--c:' + colors[(k * 3 + 2) % 6];
-      var i = el('i', '', a);
-      i.animate([
-        { opacity: 0, transform: 'scale(.3) rotate(0deg)' },
-        { opacity: 1, transform: 'scale(1) rotate(20deg)', offset: 0.35 },
-        { opacity: 0, transform: 'scale(.2) rotate(45deg)' }
-      ], { duration: 560, delay: k * 120, easing: 'ease-out', fill: 'both' }).onfinish = function () { a.remove(); };
-    });
-  }
+  var shapes = introShapes(at(1800));
 
   var ended = false;
   var opts = { capture: true, passive: true };
@@ -172,12 +146,10 @@
     cover.remove();
     root.classList.remove('opening');
   }
-  // 操作されたら、すぐに完成した画面へ（図形も定位置に。余韻は出さない）
+  // 操作されたら、すぐに完成した画面へ（図形も定位置に）
   function skip() {
     if (ended) return;
-    clearTimeout(afterT);
     shapes.forEach(function (a) { a.finish(); });
-    afters.forEach(function (a) { a.remove(); });
     end();
   }
   // 幅が変わったら終わる（スマホでアドレスバーが出入りするだけの高さの変化では終わらない）
