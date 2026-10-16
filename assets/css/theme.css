@@ -115,7 +115,9 @@
     padding: calc(var(--header-h) + 8px) clamp(48px, 7vw, 120px) 56px;
   }
   .theme-green .hero-jr__media { order: 2; }
-  .theme-green .hero-jr__photo { border-radius: var(--r-card); aspect-ratio: 5 / 4; }
+  /* 写真の枠：左右の人の拳と肘が入り、肘の外の余白が左右でそろう比率と位置（元の画像1679×937のうち、x=223〜1575が見える） */
+  .theme-green .hero-jr__photo { border-radius: var(--r-card); aspect-ratio: 1352 / 937; }
+  .theme-green .hero-jr__photo img { object-position: 68.2% 50%; }
   }
 
 /* ---------- 章の境目：やわらかい波（または上の角を丸めた面） ---------- */
@@ -322,6 +324,10 @@ html.opening .op-cover.is-live { background: none; animation: none; }
 
 /* ---------- ① ヒーロー ---------- */
 .theme-green .hero-jr__title { font-size: clamp(1.625rem, 1rem + 2.6vw, 2.75rem); line-height: 1.55; letter-spacing: 0.03em; }
+/* PCの狭い幅（900〜1199px）は見出しの列が細いので、「ソーシャルベンチャー」が1行に収まる大きさに（4行） */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .theme-green .hero-jr__title { font-size: 3.6vw; }
+}
 .theme-green .hero-jr__lead { max-width: 34em; }
 
 /* ---------- ② 就労支援の実績（イメージ③の本当の姿の中） ---------- */
