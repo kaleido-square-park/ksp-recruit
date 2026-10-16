@@ -4,6 +4,7 @@
   'use strict';
 
   // ---------- スマホのメニュー ----------
+  document.documentElement.classList.add('nav-ready');
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
   var mq = window.matchMedia('(max-width: 899px)');

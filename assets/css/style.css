@@ -186,6 +186,8 @@ small { font-size: 0.8125rem; }
     background: #fff; border-radius: 0 0 var(--r-lg) var(--r-lg); box-shadow: var(--shadow-float);
   }
   html.js .site-nav[hidden] { display: none; }
+  /* main.js が動くまでは閉じておく（読み込み中にメニューが一瞬開いて見えるのを防ぐ） */
+  html.js:not(.nav-ready) .site-nav { display: none; }
   html.js .site-nav ul { flex-direction: column; padding: 8px var(--gutter) 16px; }
   html.js .site-nav li + li { border-top: 1px solid var(--line); }
   html.js .site-nav a { min-height: 52px; }

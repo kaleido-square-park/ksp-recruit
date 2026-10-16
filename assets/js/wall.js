@@ -1,9 +1,8 @@
 /* ② 「福祉の仕事」のイメージを3つこわす
    - 白いカード（よくあるイメージ）が画面に入ったら、ひびが入って割れ、下から「本当の姿」が出る
-   - 3つ割れたあと、「社会の理不尽に立ち向かう。」の上に万華鏡が集まり、ゆっくり止まる
-   - 文字はすべてHTMLのまま。破片・ひび・万華鏡は飾り（aria-hidden）
-   - 破片と万華鏡の動きは transform と opacity だけ（スマホでもカクつかないように）
-   - 動きを減らす設定のときは、最初から割れた後の形＋止まった万華鏡を見せる
+   - 文字はすべてHTMLのまま。破片・ひびは飾り（aria-hidden）
+   - 破片の動きは transform と opacity だけ（スマホでもカクつかないように）
+   - 動きを減らす設定のときは、最初から割れた後の形を見せる
    - JSが動かないときは、CSSの初期状態（全文が見える）のまま */
 (function () {
   'use strict';
@@ -11,13 +10,9 @@
   var wall = document.getElementById('wall');
   if (!wall) return;
   var cards = [].slice.call(wall.querySelectorAll('.wall__myth'));
-  var kalBox = wall.querySelector('.wall__kal');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var DPR = Math.min(window.devicePixelRatio || 1, 2);
   var canAnimate = !!Element.prototype.animate;
-
-  // 万華鏡の色：ロゴの多色をやわらげた色＋白＋ロゴの緑（この瞬間だけ多色を使う）
-  var KC = ['#F4A7A0', '#FBC67C', '#F6DE7C', '#A9D98D', '#92C6EA', '#C5A9DC', '#FFFFFF', '#63A43C'];
 
   function el(tag, cls, parent) {
     var e = document.createElement(tag);
@@ -29,7 +24,6 @@
   function easeOut(p) { return 1 - Math.pow(1 - p, 3); }
   function clamp01(p) { return p < 0 ? 0 : p > 1 ? 1 : p; }
   function rnd(a, b) { return a + Math.random() * (b - a); }
-  function pct(v, total) { return (v / total * 100).toFixed(2) + '%'; }
 
   function finish(card) {
     card.classList.add('is-broken');
@@ -70,11 +64,19 @@
 
     // 白い面を破片に置きかえる（見た目は同じ。ここから破片が動く）
     var box = el('div', 'wall__shards', card);
+    // 破片は三角形を囲む大きさだけの層にする（動かす面を小さくして軽くする）
+    var radius = getComputedStyle(card).borderTopLeftRadius;
     var parts = tris.map(function (t) {
+      var x0 = Math.floor(Math.min(t[0][0], t[1][0], t[2][0])), y0 = Math.floor(Math.min(t[0][1], t[1][1], t[2][1]));
+      var x1 = Math.ceil(Math.max(t[0][0], t[1][0], t[2][0])), y1 = Math.ceil(Math.max(t[0][1], t[1][1], t[2][1]));
       var s = el('i', '', box);
-      s.style.clipPath = 'polygon(' + t.map(function (p) { return pct(p[0], w) + ' ' + pct(p[1], h); }).join(',') + ')';
+      s.style.cssText = 'left:' + x0 + 'px;top:' + y0 + 'px;width:' + (x1 - x0) + 'px;height:' + (y1 - y0) + 'px;clip-path:polygon(' +
+        t.map(function (p) { return (p[0] - x0).toFixed(1) + 'px ' + (p[1] - y0).toFixed(1) + 'px'; }).join(',') + ')';
+      // 中身はカードと同じ白い面（角の丸みも同じ）を、破片の位置に合わせてずらしたもの
+      var face = el('b', '', s);
+      face.style.cssText = 'left:' + -x0 + 'px;top:' + -y0 + 'px;width:' + w + 'px;height:' + h + 'px;border-radius:' + radius;
       var cx = (t[0][0] + t[1][0] + t[2][0]) / 3, cy = (t[0][1] + t[1][1] + t[2][1]) / 3;
-      s.style.transformOrigin = cx.toFixed(1) + 'px ' + cy.toFixed(1) + 'px';
+      s.style.transformOrigin = (cx - x0).toFixed(1) + 'px ' + (cy - y0).toFixed(1) + 'px';
       return { s: s, cx: cx, cy: cy };
     });
     card.classList.add('is-cracking');
@@ -152,88 +154,8 @@
     }
   }
 
-  // ---------- 万華鏡：2枚の模様が逆向きに回って重なり、模様が移り変わる ----------
-  function setupKal() {
-    if (!kalBox) return null;
-    wall.classList.add('has-kal');
-    var A = el('canvas', 'wall__kal-a', kalBox), B = el('canvas', 'wall__kal-b', kalBox);
-    // 鏡1枚（30°）の中に形を散らす。半径・角度・大きさは決まった数列で、毎回同じ模様にする
-    function set(n, seed) {
-      var P = [], W = Math.PI / 12;
-      for (var i = 0; i < n; i++) {
-        var k = i + seed;
-        P.push({
-          r: 0.1 + 0.88 * ((k * 0.618034) % 1), a: (((k * 0.414214) % 1) * 2 - 1) * W,
-          z: 0.06 + 0.07 * ((k * 0.732051) % 1), col: KC[(k * 3) % KC.length], kind: k % 3, rot: k * 0.9
-        });
-      }
-      return P;
-    }
-    var PA = set(13, 0), PB = set(9, 23);
-    function draw(cv, P, disk) {
-      var S = kalBox.clientWidth;
-      if (!S) return;
-      cv.width = cv.height = Math.round(S * DPR);
-      var g = cv.getContext('2d'), R = S / 2, N = 12;
-      g.setTransform(DPR, 0, 0, DPR, S / 2 * DPR, S / 2 * DPR);
-      if (disk) { g.fillStyle = '#00214E'; g.beginPath(); g.arc(0, 0, R, 0, Math.PI * 2); g.fill(); }
-      for (var k = 0; k < N; k++) {
-        g.save();
-        g.rotate(k * Math.PI * 2 / N);
-        if (k % 2) g.scale(1, -1);
-        g.beginPath(); g.moveTo(0, 0); g.arc(0, 0, R, -Math.PI / N, Math.PI / N); g.closePath(); g.clip();
-        P.forEach(function (p) {
-          var d = R * p.r, z = R * p.z;
-          g.save();
-          g.translate(d * Math.cos(p.a), d * Math.sin(p.a)); g.rotate(p.rot);
-          g.globalAlpha = disk ? 0.95 : 0.6;
-          g.fillStyle = p.col;
-          g.beginPath();
-          if (p.kind === 0) g.arc(0, 0, z, 0, Math.PI * 2);
-          else if (p.kind === 1) { g.moveTo(0, -z); g.lineTo(z * 0.9, z * 0.6); g.lineTo(-z * 0.9, z * 0.6); g.closePath(); }
-          else g.rect(-z * 0.7, -z * 0.7, z * 1.4, z * 1.4);
-          g.fill();
-          g.restore();
-        });
-        g.restore();
-      }
-    }
-    var size = 0;
-    function render() {
-      var S = kalBox.clientWidth;
-      if (!S || S === size) return;
-      size = S; draw(A, PA, true); draw(B, PB, false);
-    }
-    render();
-    if ('ResizeObserver' in window) new ResizeObserver(render).observe(kalBox);
-
-    var TURN = 3200, ease = 'cubic-bezier(.15, .6, .25, 1)'; // 回りながら減速して止まる
-    return {
-      play: function () {
-        render();
-        kalBox.classList.add('is-on');
-        A.animate([{ transform: 'rotate(-40deg)' }, { transform: 'rotate(50deg)' }], { duration: TURN, easing: ease, fill: 'forwards' });
-        // 外から集まってくる
-        B.animate([
-          { transform: 'scale(1.7) rotate(0deg)', opacity: 0 },
-          { transform: 'scale(1) rotate(-70deg)', opacity: 1, offset: 0.35 },
-          { transform: 'scale(1) rotate(-95deg)', opacity: 1 }
-        ], { duration: TURN, easing: ease, fill: 'forwards' });
-      },
-      final: function () {
-        render();
-        kalBox.classList.add('is-on');
-        A.style.transform = 'rotate(50deg)';
-        B.style.transform = 'rotate(-95deg)';
-      }
-    };
-  }
-
-  var kal = setupKal();
-
   if (reduce || !canAnimate || !('IntersectionObserver' in window)) {
     cards.forEach(finish);
-    if (kal) kal.final();
     return;
   }
 
@@ -250,11 +172,6 @@
       if (!e.isIntersecting) return;
       io.unobserve(e.target);
       var past = e.boundingClientRect.bottom < (header ? header.offsetHeight : 64);
-      if (e.target === kalBox) {
-        cards.forEach(function (c) { if (!c.classList.contains('is-broken')) finish(c); });
-        if (past) kal.final(); else kal.play();
-        return;
-      }
       if (past) { finish(e.target); return; }
       // 同時に画面に入ったとき（PCなど）は、1枚ずつ順に割る
       var now = performance.now(), at = Math.max(now, nextAt);
@@ -263,5 +180,4 @@
     });
   }, { rootMargin: '100000px 0px -40% 0px', threshold: 0 });
   cards.forEach(function (c) { io.observe(c); });
-  if (kal) io.observe(kalBox);
 })();
