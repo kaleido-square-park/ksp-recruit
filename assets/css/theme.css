@@ -291,6 +291,13 @@ html.opening .op-cover.is-live { background: none; animation: none; }
 /* スマホのヒーロー：文字に重なる位置の図形は出さない */
 @media (max-width: 899px) {
   .theme-green .hero-jr .fl--square, .theme-green .hero-jr .fl.c-orange { display: none; }
+  /* 黄色の半円：写真の左下の外側に、半分ほどのぞかせる（写真の下端は ヘッダー＋16px＋写真の高さ） */
+  .theme-green .hero-jr .fl--half.c-yellow {
+    left: calc(var(--gutter) + 12px - var(--size) * .55);
+    top: calc(var(--header-h) + 16px + (100vw - 2 * (var(--gutter) + 12px)) * 937 / 1352 - var(--size) * 1.6);
+  }
+  /* 緑の丸：ボタンから離して、ヒーローの右下に */
+  .theme-green .hero-jr .fl--circle.c-green { left: auto; top: auto; right: calc(var(--gutter) + 8px); bottom: 40px; }
 }
 
 
