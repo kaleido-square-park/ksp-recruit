@@ -314,6 +314,14 @@ html.opening .op-cover.is-live { background: none; animation: none; }
   .theme-green .site-logo { padding: 10px 24px 10px 22px; }
   .theme-green .site-logo img { height: 56px; }             /* PC：ロゴ全体（下の社名が約14pxで読める） */
   .theme-green .site-nav ul { gap: 20px; }
+  /* メニューの項目は1行に（真ん中寄せのときも、画面の半分の幅で折り返さない） */
+  .theme-green .site-nav { width: max-content; }
+  .theme-green .site-nav a { white-space: nowrap; }
+}
+/* 1行に収めるとロゴに近づく幅は、文字と間隔を少し詰める */
+@media (min-width: 1181px) and (max-width: 1279px) {
+  .theme-green .site-nav ul { gap: 14px; }
+  .theme-green .site-nav a { font-size: 0.8125rem; }
 }
 @media (min-width: 900px) and (max-width: 1180px) {
   .theme-green .site-logo img { height: 48px; }
