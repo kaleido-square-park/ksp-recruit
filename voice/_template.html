@@ -10,7 +10,7 @@
        Q2 今の仕事で、一番うれしかった瞬間は？
        Q3 KSPの働きやすいところは？
        Q4 応募を迷っている人へひと言。
-  3. 顔写真（実在の本人のもの）を、顔が中心の正方形に切り出し、WebP・メタデータなしで assets/img/photos/ に置く（記事用480px・カード用112px。例：yasuda-480.webp / yasuda-112.webp）。img の src と alt を直す。
+  3. 写真（実在の本人のもの）をWebP・メタデータなしで assets/img/photos/ に置く。記事冒頭は引きの四角い写真（480px・960px。例：yasuda-scene-480.webp）、職種カードは顔が中心の丸い小さな写真（112px。例：yasuda-112.webp）。img の src と alt を直す。
   4. <title>・description・canonical・og:url・og:title を直し、noindex の meta を削除する。
   5. index.html の該当する職種カードの、「求人詳細・応募へ」のボタンの前（jcard__info の後）に、下のカード用の枠を入れる。
        一言は Q2 か Q4 の回答から選ぶ。ラベルは「◯年入社（前職の経歴など）」の形（例：2024年入社（保育士歴 約20年））。
@@ -90,7 +90,7 @@
 
 <main id="main">
 
-<!-- ===== 冒頭：顔写真（丸）・職種・一言 ===== -->
+<!-- ===== 冒頭：写真（四角）・職種・一言 ===== -->
 <section class="voice-hero" aria-labelledby="voice-title">
   <div class="voice-hero__inner">
     <div class="voice-hero__photo"><img src="../assets/img/photos/[ファイル名]-480.webp" width="480" height="480" alt="[お名前または職種]の顔写真"></div>
@@ -206,6 +206,13 @@
           <svg class="related-card__ico" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M7 1h4v4M11 1 5.5 6.5M9 7.5V11H1V3h3.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
           <span class="visually-hidden">（新しいタブで開きます）</span></a></li>
       </ul>
+    </section>
+  </div>
+  <div class="wrap">
+    <section class="site-footer__consult" aria-labelledby="consult-h">
+      <h2 class="site-footer__consult-title" id="consult-h">相談窓口のご案内</h2>
+      <p>就職活動中のハラスメントに関するご相談は、下記窓口で承っております。ご相談によって選考結果に不利益が生じることはありません。</p>
+      <p>【相談窓口】経営管理グループ　総務労務チーム<br>【連絡先】TEL：<a href="tel:08029358553" lang="en">080-2935-8553</a>　／　Mail：<a href="mailto:labor@tringsmith.co.jp" lang="en">labor@tringsmith.co.jp</a></p>
     </section>
   </div>
   <p class="site-footer__c" lang="en">© TRINGSMITH CO., LTD.</p>

@@ -2,7 +2,7 @@
 
 .theme-green .voice-hero { background: var(--jr-hero); border-radius: 0 0 var(--r-hero) var(--r-hero); margin-inline: 12px; padding: calc(var(--header-h) + 24px) clamp(20px, 5vw, 64px) clamp(40px, 6vw, 72px); }
 .theme-green .voice-hero__inner { width: min(100%, 960px); margin-inline: auto; display: grid; gap: 24px; align-items: center; }
-.theme-green .voice-hero__photo { width: min(60%, 220px); aspect-ratio: 1 / 1; border-radius: 50%; overflow: hidden; background: #E3E7EE; border: 4px solid #fff; }
+.theme-green .voice-hero__photo { width: min(60%, 220px); aspect-ratio: 1 / 1; border-radius: var(--r-box); overflow: hidden; background: #E3E7EE; border: 4px solid #fff; }
 .theme-green .voice-hero__photo img, .theme-green .voice-hero__photo .ph { display: block; width: 100%; height: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 0; border-radius: 0; }
 .theme-green .voice-hero__label { font-weight: 700; color: var(--jr-green); letter-spacing: 0.04em; line-height: 1.6; }
 .theme-green .voice-hero__label span { font-family: var(--font-en); font-weight: 600; letter-spacing: 0.08em; }
