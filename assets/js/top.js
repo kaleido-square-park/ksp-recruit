@@ -37,7 +37,10 @@
   }
 
   // ---------- 浮かぶ図形：スクロールに合わせて少しずつずれる（画面内のものだけ計算） ----------
+  // ヒーローの図形は、あわせて回る（1つおきに逆向き。最大30°）
   var floats = [].slice.call(document.querySelectorAll('.fl[data-depth]'));
+  var spin = new Map();
+  [].slice.call(document.querySelectorAll('.hero-jr .fl[data-depth]')).forEach(function (el, n) { spin.set(el, n % 2 ? -1 : 1); });
   var active = new Set();
   if ('IntersectionObserver' in window && floats.length) {
     var fio = new IntersectionObserver(function (es) {
@@ -57,6 +60,7 @@
       var center = r.top + r.height / 2 - vh / 2;  // 章の中心が画面の中心から何pxずれているか
       var depth = parseFloat(el.dataset.depth) || 0.1;
       el.style.setProperty('--py', (-center * depth).toFixed(1) + 'px');
+      if (spin.has(el)) el.style.setProperty('--pr', (spin.get(el) * Math.min(window.scrollY * depth * 0.35, 30)).toFixed(1) + 'deg');
     });
   }
   window.addEventListener('scroll', requestTick, { passive: true });

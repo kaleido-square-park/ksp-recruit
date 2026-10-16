@@ -25,13 +25,23 @@
 <link rel="stylesheet" href="assets/css/theme.css">
 <script>document.documentElement.classList.add('js');
 // 動きを減らす設定でなければ、最初の描画の前に motion-ok を付ける（ちらつき防止）
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion-ok');</script>
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.documentElement.classList.add('motion-ok');
+  // オープニングは、このタブで初めて開いたときだけ（#付きのURLで来たとき・sessionStorageが使えないときは出さない）
+  try {
+    if (!location.hash && !sessionStorage.getItem('ksp-opening')) {
+      sessionStorage.setItem('ksp-opening', '1');
+      document.documentElement.classList.add('opening');
+    }
+  } catch (e) {}
+}</script>
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/top.js" defer></script>
 <script src="assets/js/wall.js" defer></script>
 <script src="assets/js/tour.js" defer></script>
 </head>
 <body class="page-top theme-green">
+<div class="op-cover" aria-hidden="true"></div>
 
 <a class="skip-link" href="#main">本文へスキップ</a>
 
@@ -95,6 +105,8 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.doc
     </div>
   </div>
 </section>
+<!-- 入口の動きは、ページ全体を読み終わるのを待たずに、ヒーローを読んだらすぐ始める -->
+<script src="assets/js/opening.js"></script>
 
 <div class="wave" aria-hidden="true" style="--from:#fff;--to:var(--jr-brand)"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" focusable="false"><path d="M0,44 C200,76 380,74 560,50 C740,26 900,10 1080,26 C1250,42 1350,58 1440,50 L1440,80 L0,80 Z"/></svg></div>
 

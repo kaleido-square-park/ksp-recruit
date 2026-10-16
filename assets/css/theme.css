@@ -244,9 +244,11 @@ html.motion-ok .theme-green .wall.is-armed .wall__item:not(.is-open) .wall__trut
 .theme-green .wall > .wrap, .theme-green .env > .wrap, .theme-green .entry > .wrap, .theme-green .work > .wrap { position: relative; z-index: 1; }
 
 /* 動き：動きを減らす設定でないときだけ（html.motion-ok は JS が付ける） */
-@keyframes jr-bob { from { transform: translateY(-6px) rotate(-4deg); } to { transform: translateY(8px) rotate(5deg); } }
-/* ヒーローの図形の揺れは一度だけ（約5秒で止まる） */
-html.motion-ok .theme-green .hero-jr .fl i { animation: jr-bob 5s ease-in-out 1 forwards; }
+/* ヒーローの図形：スクロールに合わせて回る（--pr は top.js） */
+.theme-green .hero-jr .fl { rotate: var(--pr, 0deg); }
+/* ヒーローの図形：飛んでくるまで隠しておく（opening.js が hero-in を付ける。JSが止まっても3秒で出す） */
+@keyframes fl-show { to { opacity: .85; } }
+html.motion-ok:not(.hero-in) .theme-green .hero-jr .fl i { opacity: 0; animation: fl-show 0s 3s forwards; }
 
 /* スクロールで現れる：カード類だけ、少し下から（章ごとの一律フェードにはしない） */
 html.motion-ok .theme-green [data-reveal] { transition: opacity var(--t-reveal), translate var(--t-reveal); transition-delay: var(--delay, 0s); }
@@ -254,8 +256,37 @@ html.motion-ok .theme-green [data-reveal]:not(.is-in) { opacity: 0; translate: 0
 
 @media (prefers-reduced-motion: reduce) {
   .theme-green .btn, .theme-green .btn::before, .theme-green .job, .theme-green .site-nav { transition: none !important; }
-  .theme-green .fl { translate: none !important; }
+  .theme-green .fl { translate: none !important; rotate: none !important; }
 }
+
+/* ---------- オープニング（TOPを初めて開いたときだけ。opening.js） ----------
+   紺の画面に光の粒が瞬いて集まり、光の中から写真が見えてくる。覆いは飾り（aria-hidden） */
+.op-cover { display: none; }
+html.opening .op-cover {
+  display: block; position: fixed; inset: 0; z-index: 300; background: var(--navy-deep); overflow: hidden;
+  animation: op-failsafe .3s 3s forwards; /* JSが止まっても3秒で消える */
+}
+html.opening .op-cover.is-live { background: none; animation: none; }
+@keyframes op-failsafe { to { opacity: 0; visibility: hidden; } }
+.op-cover > * { position: absolute; left: 0; top: 0; pointer-events: none; }
+.op-bg { inset: 0; background: var(--navy-deep); }
+.op-photo { overflow: hidden; opacity: 0; }
+.op-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.op-glow {
+  border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, rgba(255, 250, 238, .95) 0, rgba(255, 241, 212, .6) 28%, rgba(255, 234, 196, .2) 52%, rgba(255, 234, 196, 0) 70%);
+}
+.op-spark, .op-after { width: var(--s); height: var(--s); margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2); }
+.op-spark i, .op-after i {
+  display: block; width: 100%; height: 100%; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, #fff 0 16%, var(--c) 42%, transparent 70%);
+}
+.op-star i {
+  border-radius: 0; background: radial-gradient(circle, #fff 0 22%, var(--c) 58%);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+}
+/* 写真の上でふっと消える余韻（写真の枠の中） */
+.op-after { position: absolute; z-index: 1; pointer-events: none; }
 
 /* 大きい英字は単語の途中で折らない。スマホでは少し小さく */
 .theme-green .eyebrow { overflow-wrap: normal; word-break: keep-all; font-size: clamp(2.25rem, 1rem + 6vw, 5rem); }
