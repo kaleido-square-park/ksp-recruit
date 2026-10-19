@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kaleido-square-park.github.io/ksp-recruit/sitemap.xml
