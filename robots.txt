@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kaleido-square-park.github.io/ksp-recruit/sitemap.xml
+Sitemap: https://recruit.tringsmith.co.jp/sitemap.xml
