@@ -637,6 +637,11 @@ html.is-locked { overflow: hidden; }
 @media (max-width: 374px) {
   .theme-green .jcard__voice { gap: 8px; padding-left: 12px; }
 }
+/* 600px以上：一言を3つのまとまりで区切らず横に流し（2行）、行の長さをそろえる。単語の途中では折り返さない */
+@media (min-width: 600px) {
+  .theme-green .jcard__voice-quote { text-wrap: balance; }
+  .theme-green .jcard__voice-quote > .nb { display: inline; }
+}
 
 
 
