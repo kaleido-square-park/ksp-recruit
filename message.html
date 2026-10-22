@@ -22,9 +22,6 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="assets/img/favicon-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="assets/css/message.css">
@@ -113,6 +110,8 @@
       <li><a href="#epilogue"><span class="toc__no">終章</span><span><span class="nb">覚悟を持って、</span><span class="nb">一緒に</span><span class="nb">この山を</span><span class="nb">登りませんか。</span></span></a></li>
     </ol>
   </details>
+  <script>// スマホは目次を閉じて始める（最初の描画の前に閉じる。開いたまま描いてから閉じると、下の文章がずれる）
+  if (!window.matchMedia('(min-width: 1280px)').matches) document.querySelector('.toc__box').open = false;</script>
 </nav>
 
 <!-- ===== 序章　手紙 ===== -->

@@ -1,5 +1,5 @@
 /* アクセス解析（Google アナリティクス 4）
-   - 本番のURL（recruit.tringsmith.co.jp と、移行前の kaleido-square-park.github.io）で開いたときだけ読み込む。それ以外（プレビューなど）では何もしない
+   - 本番のURL（recruit.tringsmith.co.jp）で開いたときだけ読み込む。それ以外（プレビューなど）では何もしない
    - 押されたことを記録するリンク（それぞれ別のイベント）
      airwork_click：Airワークの求人ページ（job＝職種名、area＝村上／胎内）
      tel_click    ：電話（link_url＝tel:番号）
@@ -9,7 +9,7 @@
   'use strict';
 
   var ID = 'G-3G5SG8WVXV';
-  var HOSTS = ['recruit.tringsmith.co.jp', 'kaleido-square-park.github.io'];
+  var HOSTS = ['recruit.tringsmith.co.jp'];
   if (HOSTS.indexOf(location.hostname) === -1) return;
 
   window.dataLayer = window.dataLayer || [];
